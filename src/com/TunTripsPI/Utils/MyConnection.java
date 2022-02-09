@@ -1,4 +1,4 @@
-package com.toy.anagrams.lib.entities.Utils;
+package com.toy.anagrams.lib.Utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

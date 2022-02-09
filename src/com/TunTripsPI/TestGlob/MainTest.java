@@ -5,7 +5,7 @@
  */
 package com.toy.anagrams.lib.TestGlob;
 
-import com.toy.anagrams.lib.entities.Services.UserCruds;
+import com.toy.anagrams.lib.Services.UserCruds;
 import com.toy.anagrams.lib.entities.User;
 
 /**
@@ -15,7 +15,7 @@ import com.toy.anagrams.lib.entities.User;
 public class MainTest {
    
     public static void main(String[] args) {
-        User u1 =new User("lotfi","louiz","lotfi.louiz@esprit.tn","123456","Tunisien","admin","C:\\Users\\Lotfi\\Pictures\\Saved Pictures\\img.jpg");
+        User u1 =new User("oumayma","hajri","oumayma.hajri","1234567","Tunisienne","admin","C:\\Users\\Lotfi\\Pictures\\Saved Pictures\\img.jpg");
         UserCruds uc1=new UserCruds();
         uc1.ajouterUser(u1);
         

@@ -1,7 +1,7 @@
 
-package com.toy.anagrams.lib.entities.Services;
+package com.toy.anagrams.lib.Services;
 import com.toy.anagrams.lib.entities.User;
-import com.toy.anagrams.lib.entities.Utils.MyConnection;
+import com.toy.anagrams.lib.Utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
