@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package TestGlob;
+package com.toy.anagrams.lib.TestGlob;
 
 import com.toy.anagrams.lib.entities.Services.UserCruds;
 import com.toy.anagrams.lib.entities.User;
