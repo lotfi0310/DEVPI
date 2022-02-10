@@ -1,4 +1,4 @@
-package com.toy.anagrams.lib.entities;
+package com.TunTripsPI.entities;
 
 
 /**

@@ -1,7 +1,7 @@
 
-package com.toy.anagrams.lib.Services;
-import com.toy.anagrams.lib.entities.User;
-import com.toy.anagrams.lib.Utils.MyConnection;
+package com.TunTripsPI.Services;
+import com.TunTripsPI.entities.User;
+import com.TunTripsPI.Utils.MyConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -11,7 +11,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author saada
+ * @author lotfi
  */
 public class UserCruds {
 

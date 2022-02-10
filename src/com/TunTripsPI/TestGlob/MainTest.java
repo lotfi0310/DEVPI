@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.toy.anagrams.lib.TestGlob;
+package com.TunTripsPI.TestGlob;
 
-import com.toy.anagrams.lib.Services.UserCruds;
-import com.toy.anagrams.lib.entities.User;
+import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.entities.User;
 
 /**
  *
