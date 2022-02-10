@@ -15,9 +15,15 @@ import com.TunTripsPI.entities.User;
 public class MainTest {
    
     public static void main(String[] args) {
-        User u1 =new User("oumayma","hajri","oumayma.hajri","1234567","Tunisienne","admin","C:\\Users\\Lotfi\\Pictures\\Saved Pictures\\img.jpg");
+        User u1 =new User();
+        u1.setId(2);
+        u1.setNom("ouma");
+        u1.setPrenom("shan");
+        u1.setEmail("ouma.san@email.com");
+        u1.setPasswd("llll");
+        u1.setPhoto("/doc/img.jpg");
         UserCruds uc1=new UserCruds();
-        uc1.ajouterUser(u1);
+        uc1.modifierUser(u1);
         
     }
     

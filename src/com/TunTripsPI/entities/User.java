@@ -41,6 +41,15 @@ public class User {
         
     }
 
+    public User(String nom , String prenom , String email, String passwd , String photo ) {
+        this.nom=nom;
+        this.prenom=prenom;
+        this.email=email;
+        this.passwd=passwd;
+        this.photo=photo;
+        
+    }
+
    
     public int getId() {
         return id;

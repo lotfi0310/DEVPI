@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 
@@ -42,6 +44,24 @@ public class UserCruds {
         }
 
     }
+    //modifier info user 
+    public boolean modifierUser(User u )
+    {
+        String reqmodif ="UPDATE user SET nom='"+u.getNom()+"',prenom='"+u.getPrenom()+"',email='"+u.getEmail()+"',passwd='"+u.getPasswd()+"',photo='"+u.getPhoto()+"' WHERE user.id='"+u.getId()+"'";
+        PreparedStatement pst;
+       try
+    {
+        pst=cnxx.prepareStatement(reqmodif);
+        pst.executeUpdate(reqmodif);
+       return true;       
+    }
+        
+       catch (SQLException ex) {
+           System.err.println("error");
+    }
+return false;
+    }
+
+    }
 
     
-}
