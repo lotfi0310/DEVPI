@@ -90,10 +90,10 @@ public class UserCruds {
             st.executeQuery(reqinfoprofil);
             rs=st.getResultSet();
                       System.out.println(rs.next());
-                      while(rs.next()){
-  User uu = new User(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("passwd"),rs.getString("nationalite"),rs.getString("role"),rs.getString("photo"));
+                    
+                          User uu = new User(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("passwd"),rs.getString("nationalite"),rs.getString("role"),rs.getString("photo"));
                            listinfo.add(uu);
-                      }
+                      
                       return listinfo;
 
         } catch (SQLException ex) {

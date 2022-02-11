@@ -20,7 +20,6 @@ public class MainTest {
         User u1 =new User();
         u1.setId(2);
         UserCruds uc1=new UserCruds();
-       
        ArrayList<User> Mylist =new ArrayList<User>();
  Mylist= uc1.consulterinfo(u1);
       Mylist.stream().forEach(e->System.out.print(e));
