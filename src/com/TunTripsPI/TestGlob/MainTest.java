@@ -7,6 +7,8 @@ package com.TunTripsPI.TestGlob;
 
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,14 +19,12 @@ public class MainTest {
     public static void main(String[] args) {
         User u1 =new User();
         u1.setId(2);
-        u1.setNom("ouma");
-        u1.setPrenom("shan");
-        u1.setEmail("ouma.san@email.com");
-        u1.setPasswd("llll");
-        u1.setPhoto("/doc/img.jpg");
         UserCruds uc1=new UserCruds();
-        uc1.modifierUser(u1);
-        
+       
+       ArrayList<User> Mylist =new ArrayList<User>();
+ Mylist= uc1.consulterinfo(u1);
+      Mylist.stream().forEach(e->System.out.print(e));
+      
     }
     
 }
