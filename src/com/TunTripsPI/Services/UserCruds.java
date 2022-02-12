@@ -63,6 +63,7 @@ public class UserCruds {
         return false;
     }
 //supprimer compte user
+
     public boolean SupprimerUser(User u) {
         String reqdelete = "DELETE From user WHERE id='" + u.getId() + "'";
         PreparedStatement pst;
@@ -77,7 +78,7 @@ public class UserCruds {
         return false;
 
     }
-//consulter mes info user
+//consulter mes info
     public ArrayList<User> consulterinfo(User u) {
         ArrayList listinfo = new ArrayList();
         String reqinfoprofil = "SELECT * FROM user WHERE id='" + u.getId() + "'";
@@ -101,31 +102,50 @@ public class UserCruds {
         return listinfo;
     }
 //Authentification user 
-    public boolean Authentification(String email, String passwd) {
+    public ResultSet Authentification(String email, String passwd) {
         boolean s = false;
+        ResultSet rs=null;
         String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
 
         try {
             Statement st;
             st = cnxx.createStatement();
-
             System.out.println(st.executeQuery(reqverifauth));
-            ResultSet rs = st.executeQuery(reqverifauth);
-            while (rs.next()) {
-                s=true; 
-                System.out.println(rs.getString("role"));
-                
-            }
-           
-            System.out.println("authentification avec succes");
-        } catch (SQLException ex) {
+              st.executeQuery(reqverifauth);
+             rs=st.getResultSet();
+       
+        } 
+        catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("email ou mp invalide ");
 
         }
-        return s;
+        return rs;
 
     }
-    
+    public void Typeauthentification (String email,String passwd){
+         ResultSet auth=Authentification(email, passwd);
+        try {
+            while (auth.next()) {
+                System.out.println("authentification avec succes");
+                if (auth.getString("role").equals("admin")) {
+                    System.out.println("hello " + auth.getString("nom") + " vous etes un " + auth.getString("role"));
+                } else if (auth.getString("role").equals("fournisseur")){
+                    System.out.println("hello " + auth.getString("nom") + " vous etes un " + auth.getString("role"));
+                    
+                }
+                else if (auth.getString("role").equals("visiteur")){
+                    System.out.println("hello " + auth.getString("nom") + " vous etes un " + auth.getString("role"));
+                    
+                }
+                else {
+                    System.out.println("email ou passwd non valide ");
+                }
+                
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+        }
+}
 
 }

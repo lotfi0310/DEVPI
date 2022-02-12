@@ -7,26 +7,29 @@ package com.TunTripsPI.TestGlob;
 
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Lotfi
  */
 public class MainTest {
-   
-    public static void main(String[] args) {
-        User u1 =new User();
-        String email="ouma.san@email.com";
-        String passwd="llll";
-        UserCruds uc1=new UserCruds();
-        boolean auth =uc1.Authentification(email,passwd);
-        System.out.println(auth);
-      /* ArrayList<User> Mylist =new ArrayList<User>();
- Mylist= uc1.consulterinfo(u1);
-      Mylist.stream().forEach(e->System.out.print(e));*/
-      
+
+    public static void main(String[] args) throws SQLException {
+        User u1 = new User();
+        String email = "ouma.san@email.com";
+        String passwd = "llll";
+       UserCruds ua=new UserCruds();
+       ua.Typeauthentification(email, passwd);
+        }
+
     }
-    
-}
+
+/* ArrayList<User> Mylist =new ArrayList<User>();
+            Mylist= uc1.consulterinfo(u1);
+            Mylist.stream().forEach(e->System.out.print(e));*/
