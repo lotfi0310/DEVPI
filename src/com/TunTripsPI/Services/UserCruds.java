@@ -103,7 +103,6 @@ public class UserCruds {
 //Authentification user 
     public boolean Authentification(String email, String passwd) {
         boolean s = false;
-        ArrayList authinfo = new ArrayList();
         String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
 
         try {
