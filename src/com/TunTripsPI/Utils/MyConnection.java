@@ -13,10 +13,8 @@ public class MyConnection {
     public String login = "root";
     public String pwd = "";
     Connection cnx;
-    /* 2 etpae*/
     public static MyConnection instance;
 
-    /* 1 etpae*/
     private MyConnection() {
         try {
 
@@ -28,7 +26,7 @@ public class MyConnection {
         }
     }
 
-    /* 3 etape */
+   
 
     public static MyConnection getInstance() {
 

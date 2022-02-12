@@ -5,11 +5,14 @@
  */
 package com.TunTripsPI.TestGlob;
 
+import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,7 +42,7 @@ public class MainTest {
               
 
 //test authentification 
-        User u1 = new User();
+      /*  User u1 = new User();
         String email = "ouma.san@email.com";
         String passwd = "llll";
        UserCruds ua=new UserCruds();
@@ -47,15 +50,33 @@ public class MainTest {
        String t = ua.Typeauthentification(s);
        
        System.out.println(t);
-       
+       */
               
        
         
-       
-        }
-
-    }
-          //consulter info compte 
+        //consulter info compte 
           /* ArrayList<User> Mylist =new ArrayList<User>();
             Mylist= uc1.consulterinfo(u1);
             Mylist.stream().forEach(e->System.out.print(e));*/
+          
+          
+          //add reclamation 
+          ReclamationCrud cr=new ReclamationCrud();
+          Reclamation r=new Reclamation();
+          r.setIduser(1);
+          r.setContenu("arnac");
+          ;
+        java.sql.Date d;
+        d=new java.sql.Date(2022,02, 18);
+          r.setDate_rec(d);
+          r.setEtat(false);
+          cr.ajouterReclamation(r);
+          
+          
+          
+
+        }
+    
+
+    }
+         
