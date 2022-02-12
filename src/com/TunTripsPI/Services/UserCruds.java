@@ -108,13 +108,15 @@ public class UserCruds {
         String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
 
         try {
+            
             Statement st;
             st = cnxx.createStatement();
             System.out.println(st.executeQuery(reqverifauth));
               st.executeQuery(reqverifauth);
-             rs=st.getResultSet();
+              rs=st.getResultSet();
        
         } 
+        
         catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
 
@@ -123,6 +125,8 @@ public class UserCruds {
 
     }
     public void Typeauthentification (String email,String passwd){
+     User u1 = new User();
+    
          ResultSet auth=Authentification(email, passwd);
         try {
             while (auth.next()) {
@@ -147,5 +151,38 @@ public class UserCruds {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+    public ArrayList<User> consulterlisteuser(){
+        ArrayList<User> listeuser =new ArrayList<>();
+        User u=new User();
+        String reqliste="SELECT * FROM user ";
+        Statement st; 
+       ResultSet rs; 
+        try { 
+            st=cnxx.createStatement();
+            st.executeQuery(reqliste);
+            rs=st.executeQuery(reqliste);
+            while(rs.next())
+            {
+                u.setId(rs.getInt("id"));
+                u.setNom(rs.getString("nom"));
+                u.setPrenom(rs.getString("prenom"));
+                u.setEmail(rs.getString("email"));
+                u.setPasswd(rs.getString("passwd"));
+                u.setNationalite(rs.getString("nationalite"));
+                u.setRole(rs.getString("role"));
+                u.setPhoto(rs.getString("photo"));
+
+                listeuser.add(u);
+                return listeuser;
+                
+            }
+                    
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+      
+        return listeuser; 
+    }
 
 }
