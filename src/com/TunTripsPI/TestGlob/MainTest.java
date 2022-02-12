@@ -18,11 +18,14 @@ public class MainTest {
    
     public static void main(String[] args) {
         User u1 =new User();
-        u1.setId(2);
+        String email="ouma.san@email.com";
+        String passwd="llll";
         UserCruds uc1=new UserCruds();
-       ArrayList<User> Mylist =new ArrayList<User>();
+        boolean auth =uc1.Authentification(email,passwd);
+        System.out.println(auth);
+      /* ArrayList<User> Mylist =new ArrayList<User>();
  Mylist= uc1.consulterinfo(u1);
-      Mylist.stream().forEach(e->System.out.print(e));
+      Mylist.stream().forEach(e->System.out.print(e));*/
       
     }
     

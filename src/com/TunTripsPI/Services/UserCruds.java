@@ -64,7 +64,7 @@ public class UserCruds {
     }
 //supprimer compte user
     public boolean SupprimerUser(User u) {
-        String reqdelete = "DELETE From user WHERE id='"+u.getId()+ "'";
+        String reqdelete = "DELETE From user WHERE id='" + u.getId() + "'";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(reqdelete);
@@ -77,30 +77,56 @@ public class UserCruds {
         return false;
 
     }
-    
-    
-    public ArrayList<User> consulterinfo(User u){
-         ArrayList listinfo =new ArrayList();
-         String reqinfoprofil="SELECT * FROM user WHERE id='"+u.getId()+"'";
+//consulter mes info user
+    public ArrayList<User> consulterinfo(User u) {
+        ArrayList listinfo = new ArrayList();
+        String reqinfoprofil = "SELECT * FROM user WHERE id='" + u.getId() + "'";
         try {
-            
-            Statement st; 
-            st=cnxx.createStatement();
+
+            Statement st;
+            st = cnxx.createStatement();
             ResultSet rs;
             st.executeQuery(reqinfoprofil);
-            rs=st.getResultSet();
-                      System.out.println(rs.next());
-                    
-                          User uu = new User(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),rs.getString("passwd"),rs.getString("nationalite"),rs.getString("role"),rs.getString("photo"));
-                           listinfo.add(uu);
-                      
-                      return listinfo;
+            rs = st.getResultSet();
+            System.out.println(rs.next());
+
+            User uu = new User(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("nationalite"), rs.getString("role"), rs.getString("photo"));
+            listinfo.add(uu);
+
+            return listinfo;
 
         } catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listinfo;
     }
-   
+//Authentification user 
+    public boolean Authentification(String email, String passwd) {
+        boolean s = false;
+        ArrayList authinfo = new ArrayList();
+        String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
+
+        try {
+            Statement st;
+            st = cnxx.createStatement();
+
+            System.out.println(st.executeQuery(reqverifauth));
+            ResultSet rs = st.executeQuery(reqverifauth);
+            while (rs.next()) {
+                s=true; 
+                System.out.println(rs.getString("role"));
+                
+            }
+           
+            System.out.println("authentification avec succes");
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("email ou mp invalide ");
+
+        }
+        return s;
+
+    }
+    
 
 }
