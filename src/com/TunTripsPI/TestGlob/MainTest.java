@@ -21,28 +21,41 @@ import java.util.logging.Logger;
 public class MainTest {
 
     public static void main(String[] args) throws SQLException {
-                User u1 = new User();
-       UserCruds ua=new UserCruds();
-               ArrayList<User> listeuser =new ArrayList<>();
-
-   listeuser =ua.consulterlisteuser();
-      listeuser.stream().forEach(e->System.out.println(e));
-
+        //ajouter un utilisateur 
+        /*User u=new User("lotfi","louiz","lotfi.louiz@esprit.tn","lotfi1234","tunisien","fournisseur","/lotfi.jpg");
+        UserCruds uc=new UserCruds();
+        uc.ajouterUser(u);*/
+        
+        
+        
+               //consulter liste utulisateur 
+               /*
+        User u1 = new User();
+        UserCruds ua=new UserCruds();
+        ArrayList<User> listeuser =new ArrayList<>();
+        listeuser =ua.consulterlisteuser();
+        listeuser.stream().forEach(e->System.out.println(e));
+*/
+              
 
 //test authentification 
-        
-       /*
         User u1 = new User();
         String email = "ouma.san@email.com";
         String passwd = "llll";
        UserCruds ua=new UserCruds();
-       ua.Authentification(email, passwd);
-       ua.Typeauthentification(email, passwd);
-        */
+       ResultSet s = ua.Authentification(email, passwd);
+       String t = ua.Typeauthentification(s);
+       
+       System.out.println(t);
+       
+              
+       
+        
+       
         }
 
     }
-
-/* ArrayList<User> Mylist =new ArrayList<User>();
+          //consulter info compte 
+          /* ArrayList<User> Mylist =new ArrayList<User>();
             Mylist= uc1.consulterinfo(u1);
             Mylist.stream().forEach(e->System.out.print(e));*/
