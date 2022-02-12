@@ -79,6 +79,7 @@ public class UserCruds {
 
     }
 //consulter mes info
+
     public ArrayList<User> consulterinfo(User u) {
         ArrayList listinfo = new ArrayList();
         String reqinfoprofil = "SELECT * FROM user WHERE id='" + u.getId() + "'";
@@ -102,71 +103,62 @@ public class UserCruds {
         return listinfo;
     }
 //Authentification user 
+
     public ResultSet Authentification(String email, String passwd) {
-        
+
         boolean s = false;
-        ResultSet rs=null;
+        ResultSet rs = null;
         String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
-try{
-        
-            
+        try {
+
             Statement st;
             st = cnxx.createStatement();
             System.out.println(st.executeQuery(reqverifauth));
-              st.executeQuery(reqverifauth);
-              rs= st.executeQuery(reqverifauth);
+            st.executeQuery(reqverifauth);
+            rs = st.executeQuery(reqverifauth);
 
-              
-              if(rs.next())
-              {
-                  s=true; 
-                  System.out.println(s);
-                  System.out.println("authentification avec succes");
-                  
-              }
-              else {
-                  System.out.println(s);
-              System.out.println("email ou passwd non valide ");
-              }
-              
-              
+            if (rs.next()) {
+                s = true;
+                System.out.println(s);
+                System.out.println("authentification avec succes");
 
-        } 
-        
-        catch (SQLException ex) {
+            } else {
+                System.out.println(s);
+                System.out.println("email ou passwd non valide ");
+            }
+
+        } catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
 
         }
         return rs;
     }
-    public String Typeauthentification (ResultSet res)  {
-        
-                    String testrole=null;
+
+    public String Typeauthentification(ResultSet res) {
+
+        String testrole = null;
 
         try {
-            testrole=res.getString("role");
+            testrole = res.getString("role");
             return testrole;
         } catch (SQLException ex) {
             System.out.println("ce compte n'existe pas , inscrivez vous ");
         }
-      
+
         return testrole;
-             }
-    
-    
-    
-    public ArrayList<User> consulterlisteuser(){
-        ArrayList<User> listeuser =new ArrayList<>();
-        User u=new User();
-        String reqliste="SELECT * FROM user ";
-        Statement st; 
-       ResultSet rs; 
-        try { 
-            st=cnxx.createStatement();
+    }
+
+    public ArrayList<User> consulterlisteuser() {
+        ArrayList<User> listeuser = new ArrayList<>();
+        User u = new User();
+        String reqliste = "SELECT * FROM user ";
+        Statement st;
+        ResultSet rs;
+        try {
+            st = cnxx.createStatement();
             st.executeQuery(reqliste);
-            rs=st.executeQuery(reqliste);
-            while(rs.next())
-            {
+            rs = st.executeQuery(reqliste);
+            while (rs.next()) {
                 u.setId(rs.getInt("id"));
                 u.setNom(rs.getString("nom"));
                 u.setPrenom(rs.getString("prenom"));
@@ -177,15 +169,14 @@ try{
                 u.setPhoto(rs.getString("photo"));
                 listeuser.add(u);
                 return listeuser;
-                
+
             }
-                    
+
         } catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-      
-        return listeuser; 
+
+        return listeuser;
     }
 
 }
