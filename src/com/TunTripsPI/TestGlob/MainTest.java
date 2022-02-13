@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package com.TunTripsPI.TestGlob;
-
+import java.sql.Date; 
 import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.Reclamation;
@@ -12,7 +12,6 @@ import com.TunTripsPI.entities.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -61,17 +60,23 @@ public class MainTest {
           
           
           //add reclamation 
+          /*
+          User u=new User();
+          u.setId(2);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
-          r.setIduser(1);
-          r.setContenu("arnac");
-          ;
-        java.sql.Date d;
-        d=new java.sql.Date(2022,02, 18);
+          Date d =new Date(20220/12/15);
           r.setDate_rec(d);
+          r.setContenu("arnac2465");
           r.setEtat(false);
-          cr.ajouterReclamation(r);
-          
+          cr.ajouterReclamation(r,u);
+          */
+          //afficher mes reclamation en tant que user 
+          User u=new User();
+          u.setId(3);
+          ReclamationCrud cr=new ReclamationCrud();
+          Reclamation r=new Reclamation();
+          System.out.println(cr.AfficherUserReclamation(u,r));
           
           
 

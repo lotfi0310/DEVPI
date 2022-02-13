@@ -6,6 +6,7 @@
 package com.TunTripsPI.entities;
 
 import java.sql.Date;
+import java.sql.SQLXML;
 
 /**
  *
@@ -21,7 +22,7 @@ public class Reclamation {
     public Reclamation() {
     }
 
-    public Reclamation(int idreclamation, int iduser, String contenu, Date Date_rec, boolean etat) {
+    public Reclamation(int idreclamation, int iduser, String contenu, Date date, boolean etat) {
         this.idreclamation = idreclamation;
         this.iduser = iduser;
         this.contenu = contenu;
@@ -73,6 +74,9 @@ public class Reclamation {
     public String toString() {
         return "Reclamation{" + "idreclamation=" + idreclamation + ", iduser=" + iduser + ", contenu=" + contenu + ", Date_rec=" + Date_rec + ", etat=" + etat + '}';
     }
+
+    
+    
 
    
      
