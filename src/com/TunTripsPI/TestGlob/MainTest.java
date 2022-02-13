@@ -72,16 +72,60 @@ public class MainTest {
           cr.ajouterReclamation(r,u);
           */
           //afficher mes reclamation en tant que user 
-          User u=new User();
-          u.setId(3);
+         /* User u=new User();
+          u.setId(2);
           ReclamationCrud cr=new ReclamationCrud();
-          Reclamation r=new Reclamation();
-          System.out.println(cr.AfficherUserReclamation(u,r));
+          ArrayList<Reclamation> a=new ArrayList<>();
+          a=cr.AfficherUserReclamation(u);
+          a.stream().forEach(System.out::println);
+          */
+         //admin consulte all reclam 
+            ReclamationCrud cr=new ReclamationCrud(); 
+          ArrayList<Reclamation> a=new ArrayList<>();
+          a=cr.DisplayAllReclamation();
+          a.stream().forEach(System.out::println);
+          //metier count nbre de reclamation 
+          /*
+           Reclamation r =new Reclamation(); 
+           ReclamationCrud cr=new ReclamationCrud(); 
+           System.out.println(cr.countReclamation());
+*/
+          //modifier reclamation comme un utilisateur  
+          /*
+          Reclamation r =new Reclamation(); 
+          r.setIdreclamation(7);
+          r.setContenu("arnacccccccccccccccccccccccccccccccccccc");
+           ReclamationCrud cr=new ReclamationCrud(); 
+           boolean b =cr.ModifierReclamationUser(r);
+           System.out.println(b);
+          */
           
-          
+          //traiter et repondre reclamation user 
+         
+          /*
+          Reclamation r =new Reclamation();
+          r.setContenu("reclamation va etre traiter dans 3jour");
+          r.setEtat(true);
+          r.setIdreclamation(7);
+          ReclamationCrud cr=new ReclamationCrud(); 
 
+          cr.modifierEtatReclamation(r);
+          
+          */
+          //supprimer reclamation 
+      /* 
+       Reclamation r =new Reclamation();
+       r.setIdreclamation(1);
+       ReclamationCrud cr=new ReclamationCrud();
+       cr.SupprimerReclamation(r);
+*/
+      
+      
         }
+
     
+    
+     
 
     }
          
