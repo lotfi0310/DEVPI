@@ -24,9 +24,9 @@ public class MainTest {
 
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
-        /*User u=new User("lotfi","louiz","lotfi.louiz@esprit.tn","lotfi1234","tunisien","fournisseur","/lotfi.jpg");
+        User u=new User("lotfi","louiz","lotfilouiz@yahoo.com","lotfi123456","tunis","simpleuser ","lotfi.png");
         UserCruds uc=new UserCruds();
-        uc.ajouterUser(u);*/
+        System.out.println(uc.ajouterUser(u));
         
         
         
@@ -65,14 +65,15 @@ public class MainTest {
           u.setId(2);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
-          Date d =new Date(20220/12/15);
+          Date d =new Date(Date.parse("2022/12/15"));
           r.setDate_rec(d);
           r.setContenu("arnac2465");
           r.setEtat(false);
           cr.ajouterReclamation(r,u);
           */
           //afficher mes reclamation en tant que user 
-         /* User u=new User();
+          /*
+          User u=new User();
           u.setId(2);
           ReclamationCrud cr=new ReclamationCrud();
           ArrayList<Reclamation> a=new ArrayList<>();
@@ -80,7 +81,7 @@ public class MainTest {
           a.stream().forEach(System.out::println);
           */
          //admin consulte all reclam 
-            ReclamationCrud cr=new ReclamationCrud(); 
+         /* ReclamationCrud cr=new ReclamationCrud(); 
           ArrayList<Reclamation> a=new ArrayList<>();
           a=cr.DisplayAllReclamation();
           a.stream().forEach(System.out::println);
@@ -119,8 +120,10 @@ public class MainTest {
        ReclamationCrud cr=new ReclamationCrud();
        cr.SupprimerReclamation(r);
 */
-      
-      
+      /*ReclamationCrud r =new ReclamationCrud();
+      int d=r.countReclamation();
+      System.out.println(d);
+      */
         }
 
     

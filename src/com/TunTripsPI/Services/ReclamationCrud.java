@@ -9,11 +9,15 @@ import com.TunTripsPI.Utils.MyConnection;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -107,7 +111,8 @@ public class ReclamationCrud {
             ResultSet rs = st.executeQuery(reqmesrec);
 
             while (rs.next()) {
-                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"), rs.getDate("date"), rs.getBoolean("etat"));
+               
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
             }
 
@@ -131,7 +136,7 @@ public class ReclamationCrud {
             ResultSet rs = st.executeQuery(reqmesrec);
 
             while (rs.next()) {
-                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"), rs.getDate("date"), rs.getBoolean("etat"));
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
             }
             return mesrec;
@@ -148,7 +153,8 @@ public class ReclamationCrud {
         try {
             Statement st = cnxx.createStatement();
             ResultSet rs;
-            rs = st.executeQuery("SELECT COUNT(*) FROM reclamation ");
+            boolean b=true;
+            rs = st.executeQuery("SELECT COUNT(*) FROM reclamation where etat='"+b+"'");
             rs.next();
             j = rs.getInt(1);
         } catch (SQLException e) {
@@ -156,6 +162,8 @@ public class ReclamationCrud {
         }
         return j;
     }
+    
+    
 
     public boolean SupprimerReclamation(Reclamation r) {
         try {

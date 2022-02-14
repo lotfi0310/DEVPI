@@ -7,6 +7,7 @@ package com.TunTripsPI.entities;
 
 import java.sql.Date;
 import java.sql.SQLXML;
+import java.util.Comparator;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Reclamation {
      private Date Date_rec; 
      private boolean etat ; 
 
-    public Reclamation() {
+    public Reclamation()  {
     }
 
     public Reclamation(int idreclamation, int iduser, String contenu, Date date, boolean etat) {
@@ -74,6 +75,8 @@ public class Reclamation {
     public String toString() {
         return "Reclamation{" + "idreclamation=" + idreclamation + ", iduser=" + iduser + ", contenu=" + contenu + ", Date_rec=" + Date_rec + ", etat=" + etat + '}';
     }
+
+    
 
     
     

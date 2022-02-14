@@ -1,11 +1,13 @@
 package com.TunTripsPI.entities;
 
+import java.util.Comparator;
+
 
 /**
  *
  * @author Lotfi
  */
-public class User {
+public class User{
     private int id ; 
     private String nom ; 
     private String prenom ; 
@@ -119,6 +121,10 @@ public class User {
     public String toString() {
         return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", passwd=" + passwd + ", nationalite=" + nationalite + ", role=" + role + ", photo=" + photo + '}';
     }
+
+   
+
+    
     
     
     

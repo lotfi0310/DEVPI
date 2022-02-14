@@ -28,8 +28,8 @@ public class UserCruds {
 
     }
 
-    public void ajouterUser(User u) {
-
+    public String ajouterUser(User u) {
+ String s=""; 
         String req = "INSERT INTO User (nom,prenom,email,passwd,nationalite,role,photo) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
@@ -41,12 +41,13 @@ public class UserCruds {
             pst.setString(5, u.getNationalite());
             pst.setString(6, u.getRole());
             pst.setString(7, u.getPhoto());
-
             pst.executeUpdate();
+            s="Utilisateur ajouté avec succees ";
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
+            s="utilisateur n'est pas ajoutee";
         }
-
+return s; 
     }
 
     //modifier info user 
