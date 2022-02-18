@@ -7,6 +7,7 @@ package com.TunTripsPI.TestGlob;
 import java.sql.Date; 
 import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.Utils.JavaMailUtil;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import java.sql.ResultSet;
@@ -25,18 +26,21 @@ public class MainTest {
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
       
-        /*
-        User u=new User("lotfi","louiz","lotfi.louiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","92770929");
+       /* 
+        User u=new User("oumayma","hajri","oumayma.hajri@esprit.tn","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
         UserCruds uc=new UserCruds();
         System.out.println(uc.ajouterUser(u));
-      */
-              
-        User u1 = new User();
+          JavaMailUtil.sendmail(u.getEmail());
+              */
+               UserCruds uc=new UserCruds();
+// String a =uc.generercodevalidationmail();
+      // System.out.println(a);
+       /* User u1 = new User();
         UserCruds ua=new UserCruds();
         ArrayList listeuser =new ArrayList();
         listeuser =ua.consulterlisteuser();
         listeuser.stream().forEach(System.out::println);
-
+*/
               
 
 //test authentification 

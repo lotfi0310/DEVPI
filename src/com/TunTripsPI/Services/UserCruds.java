@@ -1,5 +1,6 @@
 package com.TunTripsPI.Services;
 
+import com.TunTripsPI.Utils.JavaMailUtil;
 import com.TunTripsPI.entities.User;
 import com.TunTripsPI.Utils.MyConnection;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
@@ -53,12 +54,22 @@ public class UserCruds {
         }
      return ex; 
      }
+     
+   /*  public  String generercodevalidationmail() {
+         String j = null;
+             j=j+""+Math.random();
     
+         return j ; 
+     }
+     */
+     
     public String ajouterUser(User u) {
  String s=""; 
+        
         String req = "INSERT INTO User (nom,prenom,email,passwd,country,role,photo,num_tel,etat) VALUES (?,?,?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
+            
             pst = cnxx.prepareStatement(req);
             pst.setString(1, u.getNom());
             pst.setString(2, u.getPrenom());
@@ -75,6 +86,8 @@ public class UserCruds {
             else{
             pst.executeUpdate();
             s="Utilisateur ajouté avec succees ";
+                JavaMailUtil.sendmail(u.getEmail());
+                
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -191,7 +204,8 @@ return s;
                     }
                 }
                 else{
-                    System.out.println("tu dois dabord valider votre email ... via mail ");
+                    System.out.println("tu dois dabord valider votre email ... via code envoyer sur votre email ");
+                    
                 }
                 
 

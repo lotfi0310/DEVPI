@@ -5,7 +5,7 @@
             <url>src/com/TunTripsPI/Services/UserCruds.java</url>
             <bookmark id="1">
                 <name/>
-                <line>127</line>
+                <line>160</line>
                 <key/>
             </bookmark>
         </file>
@@ -17,6 +17,7 @@
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Reclamation.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/User.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Utils/MyConnection.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Utils/JavaMailUtil.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/UserCruds.java</file>
         </group>
     </open-files>

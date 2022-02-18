@@ -49,7 +49,18 @@ public class User{
         this.num_tel = num_tel;
         this.etat=etat;
     }
-
+ public User(String nom, String prenom, String email, String passwd, String country, String role, String photo, String num_tel ) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.passwd = passwd;
+        this.country = country;
+        this.role = role;
+        this.photo = photo;
+        this.num_tel = num_tel;
+        this.etat=etat;
+    }
     
 
    
