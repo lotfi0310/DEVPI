@@ -13,44 +13,44 @@ public class User{
     private String prenom ; 
     private String email ; 
     private String passwd ; 
-    private String nationalite; 
+    private String country; 
     private String role; 
     private String photo;
+    private String num_tel;
+    private boolean  valide;
+    private boolean etat; 
     
  public User() {
      
     }
 
-    public User(String nom, String prenom, String email, String passwd, String nationalite, String role, String photo) {
+    public User(String nom, String prenom, String email, String passwd, String country, String role, String photo,String num_tel,boolean valide,boolean etat) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.passwd = passwd;
-        this.nationalite = nationalite;
+        this.country = country;
         this.role = role;
         this.photo = photo;
+        this.num_tel=num_tel;
+        this.valide=valide;
+        this.etat=etat; 
     }
 
-    public User(int id, String nom, String prenom, String email, String passwd, String nationalite, String role, String photo) {
+    public User(int id,String nom, String prenom, String email, String passwd, String country, String role, String photo, String num_tel,boolean  etat ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.passwd = passwd;
-        this.nationalite = nationalite;
+        this.country = country;
         this.role = role;
         this.photo = photo;
-        
+        this.num_tel = num_tel;
+        this.etat=etat;
     }
 
-    public User(String nom , String prenom , String email, String passwd , String photo ) {
-        this.nom=nom;
-        this.prenom=prenom;
-        this.email=email;
-        this.passwd=passwd;
-        this.photo=photo;
-        
-    }
+    
 
    
     public int getId() {
@@ -93,13 +93,39 @@ public class User{
         this.passwd = passwd;
     }
 
-    public String getNationalite() {
-        return nationalite;
+    public String getCountry() {
+        return country;
     }
 
-    public void setNationalite(String nationalite) {
-        this.nationalite = nationalite;
+    public void setCountry(String country) {
+        this.country = country;
     }
+
+    public String getNum_tel() {
+        return num_tel;
+    }
+
+    public void setNum_tel(String num_tel) {
+        this.num_tel = num_tel;
+    }
+
+    public boolean isValide() {
+        return valide;
+    }
+
+    public void setValide(boolean valide) {
+        this.valide = valide;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public void setEtat(boolean etat) {
+        this.etat = etat;
+    }
+
+  
 
     public String getRole() {
         return role;
@@ -119,8 +145,10 @@ public class User{
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", passwd=" + passwd + ", nationalite=" + nationalite + ", role=" + role + ", photo=" + photo + '}';
+        return "User{" + "id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", passwd=" + passwd + ", country=" + country + ", role=" + role + ", photo=" + photo + ", num_tel=" + num_tel + ", valide=" + valide + ", etat=" + etat + '}';
     }
+
+   
 
    
 

@@ -23,7 +23,7 @@ public class Reclamation {
     public Reclamation()  {
     }
 
-    public Reclamation(int idreclamation, int iduser, String contenu, Date date, boolean etat) {
+    public Reclamation(int idreclamation, int iduser, String contenu, Date date, boolean etat ) {
         this.idreclamation = idreclamation;
         this.iduser = iduser;
         this.contenu = contenu;

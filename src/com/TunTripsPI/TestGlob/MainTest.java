@@ -24,41 +24,44 @@ public class MainTest {
 
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
-        User u=new User("lotfi","louiz","lotfilouiz@yahoo.com","lotfi123456","tunis","simpleuser ","lotfi.png");
+      
+        /*
+        User u=new User("lotfi","louiz","lotfi.louiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","92770929");
         UserCruds uc=new UserCruds();
         System.out.println(uc.ajouterUser(u));
-        
-        
-        
-               //consulter liste utulisateur 
-               /*
+      */
+              
         User u1 = new User();
         UserCruds ua=new UserCruds();
-        ArrayList<User> listeuser =new ArrayList<>();
+        ArrayList listeuser =new ArrayList();
         listeuser =ua.consulterlisteuser();
-        listeuser.stream().forEach(e->System.out.println(e));
-*/
+        listeuser.stream().forEach(System.out::println);
+
               
 
 //test authentification 
-      /*  User u1 = new User();
-        String email = "ouma.san@email.com";
-        String passwd = "llll";
+   /*    User u1 = new User();
        UserCruds ua=new UserCruds();
-       ResultSet s = ua.Authentification(email, passwd);
+
+        String email = "lotfilouiz@gmail.com";
+        String passwd =ua.hashagePWD("lotfi123456");
+       ResultSet s = ua.Authentification(email,passwd);
        String t = ua.Typeauthentification(s);
        
        System.out.println(t);
-       */
-              
+      
+              */
        
         
         //consulter info compte 
-          /* ArrayList<User> Mylist =new ArrayList<User>();
-            Mylist= uc1.consulterinfo(u1);
-            Mylist.stream().forEach(e->System.out.print(e));*/
-          
-          
+        /* User u1 = new User();
+         u1.setId(11);
+       UserCruds ua=new UserCruds();
+          ArrayList<User> Mylist =new ArrayList<User>();
+            Mylist=ua.consulterinfo(u1);
+            Mylist.stream().forEach(e->System.out.print(e));
+              */
+        
           //add reclamation 
           /*
           User u=new User();
@@ -72,8 +75,8 @@ public class MainTest {
           cr.ajouterReclamation(r,u);
           */
           //afficher mes reclamation en tant que user 
-          /*
-          User u=new User();
+          
+          /*User u=new User();
           u.setId(2);
           ReclamationCrud cr=new ReclamationCrud();
           ArrayList<Reclamation> a=new ArrayList<>();
