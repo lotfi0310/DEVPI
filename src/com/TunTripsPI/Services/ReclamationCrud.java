@@ -37,7 +37,7 @@ public class ReclamationCrud {
 
     public void ajouterReclamation(Reclamation r, User u) {
 
-        String req = "INSERT INTO reclamation (id,contenu,date,etat) VALUES (?,?,?,?)";
+        String req = "INSERT INTO reclamation (id,contenu,date,etat,idevent) VALUES (?,?,?,?,?)";
         ResultSet rs;
 
         try {
@@ -47,6 +47,7 @@ public class ReclamationCrud {
             pst.setString(2, r.getContenu());
             pst.setDate(3, r.getDate_rec());
             pst.setBoolean(4, r.getEtat());
+            pst.setInt(5,r.getIdevent());
             pst.executeUpdate();
             rs = pst.getResultSet();
             System.out.println("Reclamation a été envoyer");
@@ -100,11 +101,11 @@ public class ReclamationCrud {
         }
     }
 
-    //afficher les reclamation d un utilisateurs 
-    public ArrayList<Reclamation> AfficherUserReclamation(User u) {
+    //afficher les reclamation d un utilisateurs sur event
+    public ArrayList<Reclamation> AfficherUserEventReclamation(User u) {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
-        String reqmesrec = "Select * From reclamation WHERE id='" + u.getId() + "'";
+        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN evenement ON reclamation.idevent=reclamation.idevent AND reclamation.id='"+u.getId()+"'";
         Statement st;
         try {
             st = cnxx.createStatement();
@@ -112,7 +113,7 @@ public class ReclamationCrud {
 
             while (rs.next()) {
                
-                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent") ,rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
             }
 
@@ -129,15 +130,16 @@ public class ReclamationCrud {
     public ArrayList<Reclamation> DisplayAllReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
-        String reqmesrec = "Select * From reclamation ";
+        String reqmesrec = "SELECT * FROM reclamation ";
         Statement st;
         try {
             st = cnxx.createStatement();
             ResultSet rs = st.executeQuery(reqmesrec);
 
             while (rs.next()) {
-                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"), rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+               Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent") ,rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
+                
             }
             return mesrec;
         } catch (SQLException ex) {

@@ -67,31 +67,34 @@ public class MainTest {
               */
         
           //add reclamation 
-          /*
+         /*
           User u=new User();
-          u.setId(2);
+          u.setId(29);
+          
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
+          r.setIdevent(1);
           Date d =new Date(Date.parse("2022/12/15"));
           r.setDate_rec(d);
-          r.setContenu("arnac2465");
+          r.setContenu("hello 3rd reclamation on event 1 by user"+u.getId());
           r.setEtat(false);
           cr.ajouterReclamation(r,u);
-          */
+         */
           //afficher mes reclamation en tant que user 
-          
-          /*User u=new User();
-          u.setId(2);
+          /*
+          User u=new User();
+          u.setId(29);
           ReclamationCrud cr=new ReclamationCrud();
           ArrayList<Reclamation> a=new ArrayList<>();
-          a=cr.AfficherUserReclamation(u);
+          a=cr.AfficherUserEventReclamation(u);
           a.stream().forEach(System.out::println);
-          */
+        */
          //admin consulte all reclam 
-         /* ReclamationCrud cr=new ReclamationCrud(); 
+          ReclamationCrud cr=new ReclamationCrud(); 
           ArrayList<Reclamation> a=new ArrayList<>();
           a=cr.DisplayAllReclamation();
           a.stream().forEach(System.out::println);
+          
           //metier count nbre de reclamation 
           /*
            Reclamation r =new Reclamation(); 
@@ -99,34 +102,35 @@ public class MainTest {
            System.out.println(cr.countReclamation());
 */
           //modifier reclamation comme un utilisateur  
-          /*
+         /* 
           Reclamation r =new Reclamation(); 
-          r.setIdreclamation(7);
-          r.setContenu("arnacccccccccccccccccccccccccccccccccccc");
+          r.setIdreclamation(20);
+          r.setContenu("arnacccccccccccccoumaccccccccccccccccccccccc");
            ReclamationCrud cr=new ReclamationCrud(); 
            boolean b =cr.ModifierReclamationUser(r);
            System.out.println(b);
-          */
           
+          */
+         
           //traiter et repondre reclamation user 
          
           /*
           Reclamation r =new Reclamation();
           r.setContenu("reclamation va etre traiter dans 3jour");
           r.setEtat(true);
-          r.setIdreclamation(7);
+          r.setIdreclamation(20);
           ReclamationCrud cr=new ReclamationCrud(); 
 
           cr.modifierEtatReclamation(r);
-          
           */
+          
           //supprimer reclamation 
-      /* 
-       Reclamation r =new Reclamation();
-       r.setIdreclamation(1);
+      /*      Reclamation r =new Reclamation();
+       r.setIdreclamation(20);
        ReclamationCrud cr=new ReclamationCrud();
        cr.SupprimerReclamation(r);
 */
+      
       /*ReclamationCrud r =new ReclamationCrud();
       int d=r.countReclamation();
       System.out.println(d);
