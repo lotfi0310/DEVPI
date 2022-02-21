@@ -66,35 +66,67 @@ public class MainTest {
             Mylist.stream().forEach(e->System.out.print(e));
               */
         
-          //add reclamation 
-         /*
-          User u=new User();
+          //add reclamation event
+       /*
+         User u=new User();
           u.setId(29);
-          
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
           r.setIdevent(1);
-          Date d =new Date(Date.parse("2022/12/15"));
+          Date d =new Date(Date.parse("2022/18/15"));
           r.setDate_rec(d);
-          r.setContenu("hello 3rd reclamation on event 1 by user"+u.getId());
+          r.setContenu("nouvelle reclamation sur event"+u.getId());
           r.setEtat(false);
-          cr.ajouterReclamation(r,u);
-         */
-          //afficher mes reclamation en tant que user 
-          /*
-          User u=new User();
+          cr.ajouterReclamationEvent(r,u);
+          
+        */
+       //add reclamation hebergement 
+       /*
+       User u=new User();
+          u.setId(29);
+          ReclamationCrud cr=new ReclamationCrud();
+          Reclamation r=new Reclamation();
+          r.setIdheberg(1);
+          Date d =new Date(Date.parse("2022/18/15"));
+          r.setDate_rec(d);
+          r.setContenu("nouvelle reclamation sur heberg"+u.getId());
+          r.setEtat(false);
+          cr.ajouterReclamationHeberg(r,u);
+       */
+       //add reclamation transport 
+         /*  User u =new User();
+                   u.setId(29);
+          ReclamationCrud cr=new ReclamationCrud();
+          Reclamation r=new Reclamation();
+          r.setIdtransport(1);
+          Date d =new Date(Date.parse("2022/18/15"));
+          r.setDate_rec(d);
+          r.setContenu("nouvelle reclamation sur heberg"+u.getId());
+          r.setEtat(false);
+          cr.ajouterReclamationTransport(r,u);
+       */
+          //afficher mes reclamation d evenement en tant que user
+       /*   
+        User u=new User();
           u.setId(29);
           ReclamationCrud cr=new ReclamationCrud();
           ArrayList<Reclamation> a=new ArrayList<>();
-          a=cr.AfficherUserEventReclamation(u);
+          a=cr.AfficherUserReclamation(u);
           a.stream().forEach(System.out::println);
         */
+       
+       ReclamationCrud cr=new ReclamationCrud(); 
+         ArrayList<Reclamation> a=new ArrayList<Reclamation>();
+         a=cr.AfficherEventtReclamation();
+          a.stream().forEach(System.out::println);
+       
+       
          //admin consulte all reclam 
-          ReclamationCrud cr=new ReclamationCrud(); 
+         /* ReclamationCrud cr=new ReclamationCrud(); 
           ArrayList<Reclamation> a=new ArrayList<>();
           a=cr.DisplayAllReclamation();
           a.stream().forEach(System.out::println);
-          
+          */
           //metier count nbre de reclamation 
           /*
            Reclamation r =new Reclamation(); 
@@ -125,11 +157,11 @@ public class MainTest {
           */
           
           //supprimer reclamation 
-      /*      Reclamation r =new Reclamation();
-       r.setIdreclamation(20);
+        /*  Reclamation r =new Reclamation();
+       r.setIdreclamation(30);
        ReclamationCrud cr=new ReclamationCrud();
-       cr.SupprimerReclamation(r);
-*/
+       cr.SupprimerReclamation(r);*/
+
       
       /*ReclamationCrud r =new ReclamationCrud();
       int d=r.countReclamation();

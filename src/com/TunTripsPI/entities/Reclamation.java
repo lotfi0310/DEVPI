@@ -6,8 +6,6 @@
 package com.TunTripsPI.entities;
 
 import java.sql.Date;
-import java.sql.SQLXML;
-import java.util.Comparator;
 
 /**
  *
@@ -16,7 +14,9 @@ import java.util.Comparator;
 public class Reclamation {
      private int idreclamation;
      private int iduser; 
-     private int idevent ; 
+     private int idevent ;
+     private int idheberg;
+     private int idtransport;
      private String contenu;
      private Date Date_rec; 
      private boolean etat ; 
@@ -24,14 +24,17 @@ public class Reclamation {
     public Reclamation()  {
     }
 
-    public Reclamation(int idreclamation, int iduser,int idevent, String contenu, Date date, boolean etat ) {
+    public Reclamation(int idreclamation, int iduser,int idevent,int idheberg,int idtransport,String contenu, Date date, boolean etat ) {
         this.idreclamation = idreclamation;
         this.iduser = iduser;
         this.idevent=idevent; 
+        this.idheberg=idheberg; 
+        this.idtransport=idtransport;
         this.contenu = contenu;
         this.Date_rec = Date_rec;
         this.etat = etat;
     }
+     
 
     public int getIdreclamation() {
         return idreclamation;
@@ -41,6 +44,23 @@ public class Reclamation {
         this.idreclamation = idreclamation;
     }
 
+    public int getIdheberg() {
+        return idheberg;
+    }
+
+    public void setIdheberg(int idheberg) {
+        this.idheberg = idheberg;
+    }
+
+    public int getIdtransport() {
+        return idtransport;
+    }
+
+    public void setIdtransport(int idtransport) {
+        this.idtransport = idtransport;
+    }
+
+    
     public int getIduser() {
         return iduser;
     }
@@ -83,7 +103,7 @@ public class Reclamation {
 
     @Override
     public String toString() {
-        return "Reclamation{" + "idreclamation=" + idreclamation + ", iduser=" + iduser + ", idevent=" + idevent + ", contenu=" + contenu + ", Date_rec=" + Date_rec + ", etat=" + etat + '}';
+        return "Reclamation{" + "idreclamation=" + idreclamation + ", iduser=" + iduser + ", idevent=" + idevent + ", idheberg=" + idheberg + ", idtransport=" + idtransport + ", contenu=" + contenu + ", Date_rec=" + Date_rec + ", etat=" + etat + '}';
     }
 
     

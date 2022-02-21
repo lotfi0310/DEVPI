@@ -35,7 +35,7 @@ public class ReclamationCrud {
 
     }
 
-    public void ajouterReclamation(Reclamation r, User u) {
+    public void ajouterReclamationEvent(Reclamation r, User u) {
 
         String req = "INSERT INTO reclamation (id,contenu,date,etat,idevent) VALUES (?,?,?,?,?)";
         ResultSet rs;
@@ -48,6 +48,59 @@ public class ReclamationCrud {
             pst.setDate(3, r.getDate_rec());
             pst.setBoolean(4, r.getEtat());
             pst.setInt(5,r.getIdevent());
+           
+            
+            
+            pst.executeUpdate();
+            rs = pst.getResultSet();
+            System.out.println("Reclamation a été envoyer");
+
+        } catch (SQLException ex) {
+            System.out.println("reclamation n'est pas ajoutée");
+        }
+
+    }
+      public void ajouterReclamationHeberg(Reclamation r, User u) {
+
+        String req = "INSERT INTO reclamation (id,contenu,date,etat,idheberg) VALUES (?,?,?,?,?)";
+        ResultSet rs;
+
+        try {
+            PreparedStatement pst;
+            pst = cnxx.prepareStatement(req);
+            pst.setInt(1, u.getId());
+            pst.setString(2, r.getContenu());
+            pst.setDate(3, r.getDate_rec());
+            pst.setBoolean(4, r.getEtat());
+            pst.setInt(5,r.getIdheberg());
+           
+            
+            
+            pst.executeUpdate();
+            rs = pst.getResultSet();
+            System.out.println("Reclamation a été envoyer");
+
+        } catch (SQLException ex) {
+            System.out.println("reclamation n'est pas ajoutée");
+        }
+
+    }
+      public void ajouterReclamationTransport(Reclamation r, User u) {
+
+        String req = "INSERT INTO reclamation (id,contenu,date,etat,idtransport) VALUES (?,?,?,?,?)";
+        ResultSet rs;
+
+        try {
+            PreparedStatement pst;
+            pst = cnxx.prepareStatement(req);
+            pst.setInt(1, u.getId());
+            pst.setString(2, r.getContenu());
+            pst.setDate(3, r.getDate_rec());
+            pst.setBoolean(4, r.getEtat());
+            pst.setInt(5,r.getIdtransport());
+           
+            
+            
             pst.executeUpdate();
             rs = pst.getResultSet();
             System.out.println("Reclamation a été envoyer");
@@ -80,40 +133,20 @@ public class ReclamationCrud {
     }
     //modifier l'etat de user reclamation comme traiter  du part d 'admin
 
-    public boolean modifierEtatReclamation(Reclamation r) {
-        int verf = 0;
-        String admintrait = "UPDATE reclamation SET contenu=?,etat=? Where idrec=?";
-        try {
-            PreparedStatement pst = cnxx.prepareStatement(admintrait);
-            pst.setString(1, r.getContenu());
-            pst.setBoolean(2, r.getEtat());
-            pst.setInt(3, r.getIdreclamation());
-            pst.executeUpdate();
-            verf = pst.executeUpdate();
-
-        } catch (SQLException ex) {
-            Logger.getLogger(ReclamationCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if (verf == 0) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+   
 
     //afficher les reclamation d un utilisateurs sur event
-    public ArrayList<Reclamation> AfficherUserEventReclamation(User u) {
+    public ArrayList<Reclamation> AfficherUserReclamation(User u) {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
-        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN evenement ON reclamation.idevent=reclamation.idevent AND reclamation.id='"+u.getId()+"'";
+        String reqmesrec = "SELECT * FROM reclamation WHERE id='"+u.getId()+"'";
         Statement st;
         try {
             st = cnxx.createStatement();
             ResultSet rs = st.executeQuery(reqmesrec);
 
             while (rs.next()) {
-               
-                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent") ,rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                 Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
             }
 
@@ -125,8 +158,33 @@ public class ReclamationCrud {
         return mesrec;
 
     }
-//admin consulte all Reclam
+//admin filter sur event
+    public ArrayList<Reclamation> AfficherEventtReclamation() {
 
+        ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
+        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN evenement ON reclamation.idevent=reclamation.idevent ";
+        Statement st;
+        try {
+            st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(reqmesrec);
+
+            while (rs.next()) {
+               
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                mesrec.add(re);
+            }
+
+            return mesrec;
+        } catch (SQLException ex) {
+            System.out.println("vous n'avez pas cree des reclamation ");
+        }
+
+        return mesrec;
+
+    }
+
+//admin consulte all Reclam
+/*
     public ArrayList<Reclamation> DisplayAllReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
@@ -137,7 +195,7 @@ public class ReclamationCrud {
             ResultSet rs = st.executeQuery(reqmesrec);
 
             while (rs.next()) {
-               Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent") ,rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+               Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
                 
             }
@@ -182,5 +240,6 @@ public class ReclamationCrud {
         }
 
     }
+*/
 
 }
