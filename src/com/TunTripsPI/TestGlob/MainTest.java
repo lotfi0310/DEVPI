@@ -26,13 +26,12 @@ public class MainTest {
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
       
-       /* 
-        User u=new User("oumayma","hajri","oumayma.hajri@esprit.tn","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
+     
+        User u=new User("Lotfi","Louiz","lotfilouiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
         UserCruds uc=new UserCruds();
         System.out.println(uc.ajouterUser(u));
-          JavaMailUtil.sendmail(u.getEmail());
-              */
-               UserCruds uc=new UserCruds();
+            
+               //UserCruds uc=new UserCruds();
 // String a =uc.generercodevalidationmail();
       // System.out.println(a);
        /* User u1 = new User();
@@ -67,23 +66,27 @@ public class MainTest {
               */
         
           //add reclamation event
-       /*
-         User u=new User();
-          u.setId(29);
+      
+        /* User u=new User();
+          u.setId(8);
+          UserCruds uc = new UserCruds();
+          uc.SupprimerUser(u);
+          */
+          /*
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
-          r.setIdevent(1);
+          r.setIdevent(2);
           Date d =new Date(Date.parse("2022/18/15"));
           r.setDate_rec(d);
-          r.setContenu("nouvelle reclamation sur event"+u.getId());
+          r.setContenu("nouéééééééé"+u.getId());
           r.setEtat(false);
           cr.ajouterReclamationEvent(r,u);
-          
-        */
+          */
+       
        //add reclamation hebergement 
        /*
        User u=new User();
-          u.setId(29);
+          u.setId(8);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
           r.setIdheberg(1);
@@ -94,8 +97,8 @@ public class MainTest {
           cr.ajouterReclamationHeberg(r,u);
        */
        //add reclamation transport 
-         /*  User u =new User();
-                   u.setId(29);
+         /* User u =new User();
+                   u.setId(8);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
           r.setIdtransport(1);
@@ -105,24 +108,43 @@ public class MainTest {
           r.setEtat(false);
           cr.ajouterReclamationTransport(r,u);
        */
-          //afficher mes reclamation d evenement en tant que user
-       /*   
+          //afficher mes reclamation  en tant que user
+      /*
         User u=new User();
-          u.setId(29);
+          u.setId(8);
           ReclamationCrud cr=new ReclamationCrud();
           ArrayList<Reclamation> a=new ArrayList<>();
           a=cr.AfficherUserReclamation(u);
           a.stream().forEach(System.out::println);
-        */
+          */
+      
        
-       ReclamationCrud cr=new ReclamationCrud(); 
+      // afficher rec filtre event 
+       /*ReclamationCrud cr=new ReclamationCrud(); 
          ArrayList<Reclamation> a=new ArrayList<Reclamation>();
          a=cr.AfficherEventtReclamation();
           a.stream().forEach(System.out::println);
+       */
        
        
+        // afficher rec filtre heberg
+     /*  ReclamationCrud cr=new ReclamationCrud(); 
+         ArrayList<Reclamation> a=new ArrayList<Reclamation>();
+         a=cr.AfficherHebergtReclamation();
+          a.stream().forEach(System.out::println);
+       */
+     /*
+      // afficher rec filtre transport
+      ReclamationCrud cr=new ReclamationCrud(); 
+         ArrayList<Reclamation> a=new ArrayList<Reclamation>();
+         a=cr.AfficherTransportReclamation();
+          a.stream().forEach(System.out::println);
+      */
+     
+     
+      // System.out.println(a);
          //admin consulte all reclam 
-         /* ReclamationCrud cr=new ReclamationCrud(); 
+          /*ReclamationCrud cr=new ReclamationCrud(); 
           ArrayList<Reclamation> a=new ArrayList<>();
           a=cr.DisplayAllReclamation();
           a.stream().forEach(System.out::println);
@@ -134,15 +156,15 @@ public class MainTest {
            System.out.println(cr.countReclamation());
 */
           //modifier reclamation comme un utilisateur  
-         /* 
+         /*
           Reclamation r =new Reclamation(); 
-          r.setIdreclamation(20);
+          r.setIdreclamation(3);
           r.setContenu("arnacccccccccccccoumaccccccccccccccccccccccc");
            ReclamationCrud cr=new ReclamationCrud(); 
            boolean b =cr.ModifierReclamationUser(r);
            System.out.println(b);
-          
           */
+          
          
           //traiter et repondre reclamation user 
          

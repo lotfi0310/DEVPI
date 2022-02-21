@@ -17,6 +17,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,13 +56,7 @@ public class UserCruds {
      return ex; 
      }
      
-   /*  public  String generercodevalidationmail() {
-         String j = null;
-             j=j+""+Math.random();
-    
-         return j ; 
-     }
-     */
+   
      
     public String ajouterUser(User u) {
  String s=""; 
@@ -82,12 +77,13 @@ public class UserCruds {
             pst.setBoolean(9,true);
             if (ifuserExiste(u.getEmail())) {
                 System.out.println("utilisateur existe deja tu peux pas ajoutee  ");
+                
             }
             else{
             pst.executeUpdate();
             s="Utilisateur ajouté avec succees ";
                 JavaMailUtil.sendmail(u.getEmail());
-                
+                AddCodeValidationmail(JavaMailUtil.a,u.getEmail());
             }
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -263,6 +259,25 @@ return s;
         }
         return listeuser;
     }
+    
+        public void  AddCodeValidationmail(String code,String email){
+            String req = "insert INTO codevalidation (code,email) VALUES (?,?)";
+        PreparedStatement pst;
+        
+        try {
+            pst = cnxx.prepareStatement(req);
+           
+            pst.setString(1,code);
+            pst.setString(2,email);
+          
+          pst.executeUpdate();
+       }
+        catch(Exception e){
+        e.getMessage();
+               }
+        
+        }
+    
     
    
 

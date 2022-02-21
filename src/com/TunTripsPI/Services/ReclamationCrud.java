@@ -162,7 +162,7 @@ public class ReclamationCrud {
     public ArrayList<Reclamation> AfficherEventtReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
-        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN evenement ON reclamation.idevent=reclamation.idevent ";
+        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN evenement ON reclamation.idevent=evenement.idevent ";
         Statement st;
         try {
             st = cnxx.createStatement();
@@ -182,9 +182,56 @@ public class ReclamationCrud {
         return mesrec;
 
     }
+// afficher reclamation hebergement
+    public ArrayList<Reclamation> AfficherHebergtReclamation() {
 
+        ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
+        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN hebergement ON reclamation.idheberg=hebergement.idheberg ";
+        Statement st;
+        try {
+            st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(reqmesrec);
+
+            while (rs.next()) {
+               
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                mesrec.add(re);
+            }
+
+            return mesrec;
+        } catch (SQLException ex) {
+            System.out.println("vous n'avez pas cree des reclamation ");
+        }
+
+        return mesrec;
+
+    }// afficher reclamation transport
+    public ArrayList<Reclamation> AfficherTransportReclamation() {
+
+        ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
+        String reqmesrec = "SELECT * FROM reclamation INNER JOIN user ON reclamation.id=user.id INNER JOIN transport ON reclamation.idtransport=transport.idtransport ";
+        Statement st;
+        try {
+            st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(reqmesrec);
+
+            while (rs.next()) {
+               
+                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                mesrec.add(re);
+            }
+
+            return mesrec;
+        } catch (SQLException ex) {
+            System.out.println("vous n'avez pas cree des reclamation ");
+        }
+
+        return mesrec;
+
+    }
+    
 //admin consulte all Reclam
-/*
+
     public ArrayList<Reclamation> DisplayAllReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
@@ -240,6 +287,6 @@ public class ReclamationCrud {
         }
 
     }
-*/
+
 
 }

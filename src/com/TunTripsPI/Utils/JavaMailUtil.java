@@ -5,8 +5,10 @@
  */
 package com.TunTripsPI.Utils;
 
+import com.TunTripsPI.Services.UserCruds;
 import java.net.PasswordAuthentication;
 import java.util.Properties;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.Authenticator;
@@ -24,6 +26,7 @@ import javax.mail.internet.MimeMultipart;
  * @author Lotfi
  */
 public class JavaMailUtil {
+      public static String a; 
     public static void sendmail(String recipien) {
         Properties properties=new Properties();
         properties.put("mail.smtp.auth","true");
@@ -60,7 +63,9 @@ public class JavaMailUtil {
             message.setFrom(new InternetAddress(accountemail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipien));
             message.setSubject("Activer votre compte TunTrips ... ");
-            message.setText("Hey Our tourist, activate you account now .. ");
+            UserCruds uc =new UserCruds();
+              a=CodeGen();
+            message.setText("Hey Our tourist, activate you account now .. "+a);
             
           
             return message ; 
@@ -68,6 +73,25 @@ public class JavaMailUtil {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null; 
+    }
+    
+    
+    //code generator  for mail validation 
+    public  static String CodeGen(){
+        String caracters="ABCDEFJHIJKLMNOPQRSTUVWXYZ0123456789";
+        String randomcode="";
+        int lenght=6;
+        Random rand=new Random();
+        char[] text = new char[lenght];
+        for(int i=0;i<lenght;i++){
+            text[i]=caracters.charAt(rand.nextInt(caracters.length()));
+        }
+        for(int i=0;i<lenght;i++){
+        randomcode+=text[i];
+        
+        }
+        return randomcode ;
+       
     }
     
 }
