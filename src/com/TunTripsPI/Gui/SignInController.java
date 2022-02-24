@@ -5,6 +5,7 @@
  */
 package com.TunTripsPI.Gui;
 
+import javax.imageio.ImageIO;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
 import java.net.URL;
@@ -13,10 +14,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
@@ -40,6 +44,15 @@ private Button btnauthentif;
     /**
      * Initializes the controller class.
      */
+
+private void showAlertWithHeaderText(String msg) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sign In");
+        alert.setHeaderText("Results:");
+        alert.setContentText(msg);
+        alert.showAndWait();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        btnauthentif.setOnAction(new EventHandler<ActionEvent>() {
@@ -48,27 +61,27 @@ private Button btnauthentif;
                try {
                    UserCruds uc =new UserCruds();
                    User u =new User();
-                   u.setEmail("lotfilouiz@gmail.com");
-                   u.setPasswd("lotfi123456");
+                   u.setEmail(txtmail.getText());
+                   u.setPasswd(txtpass.getText());
                    ResultSet rs= uc.Authentification(u.getEmail(), u.getPasswd());
                    
                    if (rs.next()) {
-                       if(rs.getBoolean("valide")) {
+                       if(!rs.getBoolean("valide")) {
                            if(rs.getBoolean("etat")){
-                               JOptionPane.showMessageDialog(null,"authentification avec succes");
+                showAlertWithHeaderText("Vous etes authentifier");
 
                            }
                            else{
-                 JOptionPane.showMessageDialog(null," votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
+                  showAlertWithHeaderText(" votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
  }
                        }
                        else{
-             JOptionPane.showMessageDialog(null,"tu dois dabord valider votre email ... via code envoyer sur votre email");
+              showAlertWithHeaderText("tu dois dabord valider votre email ... via code envoyer sur votre email");
   }
                        
                        
                    } else {
-                 JOptionPane.showMessageDialog(null,"email ou passwd incorrect  ");
+                showAlertWithHeaderText("email ou mot de pass non valide ");
 
                    }  } catch (SQLException ex) {
                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,4 +91,12 @@ private Button btnauthentif;
     });
     }    
     
+    
+    
+    public static boolean isEmailAdress(String email){
+Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+Matcher m = p.matcher(email.toUpperCase());
+return m.matches();
+}
+
 }
