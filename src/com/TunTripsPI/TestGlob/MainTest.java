@@ -27,9 +27,9 @@ public class MainTest {
         //ajouter un utilisateur 
       
      
-        User u=new User("Lotfi","Louiz","lotfilouiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
+        /*User u=new User("Lotfi","Louiz","lotfilouiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
         UserCruds uc=new UserCruds();
-        System.out.println(uc.ajouterUser(u));
+        System.out.println(uc.ajouterUser(u));*/
             
                //UserCruds uc=new UserCruds();
 // String a =uc.generercodevalidationmail();
