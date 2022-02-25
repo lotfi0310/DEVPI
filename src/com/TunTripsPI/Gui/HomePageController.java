@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -27,13 +28,15 @@ public class HomePageController implements Initializable {
     @FXML
     private VBox vbox;    
     private Parent fxml;
+    private Button btnsignin; 
+    private Label  labelacc; 
     
     
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
-        t.setToX(540);
+        t.setToX(470);
         t.play();
         t.setOnFinished((e) ->{
             try{
@@ -48,7 +51,7 @@ public class HomePageController implements Initializable {
     @FXML
     private void open_signin(ActionEvent event){
           TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbox);
-        t.setToX(540);
+        t.setToX(470);
         t.play();
         t.setOnFinished((e) ->{
             try{
@@ -67,9 +70,11 @@ public class HomePageController implements Initializable {
         t.play();
         t.setOnFinished((e) ->{
             try{
+                
                 fxml = FXMLLoader.load(getClass().getResource("SignUp.fxml"));
                 vbox.getChildren().removeAll();
                 vbox.getChildren().setAll(fxml);
+                
             }catch(IOException ex){
                 
             }

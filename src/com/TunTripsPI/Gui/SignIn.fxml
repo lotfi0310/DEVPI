@@ -2,14 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="blue-panel" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.SignInController">
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="470.0" styleClass="blue-panel" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.SignInController">
    <children>
+       
       <Label text="Login" textFill="#2196f3">
          <font>
             <Font size="20.0" />
@@ -20,7 +23,10 @@
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="200.0">
          <children>
-            <TextField fx:id="txtmail" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS" />
+            <TextField fx:id="txtmail" promptText="Email" styleClass="tf_box" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets top="15.0" />
+               </HBox.margin></TextField>
           
          </children>
          <VBox.margin>
@@ -42,6 +48,11 @@
             <Insets />
          </opaqueInsets>
       </HBox>
+      <CheckBox mnemonicParsing="false" text="Remember Me">
+         <VBox.margin>
+            <Insets left="20.0" top="5.0" />
+         </VBox.margin>
+      </CheckBox>
       <Button fx:id="btnauthentif" mnemonicParsing="false" prefHeight="38.0" prefWidth="456.0" styleClass="blue-btn" text="Sign In" textFill="WHITE" VBox.vgrow="ALWAYS">
          <VBox.margin>
             <Insets left="15.0" right="15.0" top="20.0" />
@@ -50,6 +61,26 @@
             <Font size="17.0" />
          </font>
       </Button>
+      <HBox prefHeight="23.0" prefWidth="158.0">
+         <children>
+            <Hyperlink fx:id="linkforgetpass" layoutX="350.0" text="Forget your Password">
+               <HBox.margin>
+                  <Insets left="40.0" top="20.0" />
+               </HBox.margin>
+            </Hyperlink>
+            <Hyperlink fx:id="linksignup" prefHeight="23.0" prefWidth="112.0" text="Sign UP">
+               <HBox.margin>
+                  <Insets left="20.0" top="20.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Hyperlink>
+         </children>
+         <VBox.margin>
+            <Insets left="80.0" right="80.0" />
+         </VBox.margin>
+      </HBox>
    </children>
    <opaqueInsets>
       <Insets />

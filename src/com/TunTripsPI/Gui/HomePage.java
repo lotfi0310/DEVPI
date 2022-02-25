@@ -15,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
@@ -34,9 +35,7 @@ public class HomePage extends Application {
         try {
            Parent root = FXMLLoader.load(getClass().getResource("HomePage.fxml"));
             Scene scene = new Scene(root);
-            scene.setFill(Color.TRANSPARENT);
             primaryStage.initStyle(StageStyle.TRANSPARENT);
-            primaryStage.setTitle("TunTrips");
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException ex){

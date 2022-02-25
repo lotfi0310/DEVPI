@@ -61,7 +61,7 @@ public class UserCruds {
     public String ajouterUser(User u) {
  String s=""; 
         
-        String req = "INSERT INTO User (nom,prenom,email,passwd,country,role,photo,num_tel,etat) VALUES (?,?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO User (nom,prenom,email,passwd,role,etat) VALUES (?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             
@@ -70,11 +70,8 @@ public class UserCruds {
             pst.setString(2, u.getPrenom());
             pst.setString(3, u.getEmail());
             pst.setString(4, hashagePWD(u.getPasswd()));
-            pst.setString(5, u.getCountry());
-            pst.setString(6, u.getRole());
-            pst.setString(7, u.getPhoto());
-            pst.setString(8, u.getNum_tel());
-            pst.setBoolean(9,true);
+            pst.setString(5, u.getRole());
+            pst.setBoolean(6,true);
             if (ifuserExiste(u.getEmail())) {
                 System.out.println("utilisateur existe deja tu peux pas ajoutee  ");
                 
@@ -180,37 +177,15 @@ return s;
         ResultSet rs = null;
         String reqverifauth = "SELECT * FROM user WHERE email='" + email + "' and passwd='" + passwd + "'";
         try {
-
             Statement st;
             st = cnxx.createStatement();
             System.out.println(st.executeQuery(reqverifauth));
             st.executeQuery(reqverifauth);
             rs = st.executeQuery(reqverifauth);
+            
 
-            if (rs.next()) {
-                s = true;
-                System.out.println(s);
-                if(rs.getBoolean("valide")) {
-                    if(rs.getBoolean("etat")){
-                System.out.println("authentification avec succes");
-                    }
-                    else{
-                                        System.out.println("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
-
-                    }
-                }
-                else{
-                    System.out.println("tu dois dabord valider votre email ... via code envoyer sur votre email ");
-                    
-                }
-                
-
-            } else {
-                System.out.println(s);
-                System.out.println("email ou passwd incorrect ");
-            }
-
-        } catch (SQLException ex) {
+        
+    }catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
 
         }
