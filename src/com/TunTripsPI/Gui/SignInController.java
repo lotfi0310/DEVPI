@@ -23,12 +23,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import javax.swing.JOptionPane;
 
@@ -46,11 +50,9 @@ public class SignInController implements Initializable {
     @FXML
     private Button btnauthentif;
     @FXML
-    private Hyperlink linksignup;
+    private Hyperlink linkforgetpass;
     @FXML
-    private VBox vbox;
-    @FXML
-    private Parent fxml;
+    private Label labelalert;
     Boolean a;
 
     /**
@@ -60,6 +62,7 @@ public class SignInController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Sign In");
         alert.setHeaderText("Results:");
+        alert.setGraphic(labelalert);
         alert.setContentText(msg);
         alert.showAndWait();
     }
@@ -67,6 +70,28 @@ public class SignInController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        linkforgetpass.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                try {
+                     Parent root=FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
+                     Stage s=new Stage();
+            Scene scene = new Scene(root);
+           
+            s.initStyle(StageStyle.DECORATED);
+            s.setTitle("Récuperer votre Compte TunTrips");
+            s.setResizable(false);
+            
+            s.setTitle("Recuperer votre Compte ");
+            s.setScene(scene);
+            s.show();
+                    
+                } catch (IOException ex) {
+                    Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+               
+            }
+        });
         btnauthentif.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -84,35 +109,35 @@ public class SignInController implements Initializable {
                             if(rs.next()) {
                                 if (!rs.getBoolean("valide")) {
                                     if (rs.getBoolean("etat")) {
-                                       JOptionPane.showMessageDialog(null,"authentification avec succes");
+                                        showAlertWithHeaderText("authentification avec succes");
                                     } else {
-                                       JOptionPane.showMessageDialog(null,"votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
+                                       showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
 
                                     }
                                 } else {
-                                    JOptionPane.showMessageDialog(null,"tu dois dabord valider votre email ... via code envoyer sur votre email ");
+                                    showAlertWithHeaderText("tu dois dabord valider votre email ... via code envoyer sur votre email ");
                                 }
 
                             }else{
                                 if (a){
-                                JOptionPane.showMessageDialog(null, "Mot de Passe Invalide");
+                                showAlertWithHeaderText("Mot de Passe Invalide");
                                 }
                             else{
-                             JOptionPane.showMessageDialog(null, "Compte n'existe pas ");
+                            showAlertWithHeaderText("Compte n'existe pas ");
 
                             }
                             } 
                         }catch (SQLException ex) {
-                        JOptionPane.showMessageDialog(null, "Mot de Passe ou email incorect ");                   
+                            showAlertWithHeaderText( "Mot de Passe ou email incorect ");                   
                         }
                 }else {
-                    JOptionPane.showMessageDialog(null, "email invalide");
+                        showAlertWithHeaderText("email invalide");
                 }
             }
 
             
                 else{
-             JOptionPane.showMessageDialog(null, "champ est null ");
+             showAlertWithHeaderText("champ est null ");
             }
         }
     }

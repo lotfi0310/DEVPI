@@ -11,12 +11,12 @@
 
 <VBox id="vbox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="470.0" styleClass="blue-panel" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.SignUpController">
    <children>
-      <Label contentDisplay="TOP" text="Sign Up" textFill="#2196f3">
+      <Label contentDisplay="TOP" prefHeight="17.0" prefWidth="78.0" text="Sign Up" textFill="#2196f3">
          <font>
             <Font size="20.0" />
          </font>
          <VBox.margin>
-            <Insets left="20.0" top="50.0" />
+            <Insets left="20.0" top="5.0" />
          </VBox.margin>
       </Label>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="475.0">
@@ -37,7 +37,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" prefHeight="40.0" prefWidth="414.0">
          <children>
-            <TextField fx:id="usr_lastname" depthTest="DISABLE" prefHeight="26.0" prefWidth="467.0" promptText="Last Name" styleClass="tf_box">
+            <TextField fx:id="usr_lastname" depthTest="DISABLE" prefHeight="26.0" prefWidth="467.0" promptText="Last Name" style="-fx-background-size: 2;" styleClass="tf_box">
                
                <HBox.margin>
                   <Insets left="20.0" right="20.0" />
@@ -65,17 +65,17 @@
       </HBox>
       <HBox prefHeight="58.0" prefWidth="400.0">
          <children>
-            <Label text="Role" textFill="WHITE">
+            <Label styleClass="tf" text="Choisir Votre Role" textFill="#dedee4" underline="true">
                <HBox.margin>
-                  <Insets left="20.0" />
+                  <Insets left="20.0" top="5.0" />
                </HBox.margin>
             </Label>
-            <ChoiceBox fx:id="usr_role" prefHeight="25.0" prefWidth="155.0" styleClass="white-pane">
+            <ChoiceBox fx:id="usr_role" prefHeight="25.0" prefWidth="155.0" style="-fx-background-radius: 5px; -fx-border-color: #cccccc; -fx-border-radius: 5px;" styleClass="white-pane">
                <opaqueInsets>
                   <Insets left="30.0" />
                </opaqueInsets>
                <HBox.margin>
-                  <Insets left="150.0" />
+                  <Insets left="40.0" />
                </HBox.margin>
             </ChoiceBox>
          </children>
@@ -83,7 +83,7 @@
             <Insets top="15.0" />
          </VBox.margin>
       </HBox>
-      <Button fx:id="btnregistre" mnemonicParsing="false" prefHeight="38.0" prefWidth="456.0" styleClass="blue-btn" text="Sign Up">
+      <Button id="btnregistre" fx:id="btnregistre" mnemonicParsing="false" prefHeight="38.0" prefWidth="456.0" style="-fx-background-radius: 20px; -fx-border-radius: 20px;" styleClass="blue-btn" text="Sign Up" textFill="WHITE">
          <font>
             <Font size="17.0" />
          </font>

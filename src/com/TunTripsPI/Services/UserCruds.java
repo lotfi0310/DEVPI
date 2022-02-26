@@ -79,7 +79,7 @@ public class UserCruds {
             else{
             pst.executeUpdate();
             s="Utilisateur ajouté avec succees ";
-                JavaMailUtil.sendmail(u.getEmail());
+                JavaMailUtil.sendmail(u.getEmail(),"votre code de validation mail est: ");
                 AddCodeValidationmail(JavaMailUtil.a,u.getEmail());
             }
         } catch (SQLException ex) {
@@ -252,8 +252,72 @@ return s;
                }
         
         }
+        
+        
+    public void  AddCodeRecuperationCompte(String code,String email){
+            String req = "Update codevalidation SET coderec_mp='"+code+"' where codevalidation.email='"+email+"' ";
+        PreparedStatement pst;
+        
+        try {
+            pst = cnxx.prepareStatement(req);
+          pst.executeUpdate();
+            System.out.println("code recuperation sauvegarder a la base ");
+       }
+        catch(Exception e){
+            System.out.println("code recuperation non sauvegarder a la base ");
+               }
+        
+        }
     
+    public String VerifmailValidation(String email){
+        try {
+            String s="";
+            String requeteverifmail="Select code from codevalidation Inner Join user ON codevalidation.email=user.email and user.email='"+email+"'";
+            Statement st=cnxx.createStatement();
+            ResultSet rs= st.executeQuery(requeteverifmail);
+            s=rs.getString("code");
+             
+            return s;
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return null;
+    }
     
+    public String VerifcodeRecuperationCompte(String email){
+        try {
+            String requeteverifmail="Select coderec_mp from codevalidation Inner Join user ON codevalidation.email=user.email and user.email='"+email+"'";
+            Statement st=cnxx.createStatement();
+            st.executeQuery(requeteverifmail);
+            ResultSet rs=st.getResultSet();
+            
+            if(rs.next()){
+            String s=rs.getString("coderec_mp");
+                System.out.println(s);
+                        return s;
+
+            }
+          
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    return null;
+    }
+
+    
+    public void UpdatePassword(String text,String email) {
+            String req = "Update user SET passwd='"+text+"' where email='"+email+"' ";
+        PreparedStatement pst;
+        
+        try {
+            pst = cnxx.prepareStatement(req);
+          pst.executeUpdate();
+            System.out.println("Mot de passe modifier avec succees  ");
+       }
+        catch(Exception e){
+            System.out.println("erreur modification mot de passe");
+    }
    
 
+}
 }

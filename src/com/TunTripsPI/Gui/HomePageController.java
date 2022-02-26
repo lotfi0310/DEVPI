@@ -33,6 +33,7 @@ public class HomePageController implements Initializable {
     
     
     
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
@@ -65,6 +66,7 @@ public class HomePageController implements Initializable {
     }   
     @FXML
     private void open_signup(ActionEvent event){
+        
           TranslateTransition t = new TranslateTransition(Duration.seconds(1),vbox);
         t.setToX(0);
         t.play();

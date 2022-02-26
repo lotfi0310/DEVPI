@@ -51,8 +51,6 @@ public class SignUpController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 JOptionPane valideremail=new JOptionPane();
-                valideremail.setBackground(Color.BLUE);
-                valideremail.setIcon(new ImageIcon("C://Users//Lotfi//Downloads/TunTrips.png", "TunTrips"));
                
                 UserCruds uc=new UserCruds(); 
                 User u =new User(); 
@@ -61,13 +59,12 @@ public class SignUpController implements Initializable {
                 u.setEmail(usr_email.getText());
                 u.setPasswd(usr_pass.getText());
                 u.setRole(usr_role.getValue());
-                uc.ajouterUser(u);
                 if(uc.ifuserExiste(u.getEmail())){
-                     valideremail.showMessageDialog(null," Bienvenu "+u.getNom()+" Email existe deja ");
+                     valideremail.showMessageDialog(null," Bienvenu "+u.getNom()+" Email existe deja , essayer de s'authentifier ");
                 }
                 else {
-                    valideremail.setLocation(200, 200);
-                    valideremail.showInputDialog(null," Bienvenu "+u.getNom()+"Entree le code recue sur votre boite mail");
+                    valideremail.setLocation(100, 100);
+                     uc.ajouterUser(u);
                 }
                 
                 

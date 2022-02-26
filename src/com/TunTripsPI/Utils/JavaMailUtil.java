@@ -27,7 +27,8 @@ import javax.mail.internet.MimeMultipart;
  */
 public class JavaMailUtil {
       public static String a; 
-    public static void sendmail(String recipien) {
+      public static String context; 
+    public static boolean  sendmail(String recipien,String context) {
         Properties properties=new Properties();
         properties.put("mail.smtp.auth","true");
         properties.put("mail.smtp.starttls.enable","true");
@@ -44,28 +45,31 @@ public class JavaMailUtil {
             }
            
 });
-        Message message = prepareMessage(session,accountemail,recipien);
+          Message message = prepareMessage(session,accountemail,recipien,context);
         
         try {
             Transport.send(message);
+            if(message!=null){
+                return true ; 
+            }
             System.out.println("Message send Successfully");
         } catch (MessagingException ex) {
             Logger.getLogger(JavaMailUtil.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
-        
+        return false ; 
     }
 
-    private static Message prepareMessage(Session session, String accountemail, String recipien) {
+    public static Message prepareMessage(Session session, String accountemail, String recipien,String context) {
         try {
-            Message message=new MimeMessage(session);
+           Message message=new MimeMessage(session);
             message.setFrom(new InternetAddress(accountemail));
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipien));
-            message.setSubject("Activer votre compte TunTrips ... ");
+            message.setSubject("Hello TunTrips ... ");
             UserCruds uc =new UserCruds();
               a=CodeGen();
-            message.setText("Hey Our tourist, activate you account now .. "+a);
+            message.setText(context+a);
             
           
             return message ; 

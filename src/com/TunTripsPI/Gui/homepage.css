@@ -1,15 +1,18 @@
 
 .parent{
-    -fx-background-color:transparent ;
+       -fx-background-image:url(../Image/back.jpg); 
+
 }
 .pane{
-   -fx-background-color: #2196f3; 
+       -fx-background-color:transparent ;
+
+   
 }
 .trans-btn-white-border{
     -fx-background-color: transparent;
-    -fx-background-radius: 15;
-    -fx-border-color: #cccccc;
-    -fx-border-radius: 5px;
+    -fx-background-radius:30px;
+    -fx-border-color: white;
+    -fx-border-radius: 30px;
     -fx-border-width: 1px;
 }
 .white-pane{
@@ -24,9 +27,19 @@
     -fx-border-width: 0px 0px 1px 0px;
 }
 .tf{
-    -fx-background-color: transparent;    
+    -fx-background-color: transparent; 
+    
 }
 .blue-btn{
+    -fx-border-radius: 30px;
+    -fx-border-width: 1px;
     -fx-background-color: #2196f3;
     -fx-background-radius: 5px;
+}
+
+.paneforgetpass{
+    
+    -fx-background-radius:15px; 
+    -fx-border-radius: 15px; 
+    
 }
