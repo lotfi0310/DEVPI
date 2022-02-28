@@ -9,14 +9,20 @@ import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
+import java.sql.Blob;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,8 +37,12 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -63,7 +73,7 @@ private AnchorPane frame_Userrec;
     @FXML
     private TableColumn<User,String> rolecol;
     @FXML
-    private TableColumn<User,String> photocol;
+    private TableColumn<User,ImageView> photocol;
     @FXML
     private TableColumn<User,String> num_telcol;
     @FXML
@@ -72,6 +82,7 @@ private AnchorPane frame_Userrec;
     private TableColumn<User, String> etatcol;
     @FXML
     private Tab panegestionreclamation;
+    InputStream input ; 
     
      private ObservableList<User> u = FXCollections.observableArrayList();
           private ObservableList<Reclamation> rec = FXCollections.observableArrayList();
@@ -114,8 +125,10 @@ private AnchorPane frame_Userrec;
         UserCruds uc=new UserCruds();
          List<User> listUser= new ArrayList<User>();
          listUser=uc.consulterlisteuser();
+     
          u.clear();
          u.addAll(listUser);
+         
           tabviewusers.setItems(u);
         
         idusercol.setCellValueFactory(

@@ -111,19 +111,20 @@ public class SignInController implements Initializable {
                             if(rs.next()) {
                                 if (!rs.getBoolean("valide")) {
                                     if (rs.getBoolean("etat")) {
+                                        
                                         String Typeauth =uc.Typeauthentification(rs);
+                                         Stage primaryStage=new Stage();
+                                        if(Typeauth.equals("Simple User")){
+                                             ProfilUserController puc=new ProfilUserController();
+                                        ProfilUser p=new ProfilUser();
+                                        p.start(primaryStage);
+                                        }else{
                                         GererUserAdmin gua=new GererUserAdmin();
-                                        Stage primaryStage=new Stage();
                                         gua.start(primaryStage);
-                                        HomePage h=new HomePage();
-                                        try {
-                                            h.stop();
-                                        } catch (Exception ex) {
-                                            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                                        ProfilUserController puc=new ProfilUserController();
                                         }
-                                             
-                                          
-                                           
+                                       
+                                      
                                     } else {
                                        showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
 
@@ -166,5 +167,8 @@ Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
 Matcher m = p.matcher(email.toUpperCase());
 return m.matches();
 }
+
+    
+    
     
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ValiderCompteController">
+   <children>
+      <TextField fx:id="txtvalidemail" layoutX="40.0" layoutY="102.0" prefHeight="25.0" prefWidth="228.0" />
+      <Button layoutX="122.0" layoutY="171.0" mnemonicParsing="false" onAction="#validerEmail" text="Envoyer" />
+      <Hyperlink fx:id="linknewcodemail" layoutX="70.0" layoutY="139.0" text="Demander un nouvau code ?" />
+   </children>
+</AnchorPane>

@@ -21,6 +21,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -30,6 +31,7 @@ import javax.swing.JOptionPane;
  * @author Lotfi
  */
 public class SignUpController implements Initializable {
+    public static String e;
     @FXML
     private TextField usr_name; 
     @FXML
@@ -83,6 +85,8 @@ public class SignUpController implements Initializable {
                 else if (!usr_name.getText().isEmpty()&&!usr_lastname.getText().isEmpty()&&!usr_email.getText().isEmpty()&&!usr_pass.getText().isEmpty()&&!usr_role.getValue().isEmpty())
              
                 {
+                                        e=usr_email.getText();
+
                 UserCruds uc=new UserCruds(); 
                 User u =new User(); 
                 u.setNom(usr_name.getText());
@@ -95,17 +99,13 @@ public class SignUpController implements Initializable {
                 }
                 else {
                      uc.ajouterUser(u);
-                     TextField txtcodevmail=new TextField();
-                     
-                     JOptionPane.showInputDialog("Entrer Votre code de validation mail ",txtcodevmail);
-                     try{
-                    if(!txtcodevmail.getText().isEmpty()&& JOptionPane.OK_OPTION>0){
-                        
-                        System.out.println(txtcodevmail);
-                    }
-                     }catch(Exception e){
-                         System.out.println("error");;
-                    }
+                    ValiderCompte v=new ValiderCompte();
+                    Stage primaryStage=new Stage();
+                    v.start(primaryStage);
+                    
+                    
+                    
+                    
                 }
                 
                 
@@ -115,6 +115,8 @@ public class SignUpController implements Initializable {
             
                     
         });
-    }    
+    }
+
+
     
 }

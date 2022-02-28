@@ -4,6 +4,7 @@ import com.TunTripsPI.Utils.JavaMailUtil;
 import com.TunTripsPI.entities.User;
 import com.TunTripsPI.Utils.MyConnection;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
+import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -150,7 +151,7 @@ return s;
 
     public ArrayList<User> consulterinfo(User u) {
         ArrayList listinfo = new ArrayList();
-        String reqinfoprofil = "SELECT * FROM user WHERE id='" + u.getId() + "'";
+        String reqinfoprofil = "SELECT * FROM user WHERE id='" + u.getId()+ "'";
         try {
 
             Statement st;
@@ -159,9 +160,10 @@ return s;
             st.executeQuery(reqinfoprofil);
             rs = st.getResultSet();
             System.out.println(rs.next());
-
-            User uu = new User(rs.getInt("id"),rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("country"), rs.getString("role"),rs.getString("photo"),rs.getString("num_tel"),rs.getBoolean("etat"));
+            InputStream  input = rs.getBinaryStream(8);
+            User uu = new User(rs.getInt("id"),rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("country"), rs.getString("role"),rs.getBlob("photo"),rs.getString("num_tel"),rs.getBoolean("etat"));
             listinfo.add(uu);
+            
 
             return listinfo;
 
@@ -222,7 +224,7 @@ return s;
             while(rs.next()) {
                 
                 u = new User(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),
-                rs.getString("passwd"),rs.getString("country"),rs.getString("role"),rs.getString("photo"),
+                rs.getString("passwd"),rs.getString("country"),rs.getString("role"),rs.getBlob("photo"),
                 rs.getString("num_tel"),rs.getBoolean("etat"));
                 listeuser.add(u);
             } 
@@ -272,13 +274,18 @@ return s;
     
     public String VerifmailValidation(String email){
         try {
-            String s="";
             String requeteverifmail="Select code from codevalidation Inner Join user ON codevalidation.email=user.email and user.email='"+email+"'";
             Statement st=cnxx.createStatement();
-            ResultSet rs= st.executeQuery(requeteverifmail);
-            s=rs.getString("code");
-             
-            return s;
+            st.executeQuery(requeteverifmail);
+            ResultSet rs=st.getResultSet();
+            
+            if(rs.next()){
+            String s=rs.getString("code");
+                System.out.println(s);
+                        return s;
+
+            }
+          
         } catch (SQLException ex) {
             Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -319,6 +326,22 @@ return s;
             System.out.println("erreur modification mot de passe");
     }
    
+
+}
+     public void UpdatevaliditeCompte(String email) {
+        try {
+           
+            String req = "Update user SET valide='true' where email='"+email+"' ";
+            PreparedStatement pst;
+         
+            pst = cnxx.prepareStatement(req);
+            pst.executeUpdate();
+            
+            System.out.println("Compte valide");
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      
 
 }
 }
