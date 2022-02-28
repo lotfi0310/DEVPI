@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableReservationController">
+   <children>
+      <TableView fx:id="tablereservation" layoutX="64.0" layoutY="82.0" prefHeight="200.0" prefWidth="435.0">
+         <columns>
+            <TableColumn fx:id="nomutilisateur" prefWidth="150.4000244140625" text="Nom utilisateur" />
+            <TableColumn fx:id="nomEvenement" prefWidth="116.0" text="NomEvenement" />
+            <TableColumn fx:id="DateReservation" prefWidth="175.20001220703125" text="Date de reservation" />
+         </columns></TableView>
+      <Label layoutX="177.0" layoutY="31.0" prefHeight="34.0" prefWidth="297.0" text="liste des reservations ">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

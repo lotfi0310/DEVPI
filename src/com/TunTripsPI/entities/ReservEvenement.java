@@ -5,32 +5,20 @@
  */
 package com.TunTripsPI.entities;
 
+import java.sql.Date;
+
 /**
  *
  * @author Nidhal
  */
 public class ReservEvenement {
     private int id ;
-     private String nomreservation;
-      private double  prix;
-     private String date_reserv;
-    
+    private int id_evenement ;
+   private int  id_user ;
+   private Date Date_reservation;
 
-
-    public ReservEvenement() {
-    }
-
-    public ReservEvenement(int id, String nomreservation, double  prix, String date_reserv) {
-        this.id = id;
-        this.nomreservation = nomreservation;
-        this.prix = prix;
-        this.date_reserv = date_reserv;
-    }
-
-    public ReservEvenement(String nomreservation, double prix, String date_reserv) {
-        this.nomreservation = nomreservation;
-        this.prix = prix;
-        this.date_reserv = date_reserv;
+    public ReservEvenement(Date dd1, int id_evenement, int id_user) {
+     //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {
@@ -41,30 +29,52 @@ public class ReservEvenement {
         this.id = id;
     }
 
-    public String getNomreservation() {
-        return nomreservation;
+    public int getId_evenement() {
+        return id_evenement;
     }
 
-    public void setNomreservation(String nomreservation) {
-        this.nomreservation = nomreservation;
+    public void setId_evenement(int id_evenement) {
+        this.id_evenement = id_evenement;
     }
 
-    public String getDate_reserv() {
-        return date_reserv;
+    public int getId_user() {
+        return id_user;
     }
 
-    public void setDate_reserv(String date_reserv) {
-        this.date_reserv = date_reserv;
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
     }
 
-    public double getPrix() {
-        return prix;
+    public Date getDate_reservation() {
+        return Date_reservation;
     }
 
-    public void setPrix(double prix) {
-        this.prix = prix;
+    public void setDate_reservation(Date Date_reservation) {
+        this.Date_reservation = Date_reservation;
     }
-    
 
+    public ReservEvenement(int id,Date Date_reservation, int id_evenement, int id_user ) {
+        this.id = id;
+        this.id_evenement = id_evenement;
+        this.id_user = id_user;
+        this.Date_reservation = Date_reservation;
+    }
+
+   // public ReservEvenement(Date Date_reservation , int id_evenement, int id_user ) {
+  //      this.id_evenement = id_evenement;
+   //     this.id_user = id_user;
+   ///     this.Date_reservation = Date_reservation;
+   // }
+
+    public ReservEvenement() {
+    }
+
+    @Override
+    public String toString() {
+        return "ReservEvenement{" + "id=" + id + ", id_evenement=" + id_evenement + ", id_user=" + id_user + ", Date_reservation=" + Date_reservation + '}';
+    }
+
+
+   
   
 }

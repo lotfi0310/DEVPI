@@ -5,8 +5,11 @@
  */
 package com.TunTripsPI.Services;
 
+import com.TunTripsPI.Utils.MyConnection;
 import com.TunTripsPI.Utils.MyConnection_1;
 import com.TunTripsPI.entities.Evenement;
+import com.TunTripsPI.entities.ReservEvenement;
+import static com.mysql.jdbc.Messages.getString;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -14,6 +17,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -31,16 +39,19 @@ public class EvenementCrud {
 
     public void ajouterEvenement(Evenement e) {
 
-        String req = "INSERT INTO Evenement (nom,date_debut,date_fin,lieu,description) VALUES (?,?,?,?,?)";
+        String req = "INSERT INTO Evenement (nom,date_debut,date_fin,lieu,description,status,capacite) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
 
             pst.setString(1, e.getNom());
-            pst.setString(2, e.getDate_debut());
-            pst.setString(3, e.getDate_fin());
+            pst.setDate(2, e.getDate_debut());
+            pst.setDate(3, e.getDate_fin());
             pst.setString(4, e.getLieu());
             pst.setString(5, e.getDescription());
+            pst.setString(6, e.getStatus());
+           // pst.setString(7, e.getImage());
+            pst.setInt(7, e.getCapacite());
 
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -50,26 +61,28 @@ public class EvenementCrud {
     }
 
     public void modifierEvenemenet(Evenement e) {
-        String req = "UPDATE Evenement  nom=?,date_debut=?,date_fin=?,lieu=?,description=? WHERE id=?";
+        String req = "UPDATE Evenement SET nom=?,date_debut=?,date_fin=?,lieu=?,description=?,status=?,capacite=? WHERE id=?";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
             pst.setString(1, e.getNom());
-            pst.setString(2, e.getDate_debut());
-            pst.setString(3, e.getDate_fin());
+            pst.setDate(2, e.getDate_debut());
+            pst.setDate(3, e.getDate_fin());
             pst.setString(4, e.getLieu());
             pst.setString(5, e.getDescription());
+            pst.setString(6, e.getStatus());
+        
 
-            pst.setInt(6, e.getId());
-
+            pst.setInt(8, e.getCapacite());
+            pst.setInt(9, e.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
 
     }
- 
-public String countEvenement() {
+
+    public String countEvenement() {
 
         String req = "SELECT COUNT(*) FROM Evenement";
         PreparedStatement pst;
@@ -85,7 +98,7 @@ public String countEvenement() {
         }
 
     }
-    
+
     public void supprimerEvenement(Evenement e) {
 
         String reqdelete = "DELETE FROM Evenement WHERE id=?";
@@ -103,35 +116,138 @@ public String countEvenement() {
         }
 
     }
-/*
-    public ArrayList<Evenement> consulterevenement(Evenement e) {
-        ArrayList listevenement = new ArrayList();
-        String reqevenement = "SELECT * FROM evenement WHERE id='" + e.getId() + "'";
+
+    public ArrayList<Evenement> recherche(String nom) {
+
+        ArrayList<Evenement> EvenementList = new ArrayList<Evenement>();
+        try {
+            String requete = "select * from Evenement where nom='" + nom + "'";
+            PreparedStatement pst = MyConnection.getInstance().getCnx()
+                    .prepareStatement(requete);
+
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Evenement r = new Evenement();
+                r.setId(rs.getInt("id"));
+                r.setDate_debut(rs.getDate("date_debut"));
+                r.setCapacite(rs.getInt("capacite"));
+              //
+        //      r.setImage(rs.getString("image"));
+                r.setLieu(rs.getNString("lieu"));
+                r.setStatus(rs.getNString("status"));
+
+                EvenementList.add(r);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementCRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return EvenementList;
+    }
+
+    /*
+      public String Disponibilite(Evenement E) {
+
+      
+    
+
+    }
+     */
+ 
+    public ArrayList<Evenement> consulterEvenement() {
+         ResultSet rs ;
+        ArrayList<Evenement> listEvenement = new ArrayList<Evenement>();
+        String req = "SELECT * FROM Evenement";
+        Statement st;
         try {
 
-            Statement st;
             st = cnxx.createStatement();
-            ResultSet rs;
-            st.executeQuery(reqevenement);
-            rs = st.getResultSet();
-            System.out.println(rs.next());
+           rs= st.executeQuery(req);
 
-            Evenement ee = new Evenement(rs.getInt("id"), rs.getString("date_debut"), rs.getString("date_fin"), rs.getString("lieu"), rs.getString("description"));
-            listevenement.add(ee);
+            while (rs.next()) {
+                 Evenement r = new Evenement();
+                r.setId(rs.getInt("id"));
+                r.setNom(rs.getString("nom"));
+                 r.setStatus(rs.getString("status"));
+                 r.setDate_debut(rs.getDate("date_debut"));
+                r.setDate_fin(rs.getDate("date_fin"));
+                
+              
+                r.setLieu(rs.getString("lieu"));
+               
+                  r.setDescription(rs.getString("description"));
+               //   r.setImage(rs.getString("image"));
+                     r.setCapacite(rs.getInt("capacite"));
 
-            return listevenement;
+                listEvenement.add(r);
+                
+            }
+          return  listEvenement;
+
+        } catch (Exception ex) {
+            System.out.print("erreur" +ex);
+         //   Logger.getLogger(Evenement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listEvenement;
+    }
+    
+    
+    
+    /*  public ObservableList<Evenement> afficherEvenement(){
+ObservableList<Evenement> Evenement = FXCollections.observableArrayList();
+String sql="select * from evenement";
+ Statement st;
+        try {
+             st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                Evenement ev = new Evenement();
+                ev.setId(rs.getInt("id"));
+                ev.setNom(rs.getString("nom"));
+               ev.setStatus(rs.getString("status"));
+                ev.setDate_debut(rs.getDate("date_debut"));
+                ev.setDate_fin(rs.getDate("date_fin"));
+                 ev.setLieu(rs.getString("lieu"));
+                  ev.setDescription(rs.getString("description"));
+                  ev.setImage(rs.getString("image"));
+                  ev.setCapacite(rs.getInt("capacite"));
+             
+                Evenement.add(ev);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return Evenement;
+    }
+    
+     public ArrayList<Evenement> afficherEvenementFiltré(String n) {
+        ArrayList<Evenement> liEvenement= new ArrayList<Evenement>();
+
+        String req =   "SELECT id,nom FROM Evenement WHERE nom='" + n + "'    ";               
+        Statement st;
+        try {
+            
+            st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+
+            while (rs.next()) {
+               Evenement rr = new Evenement(rs.getInt("id"),rs.getString("nom"));
+                liEvenement.add(rr);
+            }
+            return liEvenement;
 
         } catch (SQLException ex) {
             Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return listevenement;
-    }
-    /*
-    
-     public void modifierEvenement (Evenement E) {
+        return liEvenement;
+    }  
+     
+     
+
+ /*  public void modifierEvenement(Evenement E) {
         String req = "UPDATE Region SET date_debut=?, date_fin=?, lieu=? ,description=? WHERE lieu=?";
-          PreparedStatement pst;
-          try {
+        PreparedStatement pst;
+        try {
             pst = cnxx.prepareStatement(req);
             pst.setString(1, "bizerte");
             pst.setString(2, "rtrtrtrt");
@@ -143,11 +259,10 @@ public String countEvenement() {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        
-       
 
-         
-    } */
+    }
+
+
 
  /*modifier Evenement
     public void modifierEvenement(Evenement e) {
@@ -184,5 +299,37 @@ public String countEvenement() {
 
     
     }
+    
+    
+    
+    
+    
+    
+    public ArrayList<Region> consulterRegion(){
+         ArrayList<Region> listRegion  = new ArrayList<Region>();
+         String req="SELECT * FROM region" ;
+         Statement st; 
+        try {
+            
+         
+            st=cnxx.createStatement();
+            ResultSet rs = st.executeQuery(req);
+            
+            
+                    while(rs.next()){
+                          Region rr = new Region(rs.getInt("id"),rs.getString("nom"),rs.getString("description"),rs.getString("photo"));
+                           listRegion.add(rr);
+                    }
+                      return listRegion;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegionCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return listRegion;
+    }
      */
+
+    public void ajouterEvenement(ReservEvenement re) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

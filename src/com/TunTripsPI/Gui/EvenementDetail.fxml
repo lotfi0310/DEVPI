@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.EvenementDetailController">
+   <children>
+      <Label layoutX="72.0" layoutY="43.0" text="NOM" />
+      <Label layoutX="67.0" layoutY="85.0" text="Date debut" />
+      <Label layoutX="76.0" layoutY="122.0" text="Date fin" />
+      <Label layoutX="75.0" layoutY="161.0" text="Lieu" />
+      <Label layoutX="70.0" layoutY="200.0" text="Description" />
+      <Label layoutX="75.0" layoutY="244.0" text="Status" />
+      <Label layoutX="72.0" layoutY="321.0" text="Capacite" />
+      <TextField fx:id="resnom" editable="false" layoutX="250.0" layoutY="39.0" />
+      <TextField fx:id="resdatedebut" editable="false" layoutX="251.0" layoutY="81.0" />
+      <TextField fx:id="resdatefin" editable="false" layoutX="252.0" layoutY="118.0" />
+      <TextField fx:id="reslieu" editable="false" layoutX="253.0" layoutY="157.0" />
+      <TextField fx:id="resdescription" editable="false" layoutX="254.0" layoutY="196.0" />
+      <TextField fx:id="resstatus" editable="false" layoutX="255.0" layoutY="240.0" />
+      <TextField fx:id="rescapacite" editable="false" layoutX="255.0" layoutY="317.0" />
+   </children>
+</AnchorPane>

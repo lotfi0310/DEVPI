@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="625.0" prefWidth="889.0" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.AddEvenementController">
+   <children>
+      <Label layoutX="60.0" layoutY="133.0" prefHeight="18.0" prefWidth="166.0" text=" DATE DE DEBUT" textFill="#048b9a">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="68.0" layoutY="209.0" text="DATE DE FIN">
+         <font>
+            <Font size="17.0" />
+         </font></Label>
+      <Label layoutX="104.0" layoutY="306.0" prefHeight="18.0" prefWidth="78.0" text="LIEU" />
+      <Label layoutX="604.0" layoutY="57.0" prefHeight="54.0" prefWidth="142.0" text="DESCRIPTION" />
+      <Label layoutX="83.0" layoutY="399.0" prefHeight="18.0" prefWidth="62.0" text="STATUS" />
+      <Label layoutX="73.0" layoutY="507.0" prefHeight="18.0" prefWidth="102.0" text="CAPACITE" />
+      <Label layoutX="68.0" layoutY="69.0" prefHeight="22.0" prefWidth="226.0" text="NOM DE L'EVENEMENT " textFill="#048b9a">
+         <font>
+            <Font name="Baskerville Old Face" size="17.0" />
+         </font></Label>
+      <TextField fx:id="tfNom" layoutX="329.0" layoutY="58.0" prefHeight="44.0" prefWidth="190.0" styleClass="txt-field" />
+      <TextField fx:id="tfLieu" layoutX="328.0" layoutY="285.0" prefHeight="54.0" prefWidth="190.0" styleClass="txt-field" />
+      <TextField fx:id="tfDescription" layoutX="560.0" layoutY="159.0" prefHeight="260.0" prefWidth="324.0" styleClass="txt-field" />
+      <TextField fx:id="tfStatus" layoutX="333.0" layoutY="390.0" prefHeight="54.0" prefWidth="190.0" styleClass="txt-field" />
+      <TextField fx:id="tfCapacite" layoutX="333.0" layoutY="502.0" prefHeight="27.0" prefWidth="199.0" styleClass="txt-field" />
+      <Button fx:id="btnAjouter" layoutX="360.0" layoutY="552.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="44.0" prefWidth="136.0" styleClass="btn" text="Sauvgarder" />
+      <DatePicker fx:id="tfDateDebut" layoutX="333.0" layoutY="124.0" prefHeight="44.0" prefWidth="190.0" />
+      <DatePicker fx:id="tfDatefin" layoutX="328.0" layoutY="200.0" prefHeight="44.0" prefWidth="199.0" />
+   </children>
+</AnchorPane>
