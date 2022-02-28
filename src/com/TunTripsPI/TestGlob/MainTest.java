@@ -26,7 +26,10 @@ public class MainTest {
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
       
-     
+     UserCruds uc =new UserCruds(); 
+     User u=new User();
+     u.setEmail("lotfilouiz@gmail.com");
+     System.out.println(uc.ifuserExiste(u.getEmail()));
        /* User u=new User("Lotfi","Louiz","lotfilouiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
         UserCruds uc=new UserCruds();
 //        System.out.println(uc.ajouterUser(u));
@@ -96,9 +99,9 @@ public class MainTest {
           r.setEtat(false);
           cr.ajouterReclamationHeberg(r,u);
        */
-       //add reclamation transport 
-         /* User u =new User();
-                   u.setId(8);
+      // add reclamation transport 
+          
+                   u.setId(86);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
           r.setIdtransport(1);
@@ -107,7 +110,7 @@ public class MainTest {
           r.setContenu("nouvelle reclamation sur heberg"+u.getId());
           r.setEtat(false);
           cr.ajouterReclamationTransport(r,u);
-       */
+       
           //afficher mes reclamation  en tant que user
       /*
         User u=new User();

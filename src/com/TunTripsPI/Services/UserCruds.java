@@ -35,14 +35,15 @@ public class UserCruds {
 
     }
   
-     public Boolean ifuserExiste(String email){
-        Boolean ex=false;
+     public boolean ifuserExiste(String email){
+        boolean ex=false;
         Statement st;
         ResultSet rs;
       String chercher ="Select * From user where email='"+email+"'";
       try{
           st=cnxx.createStatement();
-          rs=st.executeQuery(chercher);
+          st.executeQuery(chercher);
+          rs=st.getResultSet();
          if(rs.next()){
              ex=true;
          }

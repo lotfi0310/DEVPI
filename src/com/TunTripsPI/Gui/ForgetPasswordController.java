@@ -67,12 +67,13 @@ public class ForgetPasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
 
     @FXML
     private void On_cancel(ActionEvent event) {
-
+       
+     
     }
 
     @FXML
@@ -116,7 +117,7 @@ UserCruds uc=new UserCruds();
 
             if (txtnewpass.getText().equals(txtnewpassconfirme.getText())) {
 
-                uc.UpdatePassword(txtnewpass.getText(), txtSmail.getText());
+                uc.UpdatePassword(uc.hashagePWD(txtnewpass.getText()), txtSmail.getText());
                 JOptionPane.showMessageDialog(null, "Mot de passe Modifier avec succees");
             } else {
                 JOptionPane.showMessageDialog(null, "Deux Champ differents.. verifier");

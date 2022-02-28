@@ -8,6 +8,7 @@ package com.TunTripsPI.Gui;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
 import java.awt.Color;
+import static java.awt.Color.RED;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.ObservableList;
@@ -18,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Border;
+import javafx.scene.text.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -50,8 +53,36 @@ public class SignUpController implements Initializable {
         btnregistre.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                JOptionPane valideremail=new JOptionPane();
-               
+                
+                if(usr_name.getText().isEmpty()){
+                usr_name.setText("Remplir votre nom");
+                usr_name.setFont(Font.font(20));
+                }
+                
+                else if(usr_lastname.getText().isEmpty()){
+                usr_lastname.setText("Remplir votre prenom");
+                usr_lastname.setFont(Font.font(20));
+                }
+                else if(!SignInController.isEmailAdress(usr_email.getText())){
+                     usr_email.setText("Format email non valide ");
+                usr_email.setFont(Font.font(20));
+                }
+                else  if(usr_email.getText().isEmpty()){
+                usr_email.setText("Remplir email");
+                usr_email.setFont(Font.font(20));
+                }
+                else   if(usr_pass.getText().isEmpty()){
+                usr_pass.setText("Remplir password");
+                usr_pass.setFont(Font.font(20));
+                }  
+                else   if(usr_role.getValue().isEmpty())
+                    { 
+                        usr_role.setFocusTraversable(true);
+                        usr_role.setBorder(Border.EMPTY);
+                    }
+                else if (!usr_name.getText().isEmpty()&&!usr_lastname.getText().isEmpty()&&!usr_email.getText().isEmpty()&&!usr_pass.getText().isEmpty()&&!usr_role.getValue().isEmpty())
+             
+                {
                 UserCruds uc=new UserCruds(); 
                 User u =new User(); 
                 u.setNom(usr_name.getText());
@@ -60,16 +91,29 @@ public class SignUpController implements Initializable {
                 u.setPasswd(usr_pass.getText());
                 u.setRole(usr_role.getValue());
                 if(uc.ifuserExiste(u.getEmail())){
-                     valideremail.showMessageDialog(null," Bienvenu "+u.getNom()+" Email existe deja , essayer de s'authentifier ");
+                     JOptionPane.showMessageDialog(null," Bienvenu "+u.getNom()+" Email existe deja , essayer de s'authentifier ");
                 }
                 else {
-                    valideremail.setLocation(100, 100);
                      uc.ajouterUser(u);
+                     TextField txtcodevmail=new TextField();
+                     
+                     JOptionPane.showInputDialog("Entrer Votre code de validation mail ",txtcodevmail);
+                     try{
+                    if(!txtcodevmail.getText().isEmpty()&& JOptionPane.OK_OPTION>0){
+                        
+                        System.out.println(txtcodevmail);
+                    }
+                     }catch(Exception e){
+                         System.out.println("error");;
+                    }
                 }
                 
                 
                 
             }
+            }
+            
+                    
         });
     }    
     

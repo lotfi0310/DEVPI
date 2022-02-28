@@ -1,6 +1,7 @@
 package com.TunTripsPI.entities;
 
 import java.util.Comparator;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 
 /**
@@ -8,6 +9,10 @@ import java.util.Comparator;
  * @author Lotfi
  */
 public class User{
+
+    public static void setCellValueFactory(PropertyValueFactory<Object, Object> propertyValueFactory) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int id ; 
     private String nom ; 
     private String prenom ; 

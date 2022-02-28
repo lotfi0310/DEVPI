@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -232,7 +233,7 @@ public class ReclamationCrud {
     
 //admin consulte all Reclam
 
-    public ArrayList<Reclamation> DisplayAllReclamation() {
+    public List<Reclamation> DisplayAllReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
         String reqmesrec = "SELECT * FROM reclamation ";
@@ -244,6 +245,7 @@ public class ReclamationCrud {
             while (rs.next()) {
                Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
                 mesrec.add(re);
+                System.out.println(re);
                 
             }
             return mesrec;

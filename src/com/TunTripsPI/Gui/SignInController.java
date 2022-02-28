@@ -31,6 +31,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -54,6 +55,8 @@ public class SignInController implements Initializable {
     @FXML
     private Label labelalert;
     Boolean a;
+   @FXML
+     Parent  home ;
 
     /**
      * Initializes the controller class.
@@ -76,12 +79,11 @@ public class SignInController implements Initializable {
                 try {
                      Parent root=FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
                      Stage s=new Stage();
-            Scene scene = new Scene(root);
+                     Scene scene = new Scene(root);
            
             s.initStyle(StageStyle.DECORATED);
             s.setTitle("Récuperer votre Compte TunTrips");
             s.setResizable(false);
-            
             s.setTitle("Recuperer votre Compte ");
             s.setScene(scene);
             s.show();
@@ -96,7 +98,7 @@ public class SignInController implements Initializable {
 
             @Override
             public void handle(ActionEvent event) {
-                if (!ChampVide(txtmail)) {
+                if (!txtmail.getText().isEmpty()) {
                     if (isEmailAdress(txtmail.getText())) {
                         try {
                             UserCruds uc = new UserCruds();
@@ -109,7 +111,19 @@ public class SignInController implements Initializable {
                             if(rs.next()) {
                                 if (!rs.getBoolean("valide")) {
                                     if (rs.getBoolean("etat")) {
-                                        showAlertWithHeaderText("authentification avec succes");
+                                        String Typeauth =uc.Typeauthentification(rs);
+                                        GererUserAdmin gua=new GererUserAdmin();
+                                        Stage primaryStage=new Stage();
+                                        gua.start(primaryStage);
+                                        HomePage h=new HomePage();
+                                        try {
+                                            h.stop();
+                                        } catch (Exception ex) {
+                                            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                                        }
+                                             
+                                          
+                                           
                                     } else {
                                        showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
 
@@ -129,7 +143,7 @@ public class SignInController implements Initializable {
                             } 
                         }catch (SQLException ex) {
                             showAlertWithHeaderText( "Mot de Passe ou email incorect ");                   
-                        }
+                        } 
                 }else {
                         showAlertWithHeaderText("email invalide");
                 }
@@ -137,23 +151,16 @@ public class SignInController implements Initializable {
 
             
                 else{
-             showAlertWithHeaderText("champ est null ");
+             txtmail.setText("Remplir le champ mail ");
+             txtmail.setFont(Font.font(20));
+             
             }
         }
     }
 
 );
     }
-    public static boolean ChampVide( TextField tf){
-        boolean s=false; 
-        if(tf.getText().toString().equals("")){ 
-            s=true;
-        }
-        else{
-        s=false;
-        }
-        return s;
-    }
+  
     public static boolean isEmailAdress(String email){
 Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
 Matcher m = p.matcher(email.toUpperCase());
