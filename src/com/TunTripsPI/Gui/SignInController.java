@@ -44,6 +44,11 @@ import javax.swing.JOptionPane;
  */
 public class SignInController implements Initializable {
 
+    String nom; 
+    String prenom; 
+    String num; 
+    String country;
+    String role;
     @FXML
     private TextField txtmail;
     @FXML
@@ -55,8 +60,8 @@ public class SignInController implements Initializable {
     @FXML
     private Label labelalert;
     Boolean a;
-   @FXML
-     Parent  home ;
+    @FXML
+    Parent home;
 
     /**
      * Initializes the controller class.
@@ -77,21 +82,17 @@ public class SignInController implements Initializable {
             @Override
             public void handle(ActionEvent event) {
                 try {
-                     Parent root=FXMLLoader.load(getClass().getResource("ForgetPassword.fxml"));
-                     Stage s=new Stage();
-                     Scene scene = new Scene(root);
-           
-            s.initStyle(StageStyle.DECORATED);
-            s.setTitle("Récuperer votre Compte TunTrips");
-            s.setResizable(false);
-            s.setTitle("Recuperer votre Compte ");
-            s.setScene(scene);
-            s.show();
-                    
+                      FXMLLoader Loader = new FXMLLoader(getClass().getResource("ForgetPassword.fxml"));
+            Parent root = Loader.load();
+            ForgetPasswordController Hc = Loader.getController();
+            btnauthentif.getScene().setRoot(root);
+            
+                   
+
                 } catch (IOException ex) {
                     Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-               
+
             }
         });
         btnauthentif.setOnAction(new EventHandler<ActionEvent>() {
@@ -104,71 +105,85 @@ public class SignInController implements Initializable {
                             UserCruds uc = new UserCruds();
                             User u = new User();
                             String email = txtmail.getText();
+                            String password=uc.hashagePWD(txtpass.getText());
                             u.setEmail(email);
-                             String passwd =uc.hashagePWD(txtpass.getText());
-                            ResultSet rs = uc.Authentification(email, passwd);
-                            a=uc.ifuserExiste(txtmail.getText());
+                           
+                            String p =txtpass.getText();
+                            ResultSet rs = uc.Authentification(email,password);
+                            a = uc.ifuserExiste(txtmail.getText());
                             if(rs.next()) {
+                              
+                                  nom =rs.getString("nom");
+                                  prenom =rs.getString("prenom");
+                                  country= rs.getString("country");
+                                  p=password;
+                                 role=rs.getString("role");
+                                 num=rs.getString("num_tel");
+                                
+                               
                                 if (!rs.getBoolean("valide")) {
+
                                     if (rs.getBoolean("etat")) {
-                                        
-                                        String Typeauth =uc.Typeauthentification(rs);
-                                         Stage primaryStage=new Stage();
-                                        if(Typeauth.equals("Simple User")){
-                                             ProfilUserController puc=new ProfilUserController();
-                                        ProfilUser p=new ProfilUser();
-                                        p.start(primaryStage);
-                                        }else{
-                                        GererUserAdmin gua=new GererUserAdmin();
-                                        gua.start(primaryStage);
-                                        ProfilUserController puc=new ProfilUserController();
+                                
+                                        String Typeauth = uc.Typeauthentification(rs);
+                                        Stage primaryStage = new Stage();
+                                        if (Typeauth.equals("Simple User")) {
+                                            FXMLLoader Loader = new FXMLLoader(getClass().getResource("ProfilUser.fxml"));
+                                            try {
+
+                                                Parent root = Loader.load();
+                                                ProfilUserController pc = Loader.getController();
+                                                txtmail.getScene().setRoot(root);
+                                                pc.setTxtmodifnumtel(num);
+                                                pc.setTxtmodifrole(role);
+                                                pc.setTxtModifPrenom(prenom);
+                                                pc.setTxtModifNom(nom);
+                                                pc.setTxtmodifpass(p);
+                                                pc.setTxtmodifemail(email);
+                                            } catch (IOException ex) {
+                                                System.out.println("Error: " + ex.getMessage());
+                                            }
+
+                                        } else {
+                                            GererUserAdmin gua = new GererUserAdmin();
+                                            gua.start(primaryStage);
+                                            ProfilUserController puc = new ProfilUserController();
                                         }
-                                       
-                                      
+
                                     } else {
-                                       showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
+                                        showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");
 
                                     }
                                 } else {
                                     showAlertWithHeaderText("tu dois dabord valider votre email ... via code envoyer sur votre email ");
                                 }
 
-                            }else{
-                                if (a){
+                            } else if (a) {
                                 showAlertWithHeaderText("Mot de Passe Invalide");
-                                }
-                            else{
-                            showAlertWithHeaderText("Compte n'existe pas ");
+                            } else {
+                                showAlertWithHeaderText("Compte n'existe pas ");
 
                             }
-                            } 
-                        }catch (SQLException ex) {
-                            showAlertWithHeaderText( "Mot de Passe ou email incorect ");                   
-                        } 
-                }else {
+                        } catch (SQLException ex) {
+                            showAlertWithHeaderText("Mot de Passe ou email incorect ");
+                        }
+                    } else {
                         showAlertWithHeaderText("email invalide");
+                    }
+                } else {
+                    txtmail.setText("Remplir le champ mail ");
+                    txtmail.setFont(Font.font(20));
+
                 }
             }
-
-            
-                else{
-             txtmail.setText("Remplir le champ mail ");
-             txtmail.setFont(Font.font(20));
-             
-            }
         }
+        );
     }
 
-);
+    public static boolean isEmailAdress(String email) {
+        Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
+        Matcher m = p.matcher(email.toUpperCase());
+        return m.matches();
     }
-  
-    public static boolean isEmailAdress(String email){
-Pattern p = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$");
-Matcher m = p.matcher(email.toUpperCase());
-return m.matches();
-}
 
-    
-    
-    
 }

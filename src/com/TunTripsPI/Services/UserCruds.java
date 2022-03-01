@@ -120,7 +120,7 @@ return s;
 
     //modifier info user 
     public boolean modifierUser(User u) {
-        String reqmodif = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',email='" + u.getEmail() + "',passwd='" + u.getPasswd() + "',photo='" + u.getPhoto() + "',num_tel='" + u.getNum_tel()+ "',etat='" + u.isEtat()+ "' WHERE user.id='" + u.getId() + "'";
+        String reqmodif = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',email='" + u.getEmail() + "',passwd='" + hashagePWD(u.getPasswd()) + "',num_tel='" + u.getNum_tel()+ "' WHERE user.email='" + u.getEmail()+ "'";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(reqmodif);
@@ -331,7 +331,7 @@ return s;
      public void UpdatevaliditeCompte(String email) {
         try {
            
-            String req = "Update user SET valide='true' where email='"+email+"' ";
+            String req = "Update user SET valide=true where email='"+email+"' ";
             PreparedStatement pst;
          
             pst = cnxx.prepareStatement(req);

@@ -87,20 +87,19 @@ public class MainTest {
           */
        
        //add reclamation hebergement 
-       /*
-       User u=new User();
-          u.setId(8);
+       
+          u.setId(99);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
           r.setIdheberg(1);
           Date d =new Date(Date.parse("2022/18/15"));
           r.setDate_rec(d);
-          r.setContenu("nouvelle reclamation sur heberg"+u.getId());
+          r.setContenu("reclamation sur hebergement "+u.getId());
           r.setEtat(false);
           cr.ajouterReclamationHeberg(r,u);
-       */
+       
       // add reclamation transport 
-          
+          /*
                    u.setId(86);
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();

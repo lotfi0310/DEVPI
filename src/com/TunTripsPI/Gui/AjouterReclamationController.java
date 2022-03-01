@@ -3,31 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.TunTripsPI.Gui;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
  *
  * @author Lotfi
  */
-public class ProfilUserController implements Initializable {
-
-    @FXML
-    private TextField txtModifPrenom;
-    @FXML
-    private TextField txtModifNom;
+public class AjouterReclamationController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
     }    
     
 }

@@ -40,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -77,7 +78,7 @@ String s;
     public void initialize(URL url, ResourceBundle rb) {
       UserCruds uc=new  UserCruds();
       User u=new User();
-      u.setId(91);
+      /*u.setId(91);
          ArrayList<User> listuser =new ArrayList<User>();
                  uc.consulterinfo(u);
            InputStream input;
@@ -103,7 +104,7 @@ String s;
             } catch (SQLException ex) {
                 Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
+        }*/
     }    
 
   
@@ -111,7 +112,7 @@ String s;
     private void modifimageprofil(ActionEvent event) {
 FileChooser fileChooser = new FileChooser();
             
-            
+          /*  
              
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
@@ -126,17 +127,18 @@ FileChooser fileChooser = new FileChooser();
                 txtmodifimageprofil.setImage(image);
             } catch (IOException ex) {
                 Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
-            }          
+            }   */       
       
     }
 
     @FXML
     private void precedent(ActionEvent event) {
+        
     }
 
     @FXML
     private void enregistrer(ActionEvent event) throws FileNotFoundException {
-        try {
+      /*  try {
             Connection cnxx = MyConnection.getInstance().getCnx();
             
             String req = "UPDATE user set photo=? where email=? ";
@@ -149,13 +151,46 @@ FileChooser fileChooser = new FileChooser();
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
        
-        
-        
-        
+        User u=new User(); 
+        UserCruds uc=new UserCruds();
+        u.setEmail(txtmodifemail.getText());
+        u.setNom(txtModifNom.getText());
+        u.setNum_tel(txtmodifnumtel.getText());
+        u.setPrenom(txtModifPrenom.getText());
+        u.setPasswd(txtmodifpass.getText());
+        u.setRole(txtmodifrole.getText());
+        uc.modifierUser(u);
+        JOptionPane.showMessageDialog(null,"info modifiee avec succees");
+     
     }
 
+    public void setTxtModifPrenom(String message ) {
+        this.txtModifPrenom.setText(message) ;
+    }
+
+    public void setTxtModifNom( String message) {
+        this.txtModifNom.setText(message);
+    }
+
+    public void setTxtmodifemail(String message ) {
+        this.txtmodifemail.setText(message) ;
+    }
+
+    public void setTxtmodifpass(String message) {
+        this.txtmodifpass.setText(message);
+    }
+
+    public void setTxtmodifrole(String  message) {
+        this.txtmodifrole.setText(message);
+    }
+
+    public void setTxtmodifnumtel(String  message) {
+        this.txtmodifnumtel.setText(message);
+    }
+
+  
    
    
     

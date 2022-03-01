@@ -67,11 +67,24 @@ public class ForgetPasswordController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+         panecode.setVisible(false);
+        panenewpass.setVisible(false);
+       
     }
 
     @FXML
     private void On_cancel(ActionEvent event) {
+        try {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+            Parent root = Loader.load();
+            HomePageController Hc = Loader.getController();
+            btncancel.getScene().setRoot(root);
+            
+            
+             
+        } catch (IOException ex) {
+            Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
      
     }
@@ -86,8 +99,16 @@ public class ForgetPasswordController implements Initializable {
 
                 JavaMailUtil.sendmail(txtSmail.getText(), "votre code de recuperation mot de passe est : ");
                 uc.AddCodeRecuperationCompte(JavaMailUtil.a, txtSmail.getText());
-                panecode.setVisible(true);
-                paneforgetpass.setVisible(false);
+                
+                 TranslateTransition t = new TranslateTransition(Duration.seconds(1.5),panecode);
+                 TranslateTransition t2 = new TranslateTransition(Duration.seconds(1.5),paneforgetpass);
+                 TranslateTransition t3 = new TranslateTransition(Duration.seconds(1.5),panenewpass);
+                 panecode.setVisible(true);
+       
+       
+        
+        
+                
                 User u = new User();
             } catch (Exception ex) {
                 Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, ex);
@@ -102,8 +123,8 @@ public class ForgetPasswordController implements Initializable {
     private void Envoyercode(ActionEvent event) {
         UserCruds uc = new UserCruds();
         if (uc.VerifcodeRecuperationCompte(txtSmail.getText().toString()).equals(txtenvoyercode.getText().toString())) {
-            panecode.setVisible(false);
-            panenewpass.setVisible(true);
+          panenewpass.setVisible(true);
+        
         } else {
             JOptionPane.showMessageDialog(null, "Code invalide");
         }
@@ -112,23 +133,32 @@ public class ForgetPasswordController implements Initializable {
 
     @FXML
     private void ConfirmerNewPass(ActionEvent event) {
-UserCruds uc=new UserCruds();
-        if ((txtnewpass.getText() != null) || (txtnewpassconfirme.getText() != null)) {
-
-            if (txtnewpass.getText().equals(txtnewpassconfirme.getText())) {
-
-                uc.UpdatePassword(uc.hashagePWD(txtnewpass.getText()), txtSmail.getText());
-                JOptionPane.showMessageDialog(null, "Mot de passe Modifier avec succees");
-            } else {
-                JOptionPane.showMessageDialog(null, "Deux Champ differents.. verifier");
+        try {
+            UserCruds uc=new UserCruds();
+            if ((txtnewpass.getText() != null) || (txtnewpassconfirme.getText() != null)) {
+                
+                if (txtnewpass.getText().equals(txtnewpassconfirme.getText())) {
+                    
+                    uc.UpdatePassword(uc.hashagePWD(txtnewpass.getText()), txtSmail.getText());
+                    JOptionPane.showMessageDialog(null, "Mot de passe Modifier avec succees");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Deux Champ differents.. verifier");
+                }
+                
             }
-
+            
+            else{
+                JOptionPane.showMessageDialog(null, "Champs Vides");
+            }
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+            Parent root = Loader.load();
+            HomePageController Hc = Loader.getController();
+            btncancel.getScene().setRoot(root);
+        } catch (IOException ex) {
+            Logger.getLogger(ForgetPasswordController.class.getName()).log(Level.SEVERE, null, ex);
         }
     
-        else{
-            JOptionPane.showMessageDialog(null, "Champs Vides");
-    }
-
 }
+    
 }
 
