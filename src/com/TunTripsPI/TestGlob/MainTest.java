@@ -12,6 +12,7 @@ import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -25,11 +26,12 @@ public class MainTest {
 
     public static void main(String[] args) throws SQLException {
         //ajouter un utilisateur 
-      
+     /* 
      UserCruds uc =new UserCruds(); 
      User u=new User();
      u.setEmail("lotfilouiz@gmail.com");
      System.out.println(uc.ifuserExiste(u.getEmail()));
+        */
        /* User u=new User("Lotfi","Louiz","lotfilouiz@gmail.com","lotfi123456","tunisia","simpleuser","lotfi.png","25649668");
         UserCruds uc=new UserCruds();
 //        System.out.println(uc.ajouterUser(u));
@@ -69,12 +71,8 @@ public class MainTest {
               */
         
           //add reclamation event
-      
-        /* User u=new User();
-          u.setId(8);
-          UserCruds uc = new UserCruds();
-          uc.SupprimerUser(u);
-          */
+         
+          
           /*
           ReclamationCrud cr=new ReclamationCrud();
           Reclamation r=new Reclamation();
@@ -87,16 +85,16 @@ public class MainTest {
           */
        
        //add reclamation hebergement 
-       
-          u.setId(99);
-          ReclamationCrud cr=new ReclamationCrud();
+             User u = new User();
+          u.setId(107);
           Reclamation r=new Reclamation();
-          r.setIdheberg(1);
+          ReclamationCrud cr=new ReclamationCrud();
+          r.setIdevent(2);
           Date d =new Date(Date.parse("2022/18/15"));
           r.setDate_rec(d);
-          r.setContenu("reclamation sur hebergement "+u.getId());
+          r.setContenu("new Rec "+u.getId());
           r.setEtat(false);
-          cr.ajouterReclamationHeberg(r,u);
+          cr.ajouterReclamationEvent(r,u);
        
       // add reclamation transport 
           /*

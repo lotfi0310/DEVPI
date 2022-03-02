@@ -43,7 +43,7 @@ import javax.swing.JOptionPane;
  * @author Lotfi
  */
 public class SignInController implements Initializable {
-
+    int id;
     String nom; 
     String prenom; 
     String num; 
@@ -112,7 +112,7 @@ public class SignInController implements Initializable {
                             ResultSet rs = uc.Authentification(email,password);
                             a = uc.ifuserExiste(txtmail.getText());
                             if(rs.next()) {
-                              
+                                id=rs.getInt("id");
                                   nom =rs.getString("nom");
                                   prenom =rs.getString("prenom");
                                   country= rs.getString("country");
@@ -127,8 +127,19 @@ public class SignInController implements Initializable {
                                 
                                         String Typeauth = uc.Typeauthentification(rs);
                                         Stage primaryStage = new Stage();
-                                        if (Typeauth.equals("Simple User")) {
-                                            FXMLLoader Loader = new FXMLLoader(getClass().getResource("ProfilUser.fxml"));
+                                        if (Typeauth.equals("Simple User")||Typeauth.equals("Fournisseur")) {
+                                            FXMLLoader Loader = new FXMLLoader(getClass().getResource("AjouterReclamation.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 AjouterReclamationController pc = Loader.getController();
+                                                btnauthentif.getScene().setRoot(root);
+                                                pc.setTxtUserID(""+id);
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                               
+                                          /*  FXMLLoader Loader = new FXMLLoader(getClass().getResource("ProfilUser.fxml"));
                                             try {
 
                                                 Parent root = Loader.load();
@@ -142,7 +153,7 @@ public class SignInController implements Initializable {
                                                 pc.setTxtmodifemail(email);
                                             } catch (IOException ex) {
                                                 System.out.println("Error: " + ex.getMessage());
-                                            }
+                                            }*/
 
                                         } else {
                                             GererUserAdmin gua = new GererUserAdmin();

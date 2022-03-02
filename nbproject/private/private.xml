@@ -17,15 +17,20 @@
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AjouterReclamationController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AjouterReclamation.fxml</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Utils/JavaMailUtil.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Evenement.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ForgetPassword.fxml</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenement.fxml</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/HomePage.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/ReclamationCrud.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/SignInController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/GererUserAdminController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Reclamation.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenementController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AjouterReclamation.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/UserCruds.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ProfilUser.fxml</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/homepage.css</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/EvenementCrud.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/HomePageController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ValiderCompteController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/SignUpController.java</file>

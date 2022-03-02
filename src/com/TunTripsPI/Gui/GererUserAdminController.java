@@ -220,7 +220,22 @@ private AnchorPane frame_Userrec;
                  etattrait.setCellValueFactory(
             new PropertyValueFactory<>("etat")
         );
-             
+                 
+              tabviewrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+          Reclamation rec=(Reclamation) tabviewrec.getSelectionModel().getSelectedItem();
+          JOptionPane j =new JOptionPane() ;
+          j.showConfirmDialog(null,"Are you sure you want to delete this reclamation");
+       if(j !=null){
+              ur.SupprimerReclamation(rec);
+              resetTableRecData();
+       }else{
+           j.showMessageDialog(null, "liste user vide ");
+       }
+            }
+        });
+          
                  
     }
          //refresh user liste 
@@ -231,6 +246,14 @@ private AnchorPane frame_Userrec;
         listUser = uc.consulterlisteuser();
         ObservableList<User> data = FXCollections.observableArrayList(listUser);
         tabviewusers.setItems(data);
+    }
+      public void resetTableRecData()
+    {
+        List<Reclamation> listRec = new ArrayList<>();
+        ReclamationCrud rc = new ReclamationCrud();
+        listRec = rc.DisplayAllReclamation();
+        ObservableList<Reclamation> data = FXCollections.observableArrayList(listRec);
+        tabviewrec.setItems(data);
     }
             
      
