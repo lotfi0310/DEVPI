@@ -78,7 +78,7 @@ String s;
     public void initialize(URL url, ResourceBundle rb) {
       UserCruds uc=new  UserCruds();
       User u=new User();
-      /*u.setId(91);
+      u.setId(91);
          ArrayList<User> listuser =new ArrayList<User>();
                  uc.consulterinfo(u);
            InputStream input;
@@ -104,7 +104,7 @@ String s;
             } catch (SQLException ex) {
                 Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }*/
+        }
     }    
 
   

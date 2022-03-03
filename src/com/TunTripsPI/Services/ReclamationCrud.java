@@ -101,7 +101,6 @@ public class ReclamationCrud {
             pst.setInt(5,r.getIdtransport());
            
             
-            
             pst.executeUpdate();
             rs = pst.getResultSet();
             System.out.println("Reclamation a été envoyer");
