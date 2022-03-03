@@ -38,7 +38,7 @@ public class ValiderCompte extends Application {
             primaryStage.initStyle(StageStyle.DECORATED);
             primaryStage.show();
         } catch (IOException ex) {
-            Logger.getLogger(ProfilUser.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
     }

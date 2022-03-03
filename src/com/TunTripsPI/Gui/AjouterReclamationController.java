@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -69,6 +70,17 @@ public class AjouterReclamationController implements Initializable {
         User u=new User();
         u.setId(Integer.parseInt(txtUserId.getText()));
         rc.ajouterReclamationEvent(r,u);
+        JOptionPane.showMessageDialog(null,"REVLAMATION ENVOYEE AVEC SUCCEES");
+          FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 AcceuilController pc = Loader.getController();
+                                                lblafficheEvent.getScene().setRoot(root);
+                                                pc.setTxtUserID(txtUserId.getText());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(TableEvenementController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
           
     }
     

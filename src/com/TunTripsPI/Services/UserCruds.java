@@ -160,7 +160,6 @@ return s;
             st.executeQuery(reqinfoprofil);
             rs = st.getResultSet();
             System.out.println(rs.next());
-            InputStream  input = rs.getBinaryStream(8);
             User uu = new User(rs.getInt("id"),rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("country"), rs.getString("role"),rs.getBlob("photo"),rs.getString("num_tel"),rs.getBoolean("etat"));
             listinfo.add(uu);
             
@@ -255,6 +254,23 @@ return s;
                }
         
         }
+           public void  UpdateCodeValidationmail(String code,String email){
+            String req = "Update codevalidation SET code='"+code+"' where codevalidation.email='"+email+"' ";
+        PreparedStatement pst;
+        
+        try {
+            pst = cnxx.prepareStatement(req);
+           
+            pst.setString(1,code);
+            pst.setString(2,email);
+          
+          pst.executeUpdate();
+       }
+        catch(Exception e){
+        e.getMessage();
+               }
+        
+        }
         
         
     public void  AddCodeRecuperationCompte(String code,String email){
@@ -331,10 +347,10 @@ return s;
      public void UpdatevaliditeCompte(String email) {
         try {
            
-            String req = "Update user SET valide=true where email='"+email+"' ";
+            String req = "Update user SET valide=? where email='"+email+"' ";
             PreparedStatement pst;
-         
             pst = cnxx.prepareStatement(req);
+            pst.setBoolean(1, true);
             pst.executeUpdate();
             
             System.out.println("Compte valide");

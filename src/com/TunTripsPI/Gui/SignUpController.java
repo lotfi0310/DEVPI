@@ -9,13 +9,18 @@ import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
 import java.awt.Color;
 import static java.awt.Color.RED;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -99,9 +104,16 @@ public class SignUpController implements Initializable {
                 }
                 else {
                      uc.ajouterUser(u);
-                    ValiderCompte v=new ValiderCompte();
-                    Stage primaryStage=new Stage();
-                    v.start(primaryStage);
+                     FXMLLoader Loader = new FXMLLoader(getClass().getResource("ValiderCompte.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 ValiderCompteController pc = Loader.getController();
+                                                btnregistre.getScene().setRoot(root);
+                                                pc.setText(""+usr_email.getText().toString());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
                     
                     
                     

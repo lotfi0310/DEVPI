@@ -5,8 +5,12 @@
  */
 package com.TunTripsPI.Gui;
 
+import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.entities.User;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,6 +42,7 @@ public class AcceuilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         
+        
         btnreclamations.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
@@ -57,6 +62,22 @@ public class AcceuilController implements Initializable {
 
     void setTxtUserID(String string) {
         this.txtu.setText(string);
+    }
+
+    @FXML
+    private void ProfilUser(ActionEvent event) {
+        FXMLLoader Loader = new FXMLLoader(getClass().getResource("ProfilUser.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 ProfilUserController pc = Loader.getController();
+                                                btnreclamations.getScene().setRoot(root);
+                                                pc.setData(Integer.parseInt(txtu.getText()));
+                                               
+                                                
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
     }
     
     

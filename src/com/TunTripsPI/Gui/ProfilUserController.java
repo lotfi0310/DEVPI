@@ -20,6 +20,7 @@ import java.net.URL;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -66,54 +67,26 @@ public class ProfilUserController implements Initializable {
     @FXML
     private Button btnpreced;
     @FXML
-    private TextField txtid;
-    @FXML
    
     private Button btnmodifinfoprofil;
 String s;
+    @FXML
+    private TextField txtiduss;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-      UserCruds uc=new  UserCruds();
-      User u=new User();
-      u.setId(91);
-         ArrayList<User> listuser =new ArrayList<User>();
-                 uc.consulterinfo(u);
-           InputStream input;
-        FileOutputStream output = null;
-        File thefile = null;
-        for(int i=0;i<listuser.size();i++){
-            try {
-                input=listuser.get(i).getPhoto().getBinaryStream();
-                byte buffer[] =new byte [1024];
-                try {
-                    while(input.read(buffer)>0){
-                        output.write(buffer);
-                    }
-                    String path=thefile.getAbsolutePath();
-                    Image img=new Image(path);
-                    txtmodifimageprofil.setImage(img);
-                    
-                    
-                    
-                } catch (IOException ex) {
-                    Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+       //setData(Integer.parseInt(txtiduss.getText()));
+
     }    
 
-  
+
     @FXML
     private void modifimageprofil(ActionEvent event) {
 FileChooser fileChooser = new FileChooser();
             
-          /*  
-             
+          
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
        
@@ -123,35 +96,64 @@ FileChooser fileChooser = new FileChooser();
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
-                
                 txtmodifimageprofil.setImage(image);
             } catch (IOException ex) {
                 Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
-            }   */       
+            }       
       
     }
+// get user photo 
+    public void setData( int idd) {
+        
+        try {
+            Connection cnxx = MyConnection.getInstance().getCnx();
+            String req = "SELECT * FROM user WHERE id=?";
 
+            PreparedStatement pst;
+            
+            // int iddd = Integer.parseInt(tfid.getText());
+            pst = cnxx.prepareStatement(req);
+            pst.setInt(1,idd);
+            ResultSet resulSet = pst.executeQuery();
+            if (resulSet.first()) {
+                String nom=resulSet.getString("nom");
+                Blob blob = resulSet.getBlob("photo");
+                InputStream inputStream = blob.getBinaryStream();
+                Image image = new Image(inputStream);
+                txtmodifimageprofil.setImage(image);
+                txtModifNom.setText(nom);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+                
+            
+        
+    }
     @FXML
     private void precedent(ActionEvent event) {
+
         
     }
 
     @FXML
     private void enregistrer(ActionEvent event) throws FileNotFoundException {
-      /*  try {
+      try {
             Connection cnxx = MyConnection.getInstance().getCnx();
             
-            String req = "UPDATE user set photo=? where email=? ";
+            String req = "UPDATE user set photo=? where id=? ";
             PreparedStatement ps = cnxx.prepareStatement(req);
             InputStream is = new FileInputStream(new File(s));
             
             
             ps.setBlob(1, is);
-            ps.setString(2,"oumaymahajri@gmail.com");
+            ps.setInt(2,Integer.parseInt(txtiduss.getText()));
             ps.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+        }
+        
        
         User u=new User(); 
         UserCruds uc=new UserCruds();
@@ -165,7 +167,8 @@ FileChooser fileChooser = new FileChooser();
         JOptionPane.showMessageDialog(null,"info modifiee avec succees");
      
     }
-
+ 
+     
     public void setTxtModifPrenom(String message ) {
         this.txtModifPrenom.setText(message) ;
     }
@@ -188,6 +191,10 @@ FileChooser fileChooser = new FileChooser();
 
     public void setTxtmodifnumtel(String  message) {
         this.txtmodifnumtel.setText(message);
+    }
+
+    void setTxtUser(String string) {
+        this.txtiduss.setText(string);
     }
 
   

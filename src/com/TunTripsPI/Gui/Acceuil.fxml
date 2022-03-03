@@ -32,7 +32,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="269.0" text="Profil">
+            <Button mnemonicParsing="false" onAction="#ProfilUser" prefHeight="35.0" prefWidth="269.0" text="Profil">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>

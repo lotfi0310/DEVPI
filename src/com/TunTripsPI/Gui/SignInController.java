@@ -121,7 +121,7 @@ public class SignInController implements Initializable {
                                  num=rs.getString("num_tel");
                                 
                                
-                                if (!rs.getBoolean("valide")) {
+                                if (rs.getBoolean("valide")) {
 
                                     if (rs.getBoolean("etat")) {
                                 
@@ -148,22 +148,10 @@ public class SignInController implements Initializable {
                                             } catch (IOException ex) {
                                                 Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
+                                               */
+                                         
                                                
-                                          /*  FXMLLoader Loader = new FXMLLoader(getClass().getResource("ProfilUser.fxml"));
-                                            try {
-
-                                                Parent root = Loader.load();
-                                                ProfilUserController pc = Loader.getController();
-                                                txtmail.getScene().setRoot(root);
-                                                pc.setTxtmodifnumtel(num);
-                                                pc.setTxtmodifrole(role);
-                                                pc.setTxtModifPrenom(prenom);
-                                                pc.setTxtModifNom(nom);
-                                                pc.setTxtmodifpass(p);
-                                                pc.setTxtmodifemail(email);
-                                            } catch (IOException ex) {
-                                                System.out.println("Error: " + ex.getMessage());
-                                            }*/
+                                          
 
                                         } else {
                                                FXMLLoader Loader = new FXMLLoader(getClass().getResource("GererUserAdmin.fxml"));
