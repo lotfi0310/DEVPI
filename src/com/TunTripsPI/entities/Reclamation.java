@@ -101,10 +101,7 @@ public class Reclamation {
         this.idevent = idevent;
     }
 
-    @Override
-    public String toString() {
-        return "Reclamation{" + "idreclamation=" + idreclamation + ", iduser=" + iduser + ", idevent=" + idevent + ", idheberg=" + idheberg + ", idtransport=" + idtransport + ", contenu=" + contenu + ", Date_rec=" + Date_rec + ", etat=" + etat + '}';
-    }
+   
 
     
 

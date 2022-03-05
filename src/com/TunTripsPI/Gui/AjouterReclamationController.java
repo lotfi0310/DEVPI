@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package com.TunTripsPI.Gui;
-
+import java.time.LocalDateTime;  
+import java.time.format.DateTimeFormatter;  
 import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
@@ -12,13 +13,18 @@ import com.sun.org.glassfish.gmbal.ParameterNames;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -27,7 +33,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateTimeStringConverter;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -56,21 +64,30 @@ public class AjouterReclamationController implements Initializable {
       
 
     }    
- 
+
 
     @FXML
     private void envoyerrec(ActionEvent event) {
         ReclamationCrud rc=new ReclamationCrud();
         Reclamation r=new Reclamation();
-         Date d =new Date(Date.parse("2022/18/15"));
-        r.setDate_rec(d);
+         long millis=System.currentTimeMillis();  
+         java.sql.Date date = new java.sql.Date(millis);        
+        r.setDate_rec(date);
         r.setContenu(txtrec.getText());
         r.setEtat(false);
         r.setIdevent(Integer.parseInt(txttrec.getText()));
         User u=new User();
         u.setId(Integer.parseInt(txtUserId.getText()));
         rc.ajouterReclamationEvent(r,u);
-        JOptionPane.showMessageDialog(null,"REVLAMATION ENVOYEE AVEC SUCCEES");
+                Notifications notificationbuilder=Notifications.create().title("Alert").text("Réclamation Ajouter avec succées")
+                        .graphic(null).hideAfter(javafx.util.Duration.seconds(10)).position(Pos.BASELINE_LEFT).onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+            }
+        });
+        notificationbuilder.darkStyle();
+        notificationbuilder.show();
           FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
                                              Parent root;
                                             try {

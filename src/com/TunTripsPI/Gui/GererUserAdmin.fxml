@@ -1,34 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 
-<AnchorPane id="AnchorPane" fx:id="frame_Userrec" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.GererUserAdminController">
+<AnchorPane fx:id="frame_Userrec" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #AAB7B8;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.GererUserAdminController">
    <children>
-      <TabPane prefHeight="600.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane prefHeight="768.0" prefWidth="1366.0" style="-fx-border-color: #283747;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="panegestionusers" text="Gestion Users">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="600.0" prefWidth="900.0">
                      <children>
-                        <TableView fx:id="tabviewusers" layoutY="-2.0" prefHeight="300.0" prefWidth="800.0">
+                        <TableView fx:id="tabviewusers" layoutX="-2.0" layoutY="74.0" prefHeight="636.0" prefWidth="1370.0" AnchorPane.bottomAnchor="-4.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="74.0">
                           <columns>
-                            <TableColumn fx:id="idusercol" prefWidth="75.0" text="id" />
-                            <TableColumn fx:id="nomusercol" prefWidth="75.0" text="nom" />
-                              <TableColumn fx:id="prenomcol" prefWidth="75.0" text="prenom" />
-                              <TableColumn fx:id="emailcol" prefWidth="75.0" text="email" />
-                              <TableColumn fx:id="passwdcol" prefWidth="75.0" text="password" />
-                              <TableColumn fx:id="countrycol" prefWidth="75.0" text="Country" />
-                              <TableColumn fx:id="rolecol" prefWidth="75.0" text="role" />
-                              <TableColumn fx:id="photocol" prefWidth="75.0" text="photo" />
-                              <TableColumn fx:id="num_telcol" prefWidth="75.0" text="num_tel" />
-                              <TableColumn fx:id="validecol" prefWidth="75.0" text="valide" />
-                              <TableColumn fx:id="etatcol" prefWidth="90.0" text="etat" />
+                            <TableColumn fx:id="idusercol" prefWidth="61.0" text="id" />
+                            <TableColumn fx:id="nomusercol" prefWidth="109.0" text="nom" />
+                              <TableColumn fx:id="prenomcol" prefWidth="131.0" text="prenom" />
+                              <TableColumn fx:id="emailcol" prefWidth="139.0" styleClass="tab" text="email" />
+                              <TableColumn fx:id="passwdcol" prefWidth="191.0" text="password" />
+                              <TableColumn fx:id="countrycol" prefWidth="137.0" text="Country" />
+                              <TableColumn fx:id="rolecol" minWidth="0.0" prefWidth="95.0" text="role" />
+                              <TableColumn fx:id="photocol" prefWidth="187.0" text="photo" />
+                              <TableColumn fx:id="num_telcol" prefWidth="147.0" text="num_tel" />
+                              <TableColumn fx:id="validecol" prefWidth="97.0" text="valide" />
+                              <TableColumn fx:id="etatcol" prefWidth="69.0" text="etat" />
                           </columns>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
                         </TableView>
+                        <HBox layoutX="1.0" layoutY="1.0" prefHeight="76.0" prefWidth="1366.0" style="-fx-background-color: #8E44AD;">
+                           <children>
+                              <Label id="search" prefHeight="30.0" prefWidth="99.0" stylesheets="@newCascadeStyleSheet.css" text="Search Box">
+                                 <HBox.margin>
+                                    <Insets left="50.0" top="25.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <TextField fx:id="searchBox" prefHeight="26.0" prefWidth="624.0">
+                                 <HBox.margin>
+                                    <Insets left="35.0" top="25.0" />
+                                 </HBox.margin>
+                              </TextField>
+                           </children>
+                        </HBox>
                      </children>
                   </AnchorPane>
             </content>
@@ -37,16 +58,16 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="tabviewrec" layoutY="-1.0" prefHeight="600.0" prefWidth="900.0">
+                        <TableView fx:id="tabviewrec" layoutY="-1.0" prefHeight="708.0" prefWidth="1366.0">
                           <columns>
                             <TableColumn fx:id="idrec" prefWidth="95.0" text="ID Reclamation" />
                             <TableColumn fx:id="id" prefWidth="55.0" text="ID_user" />
                               <TableColumn fx:id="idev" prefWidth="88.0" text="ID Evenement" />
                               <TableColumn fx:id="idheb" prefWidth="97.0" text="ID Hebergement" />
                               <TableColumn fx:id="idtrans" text="ID Transport" />
-                              <TableColumn fx:id="con" prefWidth="277.0" text="Contenue" />
-                              <TableColumn fx:id="date" prefWidth="75.0" text="Date" />
-                              <TableColumn fx:id="etattrait" prefWidth="75.0" text="Etat" />
+                              <TableColumn fx:id="con" prefWidth="222.0" text="Contenue" />
+                              <TableColumn fx:id="date" prefWidth="130.0" text="Date" />
+                              <TableColumn fx:id="etattrait" prefWidth="131.0" text="Etat" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>

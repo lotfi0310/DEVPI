@@ -4,6 +4,7 @@ import com.TunTripsPI.Utils.JavaMailUtil;
 import com.TunTripsPI.entities.User;
 import com.TunTripsPI.Utils.MyConnection;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
+import javafx.collections.transformation.FilteredList;
 import java.io.InputStream;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -116,11 +117,22 @@ return s;
    
   
   
-   
+    public boolean modifierprofil(User u) {
+        String reqmodif = "UPDATE user SET nom='" + u.getNom() + "' ,prenom='" + u.getPrenom() + "' ,email='" + u.getEmail() + "'  ,num_tel='" + u.getNum_tel()+ "'   WHERE id='" + u.getId()+ "'";
+        PreparedStatement pst;
+        try {
+            pst = cnxx.prepareStatement(reqmodif);
+            pst.executeUpdate(reqmodif);
+            return true;
+        } catch (SQLException ex) {
+            ex.getErrorCode();
+        }
+        return false;
+    }
 
     //modifier info user 
     public boolean modifierUser(User u) {
-        String reqmodif = "UPDATE user SET nom='" + u.getNom() + "',prenom='" + u.getPrenom() + "',email='" + u.getEmail() + "',passwd='" + hashagePWD(u.getPasswd()) + "',num_tel='" + u.getNum_tel()+ "' WHERE user.email='" + u.getEmail()+ "'";
+        String reqmodif = "UPDATE user SET nom='" + u.getNom() + "' ,prenom='" + u.getPrenom() + "' ,email='" + u.getEmail() + "' ,passwd='" + hashagePWD(u.getPasswd()) + "' ,num_tel='" + u.getNum_tel()+ "'   WHERE id='" + u.getId()+ "'";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(reqmodif);
@@ -236,6 +248,8 @@ return s;
         }
         return listeuser;
     }
+    
+   
     
         public void  AddCodeValidationmail(String code,String email){
             String req = "insert INTO codevalidation (code,email) VALUES (?,?)";

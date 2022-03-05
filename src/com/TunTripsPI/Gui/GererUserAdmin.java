@@ -16,7 +16,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  *
@@ -27,17 +29,18 @@ public class GererUserAdmin extends Application {
     @Override
     public void start(Stage primaryStage) {
        
-        
-        
+    
         try {
             Parent loader=new FXMLLoader().load(getClass().getResource("GererUserAdmin.fxml"));
            
             Scene scene = new Scene(loader);
             
-            primaryStage.setTitle("GererUser");
-            primaryStage.setScene(scene);
-            primaryStage.setResizable(false);
-            primaryStage.show();
+            primaryStage.initStyle(StageStyle.TRANSPARENT);
+
+        scene.setFill(Color.TRANSPARENT);
+
+        primaryStage.setScene(scene);
+        primaryStage.show();
             
         } catch (IOException ex) {
             Logger.getLogger(GererUserAdmin.class.getName()).log(Level.SEVERE, null, ex);

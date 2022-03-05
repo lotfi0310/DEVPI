@@ -7,6 +7,7 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
+import doryan.windowsnotificationapi.fr.Notification;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -40,7 +42,6 @@ public class AcceuilController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
         
         
         btnreclamations.setOnAction(new EventHandler<ActionEvent>() {
@@ -53,6 +54,7 @@ public class AcceuilController implements Initializable {
                                                  AjouterReclamationController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
                                                 pc.setTxtUserID(""+txtu.getText().toString());
+                                                
                                             } catch (IOException ex) {
                                                 Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -72,9 +74,8 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                                  ProfilUserController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
-                                                pc.setData(Integer.parseInt(txtu.getText()));
-                                               
-                                                
+                                              pc.setData(Integer.parseInt(txtu.getText().toString()));
+                                              pc.setuid(txtu.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }

@@ -9,6 +9,7 @@ import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
+import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,11 +21,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
@@ -36,6 +41,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -73,7 +79,7 @@ private AnchorPane frame_Userrec;
     @FXML
     private TableColumn<User,String> rolecol;
     @FXML
-    private TableColumn<User,ImageView> photocol;
+    private TableColumn<User,Image> photocol;
     @FXML
     private TableColumn<User,String> num_telcol;
     @FXML
@@ -105,6 +111,8 @@ private AnchorPane frame_Userrec;
     private TableColumn<Reclamation,Boolean> etattrait;
     @FXML
     private TableView<Reclamation> tabviewrec;
+    @FXML
+    private TextField searchBox;
 
     /**
      * Initializes the controller class.
@@ -118,20 +126,9 @@ private AnchorPane frame_Userrec;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        
-     
-
-        
-        UserCruds uc=new UserCruds();
-         List<User> listUser= new ArrayList<User>();
-         listUser=uc.consulterlisteuser();
-     
-         u.clear();
-         u.addAll(listUser);
+       
          
-          tabviewusers.setItems(u);
-        
-        idusercol.setCellValueFactory(
+          idusercol.setCellValueFactory(
             new PropertyValueFactory<>("id")
         );
         nomusercol.setCellValueFactory(
@@ -146,9 +143,7 @@ private AnchorPane frame_Userrec;
              passwdcol.setCellValueFactory(
             new PropertyValueFactory<>("passwd")
         );
-               countrycol.setCellValueFactory(
-            new PropertyValueFactory<>("country")
-        );
+           
                 rolecol.setCellValueFactory(
             new PropertyValueFactory<>("role")
         );
@@ -165,7 +160,59 @@ private AnchorPane frame_Userrec;
             new PropertyValueFactory<>("etat")
         );
               
-            
+                    
+      
+
+        UserCruds uc=new UserCruds();
+         List<User> listUser= new ArrayList<User>();
+         listUser=uc.consulterlisteuser();
+         u.clear();
+         u.addAll(listUser);
+          tabviewusers.setItems(u);
+           // Wrap the ObservableList in a FilteredList (initially display all data).
+         FilteredList<User> filteredData = new FilteredList<>(u,b->true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(u-> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (u.getNom().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} else if (u.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+					return true; // Filter matches last name.
+				}
+				else if (String.valueOf(u.getEmail()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				     
+                                else if (String.valueOf(u.getId()).indexOf(lowerCaseFilter)!=-1)
+                                    return true;
+                                     
+                                else if (String.valueOf(u.getCountry()).indexOf(lowerCaseFilter)!=-1)
+                                    return true;
+                                else 
+                                    return false ;
+                                
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<User> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tabviewusers.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tabviewusers.setItems(sortedData);
+               
                     
                     
           tabviewusers.setOnMouseClicked(new EventHandler<MouseEvent>() {

@@ -19,27 +19,31 @@
                <content>
                   <VBox layoutY="300.0">
                      <children>
-                        <VBox prefHeight="483.0" prefWidth="900.0">
+                        <VBox prefHeight="637.0" prefWidth="900.0">
                            <children>
-                              <Label prefHeight="17.0" prefWidth="133.0" text="Description">
+                              <Label prefHeight="17.0" prefWidth="133.0" styleClass="text-input" stylesheets="@homepage.css" text="Description">
                                  <VBox.margin>
-                                    <Insets left="20.0" />
-                                 </VBox.margin></Label>
-                              <TextArea fx:id="txtrec" prefHeight="160.0" prefWidth="747.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-border-color: #cccccc;" VBox.vgrow="ALWAYS">
+                                    <Insets bottom="20.0" left="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="txtrec" prefHeight="295.0" prefWidth="810.0" styleClass="text-input" stylesheets="@homepage.css" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets left="20.0" right="50.0" />
-                                 </VBox.margin></TextArea>
+                                 </VBox.margin>
+                              </TextArea>
                               <Button mnemonicParsing="false" onAction="#envoyerrec" prefHeight="25.0" prefWidth="79.0" styleClass="blue-btn" stylesheets="@homepage.css" text="Envoyer ">
                                  <VBox.margin>
                                     <Insets left="750.0" right="20.0" top="10.0" />
                                  </VBox.margin>
                                  <opaqueInsets>
                                     <Insets />
-                                 </opaqueInsets></Button>
+                                 </opaqueInsets>
+                              </Button>
                               <Button mnemonicParsing="false" onAction="#SelectRec" styleClass="blue-btn" stylesheets="@homepage.css" text="Selectionner" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets left="750.0" top="15.0" />
-                                 </VBox.margin></Button>
+                                 </VBox.margin>
+                              </Button>
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -53,8 +57,8 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <TextField fx:id="txttrec" disable="true" editable="false" layoutX="703.0" layoutY="41.0" />
-                              <TextField fx:id="txtUserId" disable="true" editable="false" layoutX="703.0" layoutY="90.0" />
+                              <TextField fx:id="txttrec" disable="true" editable="false" layoutX="703.0" layoutY="41.0" visible="false" />
+                              <TextField fx:id="txtUserId" disable="true" editable="false" layoutX="703.0" layoutY="90.0" visible="false" />
                            </children>
                         </Pane>
                      </children>

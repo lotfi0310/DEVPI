@@ -26,22 +26,32 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.CacheHint;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.util.Callback;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -72,6 +82,7 @@ public class ProfilUserController implements Initializable {
 String s;
     @FXML
     private TextField txtiduss;
+    String email; 
     /**
      * Initializes the controller class.
      */
@@ -117,11 +128,20 @@ FileChooser fileChooser = new FileChooser();
             ResultSet resulSet = pst.executeQuery();
             if (resulSet.first()) {
                 String nom=resulSet.getString("nom");
-                Blob blob = resulSet.getBlob("photo");
-                InputStream inputStream = blob.getBinaryStream();
-                Image image = new Image(inputStream);
-                txtmodifimageprofil.setImage(image);
+               Blob blob = resulSet.getBlob("photo");
+                if(blob!=null){
+                        InputStream inputStream = blob.getBinaryStream();
+               Image image = new Image(inputStream);
+              txtmodifimageprofil.setImage(image);
+                }
+                String prenom = resulSet.getString("prenom");
+                String num=resulSet.getString("num_tel");
+                 email=resulSet.getString("email");
+
                 txtModifNom.setText(nom);
+                txtModifPrenom.setText(prenom);
+                txtmodifnumtel.setText(num);
+                txtmodifemail.setText(email);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,38 +153,70 @@ FileChooser fileChooser = new FileChooser();
     }
     @FXML
     private void precedent(ActionEvent event) {
-
-        
+       
+        FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 AcceuilController pc = Loader.getController();
+                                                btnpreced.getScene().setRoot(root);
+                                                 pc.setTxtUserID(txtiduss.getText());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
     }
 
     @FXML
     private void enregistrer(ActionEvent event) throws FileNotFoundException {
+        if(s!=null){
+            
       try {
             Connection cnxx = MyConnection.getInstance().getCnx();
             
             String req = "UPDATE user set photo=? where id=? ";
             PreparedStatement ps = cnxx.prepareStatement(req);
+            
+            
             InputStream is = new FileInputStream(new File(s));
-            
-            
-            ps.setBlob(1, is);
+            System.out.println("com.TunTripsPI.Gui.ProfilUserController.enregistrer() "+is);
+            ps.setBlob(1,is);
             ps.setInt(2,Integer.parseInt(txtiduss.getText()));
             ps.executeUpdate();
+
         } catch (SQLException ex) {
             Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-       
-        User u=new User(); 
-        UserCruds uc=new UserCruds();
-        u.setEmail(txtmodifemail.getText());
-        u.setNom(txtModifNom.getText());
-        u.setNum_tel(txtmodifnumtel.getText());
-        u.setPrenom(txtModifPrenom.getText());
-        u.setPasswd(txtmodifpass.getText());
-        u.setRole(txtmodifrole.getText());
-        uc.modifierUser(u);
-        JOptionPane.showMessageDialog(null,"info modifiee avec succees");
+        }
+            User u=new User();
+            UserCruds uc=new UserCruds();
+           u.setId(Integer.parseInt(txtiduss.getText()));
+            u.setNom(txtModifNom.getText());
+            u.setPrenom(txtModifPrenom.getText());
+            u.setEmail(txtmodifemail.getText());
+            u.setNum_tel(txtmodifnumtel.getText());
+            if(!txtmodifnumtel.getText().isEmpty())
+            {
+                if(!isPhoneNumberCorrect(txtmodifnumtel.getText())){
+                    txtmodifnumtel.setFocusTraversable(true);
+                    txtmodifnumtel.setFont(Font.font(10));
+                }
+            }
+            if(txtmodifemail.getText().isEmpty()){
+                txtmodifemail.setText(email);
+            }
+                 uc.modifierprofil(u);
+                Notifications notificationbuilder=Notifications.create().title("Alert").text("Information modifiée avec succées")
+                        .graphic(null).hideAfter(javafx.util.Duration.seconds(10)).position(Pos.BASELINE_LEFT).onAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                
+            }
+        });
+        notificationbuilder.darkStyle();
+        notificationbuilder.show();
+            
+           
+
      
     }
  
@@ -181,10 +233,7 @@ FileChooser fileChooser = new FileChooser();
         this.txtmodifemail.setText(message) ;
     }
 
-    public void setTxtmodifpass(String message) {
-        this.txtmodifpass.setText(message);
-    }
-
+    
     public void setTxtmodifrole(String  message) {
         this.txtmodifrole.setText(message);
     }
@@ -193,12 +242,24 @@ FileChooser fileChooser = new FileChooser();
         this.txtmodifnumtel.setText(message);
     }
 
-    void setTxtUser(String string) {
-        this.txtiduss.setText(string);
+    
+
+     public void setuid(String message) {
+        this.txtiduss.setText(message);
     }
 
   
+   private boolean isPhoneNumberCorrect(String pPhoneNumber) {
+
+    Pattern pattern = Pattern
+            .compile("((\\+[1-9]{3,4}|0[1-9]{4}|00[1-9]{3})\\-?)?\\d{8,20}");
+    Matcher matcher = pattern.matcher(pPhoneNumber);
+
+    return (matcher.matches());
+
+
    
+}
    
     
 }
