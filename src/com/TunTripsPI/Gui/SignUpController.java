@@ -6,6 +6,7 @@
 package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import com.gluonhq.impl.charm.a.b.b.i;
 import java.awt.Color;
@@ -16,6 +17,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,10 +28,13 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Border;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -52,11 +57,14 @@ public class SignUpController implements Initializable {
     private Button btnregistre;
     @FXML 
       private ComboBox<String> usr_role; 
+    @FXML
+    private ComboBox<String> countrybox ;
       private String [] role = {"Simple User","Fournisseur"}; 
       
 	private String[] countries = Locale.getISOCountries();
-    @FXML
-    private ComboBox<String> countrybox ;
+                private ObservableList<String> ob = FXCollections.observableArrayList(countries);
+
+    
 		
 		
 
@@ -68,13 +76,13 @@ public class SignUpController implements Initializable {
 			String country = countries[i];
 			Locale locale = new Locale("en", country);
          
-			// Get the country name by calling getDisplayCountry()
-			String countryName = locale.getDisplayCountry();
+			String countryName =locale.getDisplayCountry();
          
-			// Printing the country name on the console
+			ob.setAll(countryName);
+                        countrybox.setItems(ob);
                         System.out.println(countryName);
-			
 		}		
+        
         
         usr_role.getItems().addAll(role);
         btnregistre.setOnAction(new EventHandler<ActionEvent>() {

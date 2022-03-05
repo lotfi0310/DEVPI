@@ -112,15 +112,14 @@ public class ReclamationCrud {
     }
 
     //modifier mon reclamation
-    public boolean ModifierReclamationUser(Reclamation r) {
+    public boolean traiterReclamationUser(Reclamation r) {
         int verf = 0;
         try {
             String reqmurec;
-            reqmurec = "UPDATE reclamation set contenu=? where idrec=?";
+            reqmurec = "UPDATE reclamation set etat=true where idrec=?";
             PreparedStatement res = cnxx.prepareStatement(reqmurec);
 
-            res.setString(1, r.getContenu());
-            res.setInt(2, r.getIdreclamation());
+            res.setInt(1, r.getIdreclamation());
             verf = res.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(Reclamation.class.getName()).log(Level.SEVERE, null, e);
@@ -181,6 +180,28 @@ public class ReclamationCrud {
 
         return mesrec;
 
+    }
+    public String DisplayMailClient(Reclamation r ){
+        String email="" ;
+        MyConnection m = MyConnection.getInstance(); 
+        
+        String demandemailreq = "SELECT email FROM user WHERE id='"+r.getIduser()+"'";
+        Statement st;
+        try {
+            st = cnxx.createStatement();
+            ResultSet rs = st.executeQuery(demandemailreq);
+
+            if(rs.first()) {
+                 email=rs.getString(1);
+                 System.out.println(email);
+            }
+
+           
+        } catch (SQLException ex) {
+            System.out.println("error ");
+        }
+return email ;
+       
     }
 // afficher reclamation hebergement
     public ArrayList<Reclamation> AfficherHebergtReclamation() {

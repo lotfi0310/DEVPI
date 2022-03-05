@@ -35,6 +35,7 @@ public class AjouterReclamation extends Application {
             primaryStage.setTitle("Ajouter une Reclamation !");
             primaryStage.setScene(scene);
             primaryStage.show();
+            
         } catch (IOException ex) {
             Logger.getLogger(AjouterReclamation.class.getName()).log(Level.SEVERE, null, ex);
         }

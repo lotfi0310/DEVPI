@@ -53,6 +53,7 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                                  AjouterReclamationController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
+                                               
                                                 pc.setTxtUserID(""+txtu.getText().toString());
                                                 
                                             } catch (IOException ex) {

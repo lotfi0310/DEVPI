@@ -7,6 +7,7 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.ReclamationCrud;
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.Utils.JavaMailUtil;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import com.gluonhq.charm.glisten.control.AutoCompleteTextField;
@@ -24,6 +25,7 @@ import java.util.ResourceBundle;
 import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.TranslateTransition;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -38,18 +40,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.util.Callback;
+import javafx.util.Duration;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import org.controlsfx.dialog.ProgressDialog;
 
 /**
  * FXML Controller class
@@ -113,6 +121,30 @@ private AnchorPane frame_Userrec;
     private TableView<Reclamation> tabviewrec;
     @FXML
     private TextField searchBox;
+    @FXML
+    private DialogPane Dialogboxuser;
+    @FXML
+    private Button btnconfirmsippuser;
+    @FXML
+    private Button btnannulersuppuser;
+    @FXML
+    private VBox dialogboxuser2;
+    @FXML
+    private TextField txtrecfilter;
+    @FXML
+    private AnchorPane dialog3;
+    @FXML
+    private Button btnsp;
+    @FXML
+    private Button btntrait;
+    @FXML
+    private VBox vbtrait;
+    @FXML
+    private Button btnenvrecc;
+    @FXML
+    private HBox dialog4;
+    @FXML
+    private TextArea txtresprecl;
 
     /**
      * Initializes the controller class.
@@ -125,6 +157,9 @@ private AnchorPane frame_Userrec;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+         TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbtrait);
+        t.setToX(0);
+        
         
        
          
@@ -197,6 +232,7 @@ private AnchorPane frame_Userrec;
                                      
                                 else if (String.valueOf(u.getCountry()).indexOf(lowerCaseFilter)!=-1)
                                     return true;
+                             
                                 else 
                                     return false ;
                                 
@@ -215,24 +251,42 @@ private AnchorPane frame_Userrec;
                
                     
                     
-          tabviewusers.setOnMouseClicked(new EventHandler<MouseEvent>() {
+         tabviewusers.setOnMouseClicked(new EventHandler<MouseEvent>() {
+              
             @Override
             public void handle(MouseEvent event) {
-          User rec=(User) tabviewusers.getSelectionModel().getSelectedItem();
-          JOptionPane j =new JOptionPane() ;
-          j.showConfirmDialog(null,"Are you sure you want to delete this users");
-       if(j !=null){
-              uc.SupprimerUser(rec);
-              resetTableUserData();
-       }else{
-           j.showMessageDialog(null, "liste user vide ");
-       }
+             if(tabviewusers.getSelectionModel().getSelectedItem()==null){
+                
+                     dialogboxuser2.setVisible(true);
+                     dialogboxuser2.setVisible(false);
+                 
+                 
+             }else{
+              User rec=(User) tabviewusers.getSelectionModel().getSelectedItem();
+           Dialogboxuser.setVisible(true);
+               btnconfirmsippuser.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                  uc.SupprimerUser(rec);
+                  resetTableUserData();
+                   Dialogboxuser.setVisible(false);
+              }
+          });
+               btnannulersuppuser.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                   Dialogboxuser.setVisible(false);
+              }
+          });
+         
             }
+             }
+         
         });
           
           
           
-          
+         
           
           
           //rec
@@ -268,19 +322,99 @@ private AnchorPane frame_Userrec;
             new PropertyValueFactory<>("etat")
         );
                  
-              tabviewrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                 
+                     // Wrap the ObservableList in a FilteredList (initially display all data).
+         FilteredList<Reclamation> filteredDatarec = new FilteredList<>(rec,b->true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		txtrecfilter.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredDatarec.setPredicate(rec-> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (rec.getDate_rec().toLocaleString().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} 
+				else if (String.valueOf(rec.getIduser()).indexOf(lowerCaseFilter)!=-1)
+				     return true;
+				
+                                else 
+                                    return false ;
+                                
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Reclamation> sortedDatarec = new SortedList<>(filteredDatarec);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedDatarec.comparatorProperty().bind(tabviewrec.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tabviewrec.setItems(sortedDatarec);
+               
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+          tabviewrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+              
             @Override
             public void handle(MouseEvent event) {
-          Reclamation rec=(Reclamation) tabviewrec.getSelectionModel().getSelectedItem();
-          JOptionPane j =new JOptionPane() ;
-          j.showConfirmDialog(null,"Are you sure you want to delete this reclamation");
-       if(j !=null){
-              ur.SupprimerReclamation(rec);
-              resetTableRecData();
-       }else{
-           j.showMessageDialog(null, "liste user vide ");
-       }
+             if(tabviewrec.getSelectionModel().getSelectedItem()==null){
+               dialog3.setVisible(true);
+               dialog3.setVisible(false);
+              
+                 
+             }else{
+              Reclamation rec=(Reclamation) tabviewrec.getSelectionModel().getSelectedItem();
+           dialog4.setVisible(true);
+               btnsp.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                  ur.SupprimerReclamation(rec);
+                  resetTableRecData();
+                   dialog4.setVisible(false);
+              }
+          });
+               btntrait.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                   
+                   vbtrait.setVisible(true);
+                    TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbtrait);
+                    t.setToX(0);
+                    t.play();
+                    dialog4.setVisible(false);
+                      ur.traiterReclamationUser(rec);
+                      resetTableRecData();
+                     btnenvrecc.setOnAction(new EventHandler<ActionEvent>() {
+                       @Override
+                       public void handle(ActionEvent event) {
+                           String email =ur.DisplayMailClient(rec);
+                           JavaMailUtil.sendmail(email,txtresprecl.getText().toString());
+                       }
+                   });
+                    
+                    
+                    
+                   
+              }
+          });
+         
             }
+             }
+         
         });
           
                  
