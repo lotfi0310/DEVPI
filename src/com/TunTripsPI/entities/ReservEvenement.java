@@ -17,7 +17,7 @@ public class ReservEvenement {
    private int  id_user ;
    private Date Date_reservation;
 
-    public ReservEvenement(Date dd1, int id_evenement, int id_user) {
+    public ReservEvenement() {
      //   throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -53,8 +53,7 @@ public class ReservEvenement {
         this.Date_reservation = Date_reservation;
     }
 
-    public ReservEvenement(int id,Date Date_reservation, int id_evenement, int id_user ) {
-        this.id = id;
+    public ReservEvenement(Date Date_reservation, int id_evenement, int id_user ) {
         this.id_evenement = id_evenement;
         this.id_user = id_user;
         this.Date_reservation = Date_reservation;
@@ -65,9 +64,6 @@ public class ReservEvenement {
    //     this.id_user = id_user;
    ///     this.Date_reservation = Date_reservation;
    // }
-
-    public ReservEvenement() {
-    }
 
     @Override
     public String toString() {

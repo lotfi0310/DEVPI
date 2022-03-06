@@ -3,25 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/ReservEvenement.java</file>
+            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AddEvenementController.java</file>
             <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/StartPoint.java</file>
             <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AddReservatioController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Avis.java</file>
             <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/TestGlob/MainTest_1.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Utils/MyConnection_1.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/ReservCrud.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/EvenementDetailController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableReservationController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenementController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ConsulterEvenementController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AddEvenementController.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/styles.css</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ConsulterEvenement.fxml</file>
             <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/EvenementCrud.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/JavaFXPixel.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/UserCruds_1.java</file>
+            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableNomEvenementController.java</file>
+            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/EvenementDetailController.java</file>
+            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TypeEvenementController.java</file>
+            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenementController.java</file>
             <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Evenement.java</file>
-            <file>file:/C:/Users/Nidhal/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableReservation.fxml</file>
         </group>
     </open-files>
 </project-private>

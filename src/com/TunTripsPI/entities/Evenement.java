@@ -25,6 +25,11 @@ public class Evenement {
         this.id = id;
         this.nom = nom;
     }
+
+    public Evenement(String nom) {
+        this.nom = nom;
+    }
+    
    
      public Evenement(){
          

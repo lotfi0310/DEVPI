@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.TunTripsPI.Gui.ModifierEveController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ModifierEveController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="625.0" prefWidth="889.0" stylesheets="@styles.css">
          <children>
@@ -36,7 +35,7 @@
             <TextField fx:id="tfDescription" layoutX="560.0" layoutY="159.0" prefHeight="260.0" prefWidth="324.0" styleClass="txt-field" />
             <TextField fx:id="tfStatus" layoutX="333.0" layoutY="390.0" prefHeight="54.0" prefWidth="190.0" styleClass="txt-field" />
             <TextField fx:id="tfCapacite" layoutX="333.0" layoutY="502.0" prefHeight="27.0" prefWidth="199.0" styleClass="txt-field" />
-            <Button fx:id="btnAjouter" layoutX="360.0" layoutY="552.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="44.0" prefWidth="136.0" styleClass="btn" text="Sauvgarder" />
+            <Button fx:id="btnAjouter" layoutX="360.0" layoutY="552.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="44.0" prefWidth="136.0" styleClass="btn" text="MODIFIER" />
             <DatePicker fx:id="tfDateDebut" layoutX="333.0" layoutY="124.0" prefHeight="44.0" prefWidth="190.0" />
             <DatePicker fx:id="tfDatefin" layoutX="328.0" layoutY="200.0" prefHeight="44.0" prefWidth="199.0" />
          </children>

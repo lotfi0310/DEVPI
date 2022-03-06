@@ -7,11 +7,14 @@ package com.TunTripsPI.TestGlob;
 
 
 import com.TunTripsPI.Services.EvenementCrud;
+import com.TunTripsPI.Services.MailerService;
 import com.TunTripsPI.Services.ReservCrud;
-import com.TunTripsPI.Services.UserCruds_1;
+
+//import com.TunTripsPI.Services.UserCruds_1;
 import com.TunTripsPI.entities.Avis;
 import com.TunTripsPI.entities.Evenement;
 import com.TunTripsPI.entities.ReservEvenement;
+import com.TunTripsPI.entities.Reservation;
 import com.TunTripsPI.entities.User_1;
 import java.text.SimpleDateFormat;  
 import java.util.ArrayList;
@@ -23,8 +26,55 @@ import java.util.Date;
 public class MainTest_1 {
   
     public static void main(String[] args) throws Exception{
+        
+        
+      ReservCrud ec = new ReservCrud();
+        String s = ec.countRESEvenement();
+         System.out.println(s);
+        
+      /*    EvenementCrud ee = new EvenementCrud();
+    ArrayList<Evenement> r =new ArrayList<Evenement>();
+  // r=ee.consulterEvenement();
+     
+  r = ee.recherche("aa");
+        
+           System.out.println(r);
+        
+        
+        
+       
+        
+        
+        
+    //    MailerService ms = new MailerService();
+     //    ms.replyMail("nidhal.sassi@esprit.tn","zaher","wa");
+         
+         
+      /*   SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+      Date parsed = format.parse("20110210");
+        java.sql.Date sql1 = new java.sql.Date(parsed.getTime());
+        
+      SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMdd");
+         Date parsed2 = format2.parse("20110211");
+         java.sql.Date sql2 = new java.sql.Date(parsed.getTime());  
+     Date d =new Date(Date.parse("2000/02/02"));
+   
+      Date date12=new SimpleDateFormat("yyyy/MM/dd").parse(parsed);
+    Evenement e1 = new Evenement(18,"mm",sql1,sql2,"l","m","l","k",10);
+     EvenementCrud ec = new EvenementCrud();
+     ec.ajouterEvenement(e1);
+         
          
         
+    //     UserCruds_1 u1=new UserCruds_1();
+      //   ArrayList<User_1> r =new ArrayList<User_1>();
+        // r=u1.consulterlisteuser();
+         //System.out.println(r);
+   //    ReservCrud re =new ReservCrud();
+       
+    ///   ArrayList<Reservation> r =new ArrayList<Reservation>();
+      // r=re.consulterReservation();
+        //System.out.println(r);
         
         
         //SimpleDateFormat format2 = new SimpleDateFormat("yyyyMMdd");

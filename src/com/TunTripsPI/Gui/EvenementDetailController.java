@@ -5,11 +5,17 @@
  */
 package com.TunTripsPI.Gui;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -32,6 +38,10 @@ public class EvenementDetailController implements Initializable {
     private TextField resstatus;
     @FXML
     private TextField rescapacite;
+    @FXML
+    private AnchorPane btnprece;
+    @FXML
+    private Button btnprecedent;
 
     /**
      * Initializes the controller class.
@@ -99,6 +109,21 @@ public class EvenementDetailController implements Initializable {
 
     public void setResstatus(String resstatus) {
         this.resstatus.setText(resstatus);
+    }
+
+    @FXML
+    private void retourner(ActionEvent event) {
+        
+        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEvenement.fxml"));
+            try {
+                Parent root =loader.load();
+                
+              
+                 btnprecedent.getScene().setRoot(root);
+                 } catch (IOException ex) {
+                System.err.println("error"+ex.getMessage());
+            }
     }
     
     

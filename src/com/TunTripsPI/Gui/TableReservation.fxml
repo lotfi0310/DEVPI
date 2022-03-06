@@ -1,23 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableReservationController">
+<AnchorPane id="AnchorPane" prefHeight="566.0" prefWidth="925.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableReservationController">
    <children>
-      <TableView fx:id="tablereservation" layoutX="64.0" layoutY="82.0" prefHeight="200.0" prefWidth="435.0">
+      <TableView fx:id="tablereservation" layoutX="22.0" layoutY="80.0" onMouseClicked="#supprimer" prefHeight="319.0" prefWidth="903.0">
          <columns>
-            <TableColumn fx:id="nomutilisateur" prefWidth="150.4000244140625" text="Nom utilisateur" />
-            <TableColumn fx:id="nomEvenement" prefWidth="116.0" text="NomEvenement" />
-            <TableColumn fx:id="DateReservation" prefWidth="175.20001220703125" text="Date de reservation" />
+            <TableColumn fx:id="nom" prefWidth="113.60000038146973" text="nom utilisateur" />
+            <TableColumn fx:id="prenom" minWidth="0.0" prefWidth="148.0" text="prenom utilisateur" />
+            <TableColumn fx:id="email" prefWidth="117.60003662109375" text="emailutilisateur" />
+            <TableColumn fx:id="nomevenement" prefWidth="147.20001220703125" text="nom evenement" />
+            <TableColumn fx:id="datedebut" prefWidth="172.79998779296875" text="Date debut reservation" />
+            <TableColumn fx:id="datefin" prefWidth="185.5999755859375" text="Date fin reservation" />
          </columns></TableView>
       <Label layoutX="177.0" layoutY="31.0" prefHeight="34.0" prefWidth="297.0" text="liste des reservations ">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
+      <Button fx:id="btncalculerreservations" layoutX="63.0" layoutY="417.0" mnemonicParsing="false" onMouseClicked="#calculerreservations" prefHeight="61.0" prefWidth="262.0" text="Calculer le nombre des reservations  " />
+      <TextField fx:id="nbrereservations" layoutX="388.0" layoutY="415.0" prefHeight="69.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

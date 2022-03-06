@@ -30,8 +30,9 @@
       <TextField fx:id="tfDescription" layoutX="560.0" layoutY="159.0" prefHeight="260.0" prefWidth="324.0" styleClass="txt-field" />
       <TextField fx:id="tfStatus" layoutX="333.0" layoutY="390.0" prefHeight="54.0" prefWidth="190.0" styleClass="txt-field" />
       <TextField fx:id="tfCapacite" layoutX="333.0" layoutY="502.0" prefHeight="27.0" prefWidth="199.0" styleClass="txt-field" />
-      <Button fx:id="btnAjouter" layoutX="360.0" layoutY="552.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="44.0" prefWidth="136.0" styleClass="btn" text="Sauvgarder" />
+      <Button fx:id="btnAjouter" layoutX="445.0" layoutY="557.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="44.0" prefWidth="136.0" styleClass="btn" text="Sauvgarder" />
       <DatePicker fx:id="tfDateDebut" layoutX="333.0" layoutY="124.0" prefHeight="44.0" prefWidth="190.0" />
       <DatePicker fx:id="tfDatefin" layoutX="328.0" layoutY="200.0" prefHeight="44.0" prefWidth="199.0" />
+      <Button fx:id="btnretourner" layoutX="213.0" layoutY="557.0" mnemonicParsing="false" onAction="#retournertable" text="retourne" />
    </children>
 </AnchorPane>

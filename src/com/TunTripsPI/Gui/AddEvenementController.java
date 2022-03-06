@@ -60,6 +60,8 @@ public class AddEvenementController implements Initializable {
     private DatePicker tfDateDebut;
        @FXML
     private DatePicker tfDatefin;
+    @FXML
+    private Button btnretourner;
     
    
   
@@ -183,6 +185,23 @@ tfNom.getScene().setRoot(root);
 
 
 }
+
+    @FXML
+    private void retournertable(ActionEvent event) {
+        
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TableEvenement.fxml"));
+            try {
+                Parent root =loader.load();
+                
+              
+                 btnretourner.getScene().setRoot(root);
+                 } catch (IOException ex) {
+                System.err.println("error"+ex.getMessage());
+            }
+        
+        
+        
+    }
 
     
 }

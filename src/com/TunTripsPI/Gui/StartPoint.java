@@ -5,6 +5,7 @@
  */
 package com.TunTripsPI.Gui;
 
+import com.TunTripsPI.Services.MailerService;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,12 +26,11 @@ import javafx.stage.Stage;
 public class StartPoint extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws Exception {
       
         try {
             Parent root =FXMLLoader.load(getClass().getResource("TableEvenement.fxml"));
             Scene scene = new Scene(root);
-            
             primaryStage.setTitle("addevenement!");
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -44,6 +44,9 @@ public class StartPoint extends Application {
      */
     public static void main(String[] args) {
         launch(args);
+       
+        
+        
     }
     
 }

@@ -33,9 +33,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
@@ -67,8 +69,13 @@ public class TableEvenementController implements Initializable {
     private TableColumn<Evenement, Integer> capacite;
     
      private ObservableList<Evenement> u = FXCollections.observableArrayList();
+  
+     @FXML
+    private Button btnajouter;
     @FXML
-    private Button reservbtn;
+    private Button btncalculer;
+    @FXML
+    private TextField nbrevenement;
   public TableEvenementController(){
        cnxx = MyConnection_1.getInstance().getCnx();
   }
@@ -146,22 +153,28 @@ public class TableEvenementController implements Initializable {
 
    
     @FXML
-    private void reservereve(ActionEvent event) {
+    private void ajouter(ActionEvent event) {
         
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddReservatio.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEvenement.fxml"));
             try {
                 Parent root =loader.load();
                 
               
-                 reservbtn.getScene().setRoot(root);
+                 btnajouter.getScene().setRoot(root);
                  } catch (IOException ex) {
                 System.err.println("error"+ex.getMessage());
             }
     }
 
     @FXML
-    private void reserver(javafx.scene.input.MouseEvent event) {
+    private void calculer(javafx.scene.input.MouseEvent event) {
+        
+          EvenementCrud ec = new EvenementCrud();
+        String s = ec.countEvenement();
+        nbrevenement.setText(s);
+        
     }
+
     
     
 }

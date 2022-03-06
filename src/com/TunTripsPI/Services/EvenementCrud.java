@@ -91,7 +91,7 @@ public class EvenementCrud {
             pst.executeQuery(req);
             ResultSet rs = pst.getResultSet();
             rs.next();
-            return ("Table contains " + rs.getInt("count(*)") + " rows");
+            return ("  " + rs.getInt("count(*)") + " evenement");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             return null;
@@ -130,8 +130,10 @@ public class EvenementCrud {
                 Evenement r = new Evenement();
                 r.setId(rs.getInt("id"));
                 r.setDate_debut(rs.getDate("date_debut"));
+                r.setDate_fin(rs.getDate("date_fin"));
                 r.setCapacite(rs.getInt("capacite"));
-              //
+                r.setDescription(rs.getNString("description"));
+              
         //      r.setImage(rs.getString("image"));
                 r.setLieu(rs.getNString("lieu"));
                 r.setStatus(rs.getNString("status"));
@@ -189,6 +191,7 @@ public class EvenementCrud {
         }
         return listEvenement;
     }
+    ///
     
     
     
