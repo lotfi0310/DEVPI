@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="scenepane" prefHeight="673.0" prefWidth="940.0" styleClass="modal" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ModifierRegionController">
+   <children>
+      <Label layoutX="358.0" layoutY="115.0" text="Nom region " />
+      <Label layoutX="362.0" layoutY="168.0" text="Description" />
+      <TextField fx:id="tfNomRegionm" layoutX="359.0" layoutY="140.0" prefHeight="27.0" prefWidth="470.0" styleClass="txt-field" stylesheets="@styles.css" />
+      <Button fx:id="btnModifier" layoutX="731.0" layoutY="350.0" mnemonicParsing="false" onAction="#savechanges" prefHeight="27.0" prefWidth="97.0" styleClass="btn" stylesheets="@styles.css" text="Enregistrer" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="button2" layoutX="359.0" layoutY="83.0" mnemonicParsing="false" onAction="#actionPerformed" prefHeight="27.0" prefWidth="153.0" styleClass="trans-btn-black-border" stylesheets="@styles.css" text="Choisir une image">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="myImageView" fitHeight="297.0" fitWidth="314.0" layoutX="30.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true" styleClass="img-place" />
+      <TextArea fx:id="tfDescriptionm" layoutX="359.0" layoutY="193.0" prefHeight="148.0" prefWidth="470.0" styleClass="txt-field" stylesheets="@styles.css" wrapText="true" />
+      <Label layoutX="29.0" layoutY="29.0" styleClass="title-modal-label" text="Modifier région">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnModifier1" layoutX="624.0" layoutY="350.0" mnemonicParsing="false" onAction="#annuler" prefHeight="27.0" prefWidth="97.0" styleClass="trans-btn-blue-border" stylesheets="@styles.css" text="Annuler" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="tfid" layoutX="344.0" layoutY="198.0" prefHeight="27.0" prefWidth="25.0" styleClass="txt-field" stylesheets="@styles.css" visible="false" />
+      <Button fx:id="btndelete" layoutX="360.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteregion" prefHeight="27.0" prefWidth="97.0" styleClass="btn-delete" stylesheets="@styles.css" text="Supprimer" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

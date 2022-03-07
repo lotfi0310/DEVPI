@@ -67,6 +67,7 @@ import org.controlsfx.dialog.ProgressDialog;
 
 public class GererUserAdminController implements Initializable {
     Parent fxml ;
+    Parent fxml1; 
 @FXML 
 private AnchorPane frame_Userrec; 
     @FXML
@@ -150,6 +151,9 @@ private AnchorPane frame_Userrec;
     private AnchorPane eventsView;
     @FXML
     private Tab event;
+   
+    @FXML
+    private AnchorPane regview;
 
     /**
      * Initializes the controller class.
@@ -162,6 +166,17 @@ private AnchorPane frame_Userrec;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        try {
+            fxml1=FXMLLoader.load(getClass().getResource("List.fxml"));
+             regview.getChildren().removeAll();
+                regview.getChildren().setAll(fxml1);
+                
+        } catch (IOException ex) {
+            Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+                
+                
     try {
         fxml = FXMLLoader.load(getClass().getResource("TableEvenement.fxml"));
         
@@ -194,6 +209,9 @@ private AnchorPane frame_Userrec;
              passwdcol.setCellValueFactory(
             new PropertyValueFactory<>("passwd")
         );
+             countrycol.setCellValueFactory(
+              new PropertyValueFactory<>("country")
+             );
            
                 rolecol.setCellValueFactory(
             new PropertyValueFactory<>("role")
@@ -380,7 +398,7 @@ private AnchorPane frame_Userrec;
                  
                  
                  
-                 
+           
                  
                  
           tabviewrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -432,6 +450,9 @@ private AnchorPane frame_Userrec;
              }
          
         });
+        
+          
+          
           
                  
     }

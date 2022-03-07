@@ -19,7 +19,7 @@
         <tabs>
           <Tab text="AjouterReclamationEvenement">
                <content>
-                  <ImageView fitHeight="60.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="btnprecedentrec" fitHeight="60.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
                         <Image url="@../Image/backbtn.png" />
                      </image>

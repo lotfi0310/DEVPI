@@ -38,8 +38,6 @@ public class AcceuilController implements Initializable {
     private Button btnreclamations;
     @FXML
     private TextField txtu;
-    @FXML
-    private Icon btnopenEvent;
 
     /**
      * Initializes the controller class.
@@ -133,4 +131,24 @@ public class AcceuilController implements Initializable {
     
     
     
-    }}
+    }
+
+    @FXML
+    private void Region(ActionEvent event) {
+        UserCruds uc =new UserCruds();
+        int r=uc.getRole(Integer.parseInt(txtu.getText()));
+        if(r==2||r==3){
+         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionList.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                           UserRegionListController pc = Loader.getController();
+                                                btnreclamations.getScene().setRoot(root);
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+    }
+        
+    }
+}

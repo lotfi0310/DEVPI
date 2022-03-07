@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="857.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ConsulterListeEndroitController">
+   <children>
+      <ImageView fx:id="myImageView" fitHeight="150.0" fitWidth="200.0" layoutX="281.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true" />
+      <ScrollPane layoutX="259.0" layoutY="316.0" prefHeight="200.0" prefWidth="562.0">
+         <content>
+            <HBox fx:id="vboxx" prefHeight="195.0" prefWidth="561.0" />
+         </content>
+      </ScrollPane>
+      <VBox layoutY="24.0" prefHeight="611.0" prefWidth="211.0" styleClass="vbox" stylesheets="@styles.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Acceuil" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Villes et culture" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Endroits" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Evénements" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Favoris" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Paramètres" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="90.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="BASELINE_RIGHT" layoutY="-3.0" prefHeight="27.0" prefWidth="933.0" styleClass="closebar" stylesheets="@styles.css">
+         <children>
+            <FontAwesomeIcon glyphName="CLOSE" size="1.5em">
+               <HBox.margin>
+                  <Insets right="7.0" top="5.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

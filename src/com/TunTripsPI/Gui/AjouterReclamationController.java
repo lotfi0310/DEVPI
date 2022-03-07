@@ -30,6 +30,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -53,6 +55,8 @@ public class AjouterReclamationController implements Initializable {
     private TextField txttrec;
     @FXML
     private TextField txtUserId;
+    @FXML
+    private ImageView btnprecedentrec;
     
   
 
@@ -62,7 +66,19 @@ public class AjouterReclamationController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-
+btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
+    @Override
+    public void handle(MouseEvent event) {
+      FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenementRec.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 TableEvenementRecController pc = Loader.getController();
+                                                btnprecedentrec.getScene().setRoot(root);
+          }catch(Exception e){ System.out.println("error");
+              
+          }}
+});
     }    
 
 

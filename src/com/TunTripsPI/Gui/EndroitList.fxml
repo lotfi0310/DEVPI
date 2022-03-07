@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.EndroitListController">
+   <children>
+      <VBox layoutY="27.0" prefHeight="611.0" prefWidth="211.0" styleClass="vbox" stylesheets="@styles.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Acceuil" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVillesEtCulture" mnemonicParsing="false" onAction="#listeDesRegions" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Villes et culture" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Endroits" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Evénements" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Favoris" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Paramètres" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="90.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="BASELINE_RIGHT" prefHeight="27.0" prefWidth="933.0" styleClass="closebar" stylesheets="@styles.css">
+         <children>
+            <FontAwesomeIcon glyphName="CLOSE" size="1.5em">
+               <HBox.margin>
+                  <Insets right="7.0" top="5.0" />
+               </HBox.margin>
+            </FontAwesomeIcon>
+         </children>
+      </HBox>
+      <TableView fx:id="endroit_table" layoutX="239.0" layoutY="303.0" prefHeight="312.0" prefWidth="661.0" stylesheets="@styles.css" AnchorPane.topAnchor="253.0">
+         <columns>
+            <TableColumn fx:id="cl_id" minWidth="0.0" prefWidth="16.79998779296875" text="ID" visible="false" />
+            <TableColumn fx:id="cl_nom" prefWidth="128.79998779296875" text="NOM" />
+            <TableColumn fx:id="cl_type" minWidth="0.0" prefWidth="299.199951171875" text="TYPE" />
+            <TableColumn fx:id="cl_action" maxWidth="346.39996337890625" prefWidth="230.39990234375" text="ACTION" />
+         </columns>
+      </TableView>
+      <Button fx:id="btnaj" layoutX="797.0" layoutY="211.0" mnemonicParsing="false" onAction="#ajouterEndroit" prefHeight="27.0" prefWidth="103.0" styleClass="btn" stylesheets="@styles.css" text="Ajouter" AnchorPane.topAnchor="211.0">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <HBox layoutX="211.0" layoutY="77.0" prefHeight="76.0" prefWidth="722.0" styleClass="modal" stylesheets="@styles.css" AnchorPane.topAnchor="90.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="182.0" styleClass="title-modal-label" stylesheets="@styles.css" text="Liste des endroits">
+               <font>
+                  <Font name="Calibri" size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="30.0" top="25.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <ComboBox fx:id="comb" layoutX="660.0" layoutY="212.0" onAction="#select" prefHeight="27.0" prefWidth="127.0" promptText="Type" styleClass="combobox" stylesheets="@styles.css" />
+      <StackPane layoutX="239.0" layoutY="208.0" prefHeight="34.0" prefWidth="226.0">
+         <children>
+            <TextField fx:id="searchBox" prefHeight="27.0" prefWidth="283.0" promptText="Recherche..." styleClass="searchbox" stylesheets="@styles.css" />
+            <Button fx:id="searchbtnclose" mnemonicParsing="false" onAction="#handleClearSearchText" styleClass="delete-button" stylesheets="@styles.css" StackPane.alignment="CENTER_RIGHT">
+               <graphic>
+                  <FontAwesomeIcon glyphName="CLOSE" />
+               </graphic>
+            </Button>
+         </children>
+      </StackPane>
+      <Label fx:id="lblType" layoutX="239.0" layoutY="173.0" prefHeight="27.0" prefWidth="195.0">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtregionid" layoutX="496.0" layoutY="212.0" prefHeight="26.0" prefWidth="97.0" visible="false" />
+   </children>
+</AnchorPane>

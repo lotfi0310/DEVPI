@@ -12,7 +12,7 @@
    <children>
       <VBox layoutX="-5.0" prefHeight="769.0" prefWidth="249.0" style="-fx-background-color: #5D6D7E;">
          <children>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="369.0" text="Région">
+            <Button mnemonicParsing="false" onAction="#Region" prefHeight="35.0" prefWidth="369.0" text="Région">
                <VBox.margin>
                   <Insets top="150.0" />
                </VBox.margin>

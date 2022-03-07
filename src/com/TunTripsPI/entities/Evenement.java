@@ -77,6 +77,10 @@ public class Evenement {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Evenement(int ii, String nom, String lieu, String description, String statue, int capacite) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
    
 
     public String getStatus() {

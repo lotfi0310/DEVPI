@@ -64,7 +64,7 @@ public class UserCruds {
     public String ajouterUser(User u) {
  String s=""; 
         
-        String req = "INSERT INTO User (nom,prenom,email,passwd,role,etat) VALUES (?,?,?,?,?,?)";
+        String req = "INSERT INTO User (nom,prenom,email,passwd,role,country,etat) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             
@@ -74,7 +74,8 @@ public class UserCruds {
             pst.setString(3, u.getEmail());
             pst.setString(4, hashagePWD(u.getPasswd()));
             pst.setString(5, u.getRole());
-            pst.setBoolean(6,true);
+            pst.setString(6, u.getCountry());
+            pst.setBoolean(7,true);
             if (ifuserExiste(u.getEmail())) {
                 System.out.println("utilisateur existe deja tu peux pas ajoutee  ");
                 

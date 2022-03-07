@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="558.0" prefWidth="912.0" styleClass="AnchorPane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ConsulterListeRegionController">
+   <children>
+      <VBox prefHeight="558.0" prefWidth="205.0" styleClass="vbox" stylesheets="@styles.css">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Acceuil" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Villes et culture" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Endroits" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Evénements" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Favoris" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Paramètres" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+      </VBox>
+      <Label layoutX="232.0" layoutY="111.0" prefHeight="35.0" prefWidth="182.0" styleClass="title-modal-label" stylesheets="@styles.css" text="Les régions">
+         <font>
+            <Font name="Calibri" size="24.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
