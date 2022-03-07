@@ -8,26 +8,26 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="listeev" prefHeight="766.0" prefWidth="1366.0" styleClass="parent" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableEvenementController">
+<AnchorPane id="AnchorPane" fx:id="events" prefHeight="589.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableEvenementController">
    <children>
-      <Label layoutX="579.0" layoutY="42.0" prefHeight="27.0" prefWidth="216.0" text="LISTES DES EVENEMENTS " textAlignment="CENTER" textFill="#eb1515" AnchorPane.topAnchor="42.0">
+      <Label layoutX="277.0" layoutY="44.0" prefHeight="22.0" prefWidth="287.0" text="LISTES DES EVENEMENTS " textAlignment="CENTER" textFill="#d71515">
          <font>
-            <Font size="18.0" />
+            <Font name="Bodoni MT Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tableevenement" layoutX="188.0" layoutY="155.0" onMouseClicked="#SelectEventRec" prefHeight="324.0" prefWidth="524.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="100.0">
+      <TableView fx:id="tableevenement" layoutX="43.0" layoutY="80.0" onMouseClicked="#supprimer" prefHeight="262.0" prefWidth="754.0">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="id" />
           <TableColumn fx:id="nomevenement" prefWidth="75.0" text="nom" />
             <TableColumn fx:id="datedebut" prefWidth="75.0" text="Date debut" />
-            <TableColumn fx:id="datefin" prefWidth="75.0" text="Date fin" />
-            <TableColumn fx:id="lieu" prefWidth="75.0" text="lieu" />
-            <TableColumn fx:id="descriotion" prefWidth="75.0" text="Description" />
-            <TableColumn fx:id="status" prefWidth="75.0" text="status" />
-            <TableColumn fx:id="capacite" prefWidth="75.0" text="capacite" />
+            <TableColumn fx:id="datefin" prefWidth="126.39996337890625" text="Date fin" />
+            <TableColumn fx:id="lieu" prefWidth="120.80001831054688" text="lieu" />
+            <TableColumn fx:id="descriotion" prefWidth="100.0" text="Description" />
+            <TableColumn fx:id="status" prefWidth="68.0" text="status" />
+            <TableColumn fx:id="capacite" prefWidth="73.60003662109375" text="capacite" />
         </columns>
       </TableView>
-      <Button fx:id="reservbtn" layoutX="439.0" layoutY="557.0" mnemonicParsing="false" onAction="#reservereve" onMouseClicked="#reserver" text="reserver " visible="false" />
-      <TextField fx:id="txtidus" layoutX="58.0" layoutY="19.0" visible="false" />
+      <Button fx:id="btncalculer" layoutX="64.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#calculer" prefHeight="50.0" prefWidth="287.0" text="calculer le nombre des evenement " />
+      <TextField fx:id="nbrevenement" layoutX="371.0" layoutY="373.0" prefHeight="62.0" prefWidth="123.0" />
    </children>
 </AnchorPane>

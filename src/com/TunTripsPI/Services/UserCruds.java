@@ -249,7 +249,57 @@ return s;
         return listeuser;
     }
     
-   
+    
+    public int  getRole(int id )
+    {        int role = 0 ; 
+        try {
+            String reqrole="Select role from user where id='"+id+"'"; 
+            Statement st = cnxx.createStatement();
+            ResultSet rs =st.executeQuery(reqrole);
+            if(rs.first()){
+             String r =rs.getString("role"); 
+             if(r.equals("Admin"))
+             {
+                 role=1;
+             }
+             if(r.equals("Fournisseur"))
+             {
+                 role=2;
+             }
+             if(r.equals("Simple User")){
+                 role=3;
+                 
+             }
+             
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
+        }
+        return role;
+    }  
+    
+    
+    
+       public String  getemail(int id )
+    {                String email = null  ; 
+        try {
+            String reqrole="Select email from user where id='"+id+"'"; 
+            Statement st = cnxx.createStatement();
+            ResultSet rs =st.executeQuery(reqrole);
+            if(rs.first()){
+              email =rs.getString("email"); 
+          return email;
+             
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(UserCruds.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error");
+        }
+        return email;
+    }  
+       
+       
     
         public void  AddCodeValidationmail(String code,String email){
             String req = "insert INTO codevalidation (code,email) VALUES (?,?)";
@@ -286,6 +336,7 @@ return s;
         
         }
         
+           
         
     public void  AddCodeRecuperationCompte(String code,String email){
             String req = "Update codevalidation SET coderec_mp='"+code+"' where codevalidation.email='"+email+"' ";

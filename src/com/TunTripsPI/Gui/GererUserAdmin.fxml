@@ -137,11 +137,11 @@
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox fx:id="dialog4" layoutX="-3.0" layoutY="610.0" prefHeight="100.0" prefWidth="1372.0" style="-fx-background-color: #8E44AD;" visible="false">
+                        <HBox fx:id="dialog4" layoutX="-3.0" layoutY="566.0" prefHeight="108.0" prefWidth="1372.0" style="-fx-background-color: #8E44AD;" visible="false">
                            <children>
                               <Button fx:id="btnsp" mnemonicParsing="false" prefHeight="62.0" prefWidth="140.0" text="Supprimer">
                                  <HBox.margin>
-                                    <Insets left="400.0" right="40.0" />
+                                    <Insets left="300.0" right="40.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                               <Label prefHeight="32.0" prefWidth="157.0" style="-fx-text-fill: #FFFFF;" text="Choisir le type d'operation ">
@@ -151,7 +151,7 @@
                               </Label>
                               <Button fx:id="btntrait" mnemonicParsing="false" prefHeight="64.0" prefWidth="166.0" text="Traiter">
                                  <HBox.margin>
-                                    <Insets left="40.0" />
+                                    <Insets left="40.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
@@ -164,6 +164,11 @@
                      </children></AnchorPane>
             </content>
           </Tab>
+            <Tab fx:id="event" text="Evenements">
+              <content>
+                <AnchorPane fx:id="eventsView" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+              </content>
+            </Tab>
         </tabs>
       </TabPane>
    </children>

@@ -4,11 +4,15 @@
  * and open the template in the editor.
  */
 package com.TunTripsPI.TestGlob;
+import com.TunTripsPI.Services.EvenementCrud;
 import java.sql.Date; 
 import com.TunTripsPI.Services.ReclamationCrud;
+import com.TunTripsPI.Services.ReservCrud;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.Utils.JavaMailUtil;
+import com.TunTripsPI.entities.Evenement;
 import com.TunTripsPI.entities.Reclamation;
+import com.TunTripsPI.entities.ReservEvenement;
 import com.TunTripsPI.entities.User;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,6 +50,7 @@ public class MainTest {
         listeuser.stream().forEach(System.out::println);
 */
               
+       
 
 //test authentification 
    /*    User u1 = new User();
@@ -85,7 +90,7 @@ public class MainTest {
           */
        
        //add reclamation hebergement 
-             User u = new User();
+          /*   User u = new User();
           u.setId(107);
           Reclamation r=new Reclamation();
           ReclamationCrud cr=new ReclamationCrud();
@@ -95,7 +100,7 @@ public class MainTest {
           r.setContenu("new Rec "+u.getId());
           r.setEtat(false);
           cr.ajouterReclamationEvent(r,u);
-       
+       */
       // add reclamation transport 
           /*
                    u.setId(86);
@@ -144,11 +149,15 @@ public class MainTest {
      
       // System.out.println(a);
          //admin consulte all reclam 
-          /*ReclamationCrud cr=new ReclamationCrud(); 
-          ArrayList<Reclamation> a=new ArrayList<>();
+       /*   ReclamationCrud cr=new ReclamationCrud(); 
+          ArrayList<Reclamation> a=new ArrayList<Reclamation>();
           a=cr.DisplayAllReclamation();
-          a.stream().forEach(System.out::println);
-          */
+          for( Reclamation e: a){  
+              System.out.println(e.getDate_rec());
+          }*/
+       
+    
+          
           //metier count nbre de reclamation 
           /*
            Reclamation r =new Reclamation(); 

@@ -22,6 +22,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -33,7 +35,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
@@ -48,7 +49,7 @@ import javax.swing.JOptionPane;
  *
  * @author Nidhal
  */
-public class TableEvenementController implements Initializable {
+public class TableEvenementRecController implements Initializable {
 
     
      Connection cnxx;
@@ -70,15 +71,13 @@ public class TableEvenementController implements Initializable {
     private TableColumn<Evenement, Integer> capacite;
     
      private ObservableList<Evenement> u = FXCollections.observableArrayList();
-  
-    private Button btnajouter;
     @FXML
-    private Button btncalculer;
+    private Button reservbtn;
     @FXML
-    private TextField nbrevenement;
+    private AnchorPane listeev;
     @FXML
-    private AnchorPane events;
-  public TableEvenementController(){
+    private TextField txtidus;
+  public TableEvenementRecController(){
        cnxx = MyConnection.getInstance().getCnx();
   }
     
@@ -92,6 +91,8 @@ public class TableEvenementController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     
+       
+           
            EvenementCrud uc=new EvenementCrud();
          List<Evenement> listEvenement= new ArrayList<Evenement>();
          listEvenement=uc.consulterEvenement();
@@ -139,10 +140,10 @@ public class TableEvenementController implements Initializable {
         tableevenement.setItems(data);
     }
 
-    @FXML
     private void supprimer(javafx.scene.input.MouseEvent event) {
          EvenementCrud uc=new EvenementCrud();
          Evenement rec=(Evenement) tableevenement.getSelectionModel().getSelectedItem();
+          
           JOptionPane j =new JOptionPane() ;
           j.showConfirmDialog(null,"Are you sure you want to delete this evenement");
        if(j !=null){
@@ -154,33 +155,51 @@ public class TableEvenementController implements Initializable {
     }
 
    
-    private void ajouter(ActionEvent event) {
+    @FXML
+    private void reservereve(ActionEvent event) {
         
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEvenement.fxml"));
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("AddReservatio.fxml"));
             try {
                 Parent root =loader.load();
                 
               
-                 btnajouter.getScene().setRoot(root);
+                 reservbtn.getScene().setRoot(root);
                  } catch (IOException ex) {
                 System.err.println("error"+ex.getMessage());
             }
     }
 
     @FXML
-    private void calculer(javafx.scene.input.MouseEvent event) {
-        
-          EvenementCrud ec = new EvenementCrud();
-        String s = ec.countEvenement();
-        nbrevenement.setText(s);
-        
+    private void reserver(javafx.scene.input.MouseEvent event) {
     }
 
-    
+    @FXML
+    private void SelectEventRec(javafx.scene.input.MouseEvent event) {
+        
+            Evenement rec=(Evenement) tableevenement.getSelectionModel().getSelectedItem();
+           
+             FXMLLoader Loader = new FXMLLoader(getClass().getResource("AjouterReclamation.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                
+                                                 AjouterReclamationController pc = Loader.getController();
+                                                reservbtn.getScene().setRoot(root);
+                                                pc.setTxtIDEvent(""+rec.getId());
+                                                pc.setTxtUserID(txtidus.getText());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+            
+            
+    }
+     public void setTxtUserID( String message) {
+        this.txtidus.setText(message);
+    }
+      
     
 }
     
     
     
     
-

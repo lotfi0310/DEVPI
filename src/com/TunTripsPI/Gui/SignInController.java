@@ -62,6 +62,7 @@ public class SignInController implements Initializable {
     Boolean a;
     @FXML
     Parent home;
+    
 
     /**
      * Initializes the controller class.
@@ -127,7 +128,17 @@ public class SignInController implements Initializable {
                                 
                                         String Typeauth = uc.Typeauthentification(rs);
                                         Stage primaryStage = new Stage();
-                                        if (Typeauth.equals("Simple User")||Typeauth.equals("Fournisseur")){
+                                       if(Typeauth.equals("Admin")){
+                                            FXMLLoader Loader = new FXMLLoader(getClass().getResource("GererUserAdmin.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 GererUserAdminController pc = Loader.getController();
+                                                btnauthentif.getScene().setRoot(root);
+                                                
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);}
+                                       }else{
                                             
                                           FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
                                              Parent root;
@@ -137,7 +148,7 @@ public class SignInController implements Initializable {
                                                 btnauthentif.getScene().setRoot(root);
                                                 pc.setTxtUserID(""+id);
                                             } catch (IOException ex) {
-                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);}
+                                                Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);}}
                                           /* FXMLLoader Loader = new FXMLLoader(getClass().getResource("AjouterReclamation.fxml"));
                                              Parent root;
                                             try {
@@ -153,7 +164,7 @@ public class SignInController implements Initializable {
                                                
                                           
 
-                                        } else {
+                                     /*    else {
                                                FXMLLoader Loader = new FXMLLoader(getClass().getResource("GererUserAdmin.fxml"));
                                              Parent root;
                                             try {
@@ -163,7 +174,7 @@ public class SignInController implements Initializable {
                                             } catch (IOException ex) {
                                                 Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);}
                                             
-                                        }
+                                        }*/
 
                                     } else {
                                         showAlertWithHeaderText("votre compte est deactiver tu peux le reactiver on cliquant sur activer maintenant ");

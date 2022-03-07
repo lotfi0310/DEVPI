@@ -71,7 +71,8 @@ public class AjouterReclamationController implements Initializable {
         ReclamationCrud rc=new ReclamationCrud();
         Reclamation r=new Reclamation();
          long millis=System.currentTimeMillis();  
-         java.sql.Date date = new java.sql.Date(millis);        
+         java.sql.Date date = new java.sql.Date(millis);
+         
         r.setDate_rec(date);
         r.setContenu(txtrec.getText());
         r.setEtat(false);
@@ -96,7 +97,7 @@ public class AjouterReclamationController implements Initializable {
                                                 lblafficheEvent.getScene().setRoot(root);
                                                 pc.setTxtUserID(txtUserId.getText());
                                             } catch (IOException ex) {
-                                                Logger.getLogger(TableEvenementController.class.getName()).log(Level.SEVERE, null, ex);
+                                                Logger.getLogger(TableEvenementRecController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
           
     }
@@ -111,15 +112,15 @@ public class AjouterReclamationController implements Initializable {
 
     @FXML
     private void SelectRec(ActionEvent event) {
-          FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenement.fxml"));
+          FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenementRec.fxml"));
                                              Parent root;
                                             try {
                                                 root = Loader.load();
-                                                 TableEvenementController pc = Loader.getController();
+                                                 TableEvenementRecController pc = Loader.getController();
                                                 lblafficheEvent.getScene().setRoot(root);
                                                 pc.setTxtUserID(txtUserId.getText());
                                             } catch (IOException ex) {
-                                                Logger.getLogger(TableEvenementController.class.getName()).log(Level.SEVERE, null, ex);
+                                                Logger.getLogger(TableEvenementRecController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
         
     }

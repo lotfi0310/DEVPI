@@ -20,7 +20,7 @@
                   <Icon content="WALLPAPER" prefHeight="30.0" prefWidth="30.0" />
                </graphic>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="370.0" text="Evénements">
+            <Button mnemonicParsing="false" onMouseClicked="#btnopenEvent" prefHeight="35.0" prefWidth="370.0" text="Evénements">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -62,6 +62,6 @@
             </Button>
          </children></VBox>
       <TextField fx:id="txtu" editable="false" layoutX="471.0" layoutY="554.0" visible="false" />
-      <WebView layoutX="244.0" layoutY="144.0" prefHeight="626.0" prefWidth="1128.0"/>
+      <WebView layoutX="244.0" layoutY="144.0" prefHeight="626.0" prefWidth="1128.0" />
    </children>
 </AnchorPane>

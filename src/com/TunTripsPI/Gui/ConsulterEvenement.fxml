@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17" fx:controller="com.TunTripsPI.Gui.ConsulterEvenementController">
+   <children>
+      <Label layoutX="104.0" layoutY="55.0" prefHeight="18.0" prefWidth="120.0" text="Evenement">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView layoutX="32.0" layoutY="106.0" prefHeight="200.0" prefWidth="537.0">
+        <columns>
+          <TableColumn prefWidth="133.5999755859375" text="Nom de l evenement " />
+            <TableColumn prefWidth="115.199951171875" text="nombre de place " />
+            <TableColumn prefWidth="100.0" text="status" />
+            <TableColumn prefWidth="117.60002441406249" text="Description" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,57 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 28 févr. 2022, 20:27:53
+    Author     : Nidhal
+
+*/
+
+ pane{
+    -fx-background-color: #ffffff ;
+}
+.trans-btn-black-border{
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: #000000;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+     
+}
+
+
+.label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
+}
+.txt-field{
+     -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-border-color: #000000;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+     
+}
+.btn{
+   -fx-background-color: #48AAAD;
+    -fx-background-radius: 5px;
+    -fx-border-color: #48AAAD;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+     -fx-text-fill: #ffffff;
+}
+
+.vbox{
+    -fx-background-color: #48AAAD;
+    
+}
+.btn-vbox{
+    -fx-background-color: #48AAAD;
+    -fx-text-fill: #ffffff;
+     -fx-font-size: 199pxt;
+     
+}

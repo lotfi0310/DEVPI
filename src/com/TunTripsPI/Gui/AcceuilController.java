@@ -7,6 +7,7 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.entities.User;
+import com.gluonhq.charm.glisten.control.Icon;
 import doryan.windowsnotificationapi.fr.Notification;
 import java.io.IOException;
 import java.net.URL;
@@ -23,6 +24,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -36,6 +38,8 @@ public class AcceuilController implements Initializable {
     private Button btnreclamations;
     @FXML
     private TextField txtu;
+    @FXML
+    private Icon btnopenEvent;
 
     /**
      * Initializes the controller class.
@@ -81,7 +85,52 @@ public class AcceuilController implements Initializable {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
     }
+
+    @FXML
+    private void btnopenEvent(MouseEvent event) {
+        UserCruds uc =new UserCruds(); 
+              int r=uc.getRole(Integer.parseInt(txtu.getText()));
+              if(r==1){
+                   FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenement.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                                 TableEvenementController pc = Loader.getController();
+                                                btnreclamations.getScene().setRoot(root);
+                                                
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+              }
+                 if(r==2){
+                   FXMLLoader Loader = new FXMLLoader(getClass().getResource("AddEvenement.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                              AddEvenementController pc = Loader.getController();
+                                                btnreclamations.getScene().setRoot(root);
+                                                pc.setidfourevent(txtu.getText());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+              }
+                 if(r==3){
+                   FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableNomEvenement.fxml"));
+                                             Parent root;
+                                            try {
+                                                root = Loader.load();
+                                           TableNomEvenementController pc = Loader.getController();
+                                                btnreclamations.getScene().setRoot(root);
+                                                pc.seidusers(""+txtu.getText());
+                                            } catch (IOException ex) {
+                                                Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                            
+         
+    }
     
     
     
-}
+    }}

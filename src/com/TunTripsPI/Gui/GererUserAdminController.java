@@ -66,6 +66,7 @@ import org.controlsfx.dialog.ProgressDialog;
  */
 
 public class GererUserAdminController implements Initializable {
+    Parent fxml ;
 @FXML 
 private AnchorPane frame_Userrec; 
     @FXML
@@ -145,6 +146,10 @@ private AnchorPane frame_Userrec;
     private HBox dialog4;
     @FXML
     private TextArea txtresprecl;
+    @FXML
+    private AnchorPane eventsView;
+    @FXML
+    private Tab event;
 
     /**
      * Initializes the controller class.
@@ -157,6 +162,17 @@ private AnchorPane frame_Userrec;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+    try {
+        fxml = FXMLLoader.load(getClass().getResource("TableEvenement.fxml"));
+        
+                eventsView.getChildren().removeAll();
+                eventsView.getChildren().setAll(fxml);
+        
+    } catch (IOException ex) {
+        Logger.getLogger(GererUserAdminController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+        
+        
          TranslateTransition t = new TranslateTransition(Duration.seconds(1), vbtrait);
         t.setToX(0);
         

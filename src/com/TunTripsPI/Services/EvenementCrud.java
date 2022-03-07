@@ -6,7 +6,10 @@
 package com.TunTripsPI.Services;
 
 import com.TunTripsPI.Utils.MyConnection;
+import com.TunTripsPI.Utils.MyConnection;
 import com.TunTripsPI.entities.Evenement;
+import com.TunTripsPI.entities.ReservEvenement;
+import com.TunTripsPI.entities.User;
 import static com.mysql.jdbc.Messages.getString;
 import java.sql.Connection;
 
@@ -35,9 +38,9 @@ public class EvenementCrud {
     }
 //*ajouter evenement
 
-    public void ajouterEvenement(Evenement e) {
+    public void ajouterEvenement(Evenement e,User u) {
 
-        String req = "INSERT INTO Evenement (nom,date_debut,date_fin,lieu,description,status,capacite) VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO evenement (nom,date_debut,date_fin,lieu,description,status,capacite,id) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
@@ -50,7 +53,7 @@ public class EvenementCrud {
             pst.setString(6, e.getStatus());
            // pst.setString(7, e.getImage());
             pst.setInt(7, e.getCapacite());
-
+            pst.setInt(8, u.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -89,7 +92,7 @@ public class EvenementCrud {
             pst.executeQuery(req);
             ResultSet rs = pst.getResultSet();
             rs.next();
-            return ("Table contains " + rs.getInt("count(*)") + " rows");
+            return ("  " + rs.getInt("count(*)") + " evenement");
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
             return null;
@@ -99,7 +102,7 @@ public class EvenementCrud {
 
     public void supprimerEvenement(Evenement e) {
 
-        String reqdelete = "DELETE FROM Evenement WHERE id=?";
+        String reqdelete = "DELETE FROM Evenement WHERE idevent=?";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(reqdelete);
@@ -128,8 +131,10 @@ public class EvenementCrud {
                 Evenement r = new Evenement();
                 r.setId(rs.getInt("id"));
                 r.setDate_debut(rs.getDate("date_debut"));
+                r.setDate_fin(rs.getDate("date_fin"));
                 r.setCapacite(rs.getInt("capacite"));
-              //
+                r.setDescription(rs.getNString("description"));
+              
         //      r.setImage(rs.getString("image"));
                 r.setLieu(rs.getNString("lieu"));
                 r.setStatus(rs.getNString("status"));
@@ -144,15 +149,17 @@ public class EvenementCrud {
 
     /*
       public String Disponibilite(Evenement E) {
+
       
     
+
     }
      */
  
     public ArrayList<Evenement> consulterEvenement() {
          ResultSet rs ;
         ArrayList<Evenement> listEvenement = new ArrayList<Evenement>();
-        String req = "SELECT * FROM Evenement";
+        String req = "SELECT * FROM evenement";
         Statement st;
         try {
 
@@ -185,6 +192,7 @@ public class EvenementCrud {
         }
         return listEvenement;
     }
+    ///
     
     
     
@@ -218,17 +226,20 @@ String sql="select * from evenement";
     
      public ArrayList<Evenement> afficherEvenementFiltré(String n) {
         ArrayList<Evenement> liEvenement= new ArrayList<Evenement>();
+
         String req =   "SELECT id,nom FROM Evenement WHERE nom='" + n + "'    ";               
         Statement st;
         try {
             
             st = cnxx.createStatement();
             ResultSet rs = st.executeQuery(req);
+
             while (rs.next()) {
                Evenement rr = new Evenement(rs.getInt("id"),rs.getString("nom"));
                 liEvenement.add(rr);
             }
             return liEvenement;
+
         } catch (SQLException ex) {
             Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -236,6 +247,7 @@ String sql="select * from evenement";
     }  
      
      
+
  /*  public void modifierEvenement(Evenement E) {
         String req = "UPDATE Region SET date_debut=?, date_fin=?, lieu=? ,description=? WHERE lieu=?";
         PreparedStatement pst;
@@ -243,13 +255,19 @@ String sql="select * from evenement";
             pst = cnxx.prepareStatement(req);
             pst.setString(1, "bizerte");
             pst.setString(2, "rtrtrtrt");
+
             pst.setString(3, "C:\\Users\\Bizerte\\Pictures\\Saved Pictures\\img.jpg");
             pst.setString(4, "bizerte");
+
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+
     }
+
+
+
  /*modifier Evenement
     public void modifierEvenement(Evenement e) {
         String reqmodif = "UPDATE evenement SET date_debut='" + e.getDate_debut() + "',date_fin='" + e.getDate_fin() + "',lieu='" + e.getLieu() + "',description='" + e.getDescription() + "'";
@@ -278,8 +296,11 @@ String sql="select * from evenement";
             s.getErrorCode();
             
            System.out.println("produit nom supprimé");
+
         }
         
+
+
     
     }
     
@@ -304,14 +325,28 @@ String sql="select * from evenement";
                            listRegion.add(rr);
                     }
                       return listRegion;
+
         } catch (SQLException ex) {
             Logger.getLogger(RegionCrud.class.getName()).log(Level.SEVERE, null, ex);
         }
         return listRegion;
     }
      */
-/*
-    public void ajouterEvenement(ReservEvenement re) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
+
+   
+    public int cherchebynomev(String s) {
+        int a = 0 ; 
+        try {
+            String reqid="Select id from evenement where idevent =?";
+            PreparedStatement pst =cnxx.prepareStatement(reqid);
+               pst.setString(1,s);
+               ResultSet rs=pst.executeQuery();
+               if (rs.first()){
+                   a=rs.getInt("idevent");
+               }
+        } catch (SQLException ex) {
+            Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return a ;
+    }
 }

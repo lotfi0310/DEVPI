@@ -1,4 +1,4 @@
-    /*
+     /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,16 +15,23 @@ public class Evenement {
     private int id;
     private String  nom;
     private Date date_debut;
+
+   
     private Date date_fin;
     private String lieu;
     private String description;
     private String Status;
-  //   private String image;
+  private int iduser;
     private int capacite;
     public Evenement(int id, String nom) {
         this.id = id;
         this.nom = nom;
     }
+
+    public Evenement(String nom) {
+        this.nom = nom;
+    }
+    
    
      public Evenement(){
          
@@ -145,6 +152,14 @@ public class Evenement {
         this.capacite = capacite;
     }
 
+     public int getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(int iduser) {
+        this.iduser = iduser;
+    }
+     
     @Override
     public String toString() {
         return "Evenement{" + "id=" + id + ", nom=" + nom + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", lieu=" + lieu + ", description=" + description + ", Status=" + Status + ", capacite=" + capacite + '}';

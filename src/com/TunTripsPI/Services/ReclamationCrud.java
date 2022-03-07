@@ -253,7 +253,7 @@ return email ;
     
 //admin consulte all Reclam
 
-    public List<Reclamation> DisplayAllReclamation() {
+    public ArrayList<Reclamation> DisplayAllReclamation() {
 
         ArrayList<Reclamation> mesrec = new ArrayList<Reclamation>();
         String reqmesrec = "SELECT * FROM reclamation ";
@@ -261,11 +261,13 @@ return email ;
         try {
             st = cnxx.createStatement();
             ResultSet rs = st.executeQuery(reqmesrec);
-
             while (rs.next()) {
-               Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),rs.getDate("date"), rs.getBoolean("etat"));
+                             Date d= rs.getDate("date");
+                             
+               Reclamation re = new Reclamation(rs.getInt("idrec"), rs.getInt("id"),rs.getInt("idevent"),rs.getInt("idheberg"),rs.getInt("idtransport"),rs.getString("contenu"),d, rs.getBoolean("etat"));
                 mesrec.add(re);
                 System.out.println(re);
+               
                 
             }
             return mesrec;
