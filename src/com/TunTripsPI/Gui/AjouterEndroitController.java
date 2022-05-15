@@ -67,7 +67,7 @@ public class AjouterEndroitController implements Initializable {
     private TextField tfLatitude;
     String s;
 
-    ObservableList<String> TypeList = FXCollections.observableArrayList("Monument", "Musée", "Café", "Restaurant");
+    ObservableList<String> TypeList = FXCollections.observableArrayList("Monuments", "Musées", "Cafés", "Restaurants");
     @FXML
     private TextField txtregid;
 

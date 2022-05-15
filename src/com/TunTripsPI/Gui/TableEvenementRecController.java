@@ -77,6 +77,8 @@ public class TableEvenementRecController implements Initializable {
     private AnchorPane listeev;
     @FXML
     private TextField txtidus;
+    @FXML
+    private TextField txtiddev;
   public TableEvenementRecController(){
        cnxx = MyConnection.getInstance().getCnx();
   }
@@ -90,7 +92,7 @@ public class TableEvenementRecController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
+   
        
            
            EvenementCrud uc=new EvenementCrud();

@@ -100,7 +100,7 @@ public class ModifierRegionController implements Initializable {
                                   
                  
                 InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("photo"));
-                Image image = new Image(inputStream);
+                Image image = new Image(inputStream, 800, 800, false, false);
 
                 myImageView.setImage(image);
 
@@ -219,4 +219,45 @@ public class ModifierRegionController implements Initializable {
     @FXML
     private void actionPerformed(ActionEvent event) {
     }
+    
+    
+    @FXML
+    private void listDesRegions(ActionEvent event) {
+         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionList.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    myImageView.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
+    @FXML
+    private void acceuil(ActionEvent event) {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    myImageView.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
+    @FXML
+    private void listeve(ActionEvent event) {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("tableevenements.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    myImageView.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
 }

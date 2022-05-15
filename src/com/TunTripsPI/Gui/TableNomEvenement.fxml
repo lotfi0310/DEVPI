@@ -13,7 +13,7 @@
           <TableColumn fx:id="nomevenement" prefWidth="242.4000244140625" text="        NOM EVENEMENT" />
         </columns>
       </TableView>
-      <TextField fx:id="txtidsimpleuser" layoutX="37.0" layoutY="25.0" />
+      <TextField fx:id="txtidsimpleuser" layoutX="37.0" layoutY="25.0" visible="false" />
       <Button fx:id="btnreserv" layoutX="274.0" layoutY="294.0" mnemonicParsing="false" onMouseClicked="#reserver" text="RESERVER" />
    </children>
 </AnchorPane>

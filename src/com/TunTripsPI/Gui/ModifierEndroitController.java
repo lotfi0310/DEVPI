@@ -88,24 +88,19 @@ String s ;
       
     Connection cnxx = MyConnection.getInstance().getCnx();
             String req = "SELECT * FROM endroit WHERE id = ?";
-
+            
             PreparedStatement pst;
             try {
-                //int iddd = Integer.parseInt(tfid.getText());
+               
                 pst = cnxx.prepareStatement(req);
                 pst.setInt(1, idd);
                 ResultSet resulSet = pst.executeQuery();
                 if (resulSet.first()) {
-                 /*  
-                    Blob blob = resulSet.getBlob(1);
-                    InputStream inputStream = blob.getBinaryStream();
-                    Image image = new Image(inputStream);               
-                    myImageView.setImage(image);
-                    */
+                
                                   
                  
                 InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("image"));
-                Image image = new Image(inputStream);
+                Image image = new Image(inputStream ,800, 800, false, false);
 
                 myImageView1.setImage(image);
                     tfDescription.setText(resulSet.getString("description"));
@@ -148,7 +143,7 @@ String s ;
             System.out.println("Error: " + ex.getMessage());
         }
     }
-
+/*
     private void deleteregion(ActionEvent event) {
 
         int id = Integer.parseInt(tfid.getText());
@@ -170,7 +165,7 @@ String s ;
         }
 
     }
-
+*/
     private void loadimage(ActionEvent event) {
        
             Connection cnxx = MyConnection.getInstance().getCnx();
@@ -185,7 +180,7 @@ String s ;
                 if (resulSet.first()) {
                     Blob blob = resulSet.getBlob(1);
                     InputStream inputStream = blob.getBinaryStream();
-                    Image image = new Image(inputStream,314, 297, false, false);
+                    Image image = new Image(inputStream,600, 600, false, false);
                     myImageView1.setImage(image);
 
                 }
@@ -224,14 +219,17 @@ String s ;
                 Logger.getLogger(AjouterUneRegionController.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
-
+public static boolean isEmpty(ImageView imageView) {
+    if (imageView.getImage() == null){ System.out.println("t");}
+    return true;
+}
     @FXML
     private void saveChanges(ActionEvent event) throws FileNotFoundException {
         
-        
-        
-        
-            try {
+          boolean emp =  isEmpty(myImageView1);
+      
+        if (emp == true){
+             try {
             
             Connection cnxx = MyConnection.getInstance().getCnx();
 
@@ -277,6 +275,9 @@ String s ;
             System.err.println(ex.getMessage());
           }
         
+            
+        }
+           
         
       
 

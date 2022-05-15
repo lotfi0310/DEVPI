@@ -16,10 +16,12 @@
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/GererUserAdmin.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenementRecController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AjouterReclamationController.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ValiderCompte.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/UserRegionDetailsController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Reservation.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/Evenement.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AcceuilController.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/TableEvenement.fxml</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AddReservatioController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/HomePage.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ListController.java</file>
@@ -37,6 +39,7 @@
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/entities/ReservEvenement.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/AddEvenementController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/ProfilUserController.java</file>
+            <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/Acceuil.fxml</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Services/MailerService.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/Gui/UserRegionListController.java</file>
             <file>file:/C:/Users/Lotfi/Documents/NetBeansProjects/TunTrips/src/com/TunTripsPI/TestGlob/MainTest.java</file>

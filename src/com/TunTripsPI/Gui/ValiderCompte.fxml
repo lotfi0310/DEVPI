@@ -5,11 +5,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="blue-panel" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ValiderCompteController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="blue-panel" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.ValiderCompteController">
    <children>
-      <TextField fx:id="txtvalidemail" layoutX="203.0" layoutY="248.0" prefHeight="25.0" prefWidth="478.0" />
-      <Button layoutX="401.0" layoutY="326.0" mnemonicParsing="false" onAction="#validerEmail" text="Envoyer" />
-      <Hyperlink fx:id="linknewcodemail" layoutX="350.0" layoutY="289.0" text="Demander un nouvau code ?" />
+      <TextField fx:id="txtvalidemail" layoutX="444.0" layoutY="343.0" prefHeight="25.0" prefWidth="478.0" />
+      <Button layoutX="571.0" layoutY="432.0" mnemonicParsing="false" onAction="#validerEmail" prefHeight="27.0" prefWidth="222.0" styleClass="btn" stylesheets="@styles.css" text="Envoyer" />
+      <Hyperlink fx:id="linknewcodemail" layoutX="606.0" layoutY="397.0" text="Demander un nouvau code ?" />
       <TextField fx:id="txtem" editable="false" layoutX="64.0" layoutY="28.0" visible="false" />
    </children>
 </AnchorPane>

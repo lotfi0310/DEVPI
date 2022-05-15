@@ -51,8 +51,6 @@ public class UserRegionListController implements Initializable {
     private VBox vboxx;
     @FXML
     private Button btnVillesEtCulture;
-    @FXML
-    private FontAwesomeIcon close;
 
     /**
      * Initializes the controller class.
@@ -79,25 +77,16 @@ public class UserRegionListController implements Initializable {
                 Image img = new Image(inputStream);
                 BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
                 Background background = new Background(backgroundImage);
-                // ImageView view = new ImageView(img);
-                //   view.setFitHeight(300);
-                // view.setFitWidth(722);
-
-                //view.setPreserveRatio(true);
-                //Creating a Button
+                
                 Button button = new Button();
-                ////// //Setting the location of the button
-                //  button.setTranslateX(200);
-                // button.setTranslateY(25);
-                //Setting the size of the button
-                button.setPrefWidth(722);
-                button.setPrefHeight(100);
-                //Setting a graphic to the button
-                // button.setGraphic(view);
+                
+                button.setPrefWidth(1360);
+                button.setPrefHeight(150);
+            
                 button.setBackground(background);
                 
                 button.setText(resulSet.getString("nom"));
-                Font font = new Font(50); //Button font's size should increase to 40
+                Font font = new Font(70); //Button font's size should increase to 40
                 button.setFont(font);
                 button.setStyle("-fx-text-fill: #ffffff ");
                  
@@ -175,6 +164,45 @@ public class UserRegionListController implements Initializable {
 
     @FXML
     private void listDesRegions(ActionEvent event) {
+         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionList.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    vboxx.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
+    @FXML
+    private void acceuil(ActionEvent event) {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    vboxx.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
+    @FXML
+    private void listeve(ActionEvent event) {
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("tableevenements.fxml"));
+                                try {
+
+                                    Parent root = Loader.load();
+
+                                    vboxx.getScene().setRoot(root);
+                                } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+    }
+
+    @FXML
+    private void transport(ActionEvent event) {
     }
 
 }

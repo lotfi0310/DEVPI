@@ -258,7 +258,7 @@ private AnchorPane frame_Userrec;
 				} else if (u.getPrenom().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
-				else if (String.valueOf(u.getEmail()).indexOf(lowerCaseFilter)!=-1)
+				else if (u.getEmail().toLowerCase().indexOf(lowerCaseFilter)!=-1)
 				     return true;
 				     
                                 else if (String.valueOf(u.getId()).indexOf(lowerCaseFilter)!=-1)
@@ -372,11 +372,9 @@ private AnchorPane frame_Userrec;
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 				
-				if (rec.getDate_rec().toLocaleString().indexOf(lowerCaseFilter) != -1 ) {
+				if (rec.getContenu().indexOf(lowerCaseFilter) != -1 ) {
 					return true; // Filter matches first name.
 				} 
-				else if (String.valueOf(rec.getIduser()).indexOf(lowerCaseFilter)!=-1)
-				     return true;
 				
                                 else 
                                     return false ;

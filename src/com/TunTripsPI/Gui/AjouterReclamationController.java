@@ -69,12 +69,13 @@ public class AjouterReclamationController implements Initializable {
 btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
     @Override
     public void handle(MouseEvent event) {
-      FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenementRec.fxml"));
+      FXMLLoader Loader = new FXMLLoader(getClass().getResource("Acceuil.fxml"));
                                              Parent root;
                                             try {
                                                 root = Loader.load();
-                                                 TableEvenementRecController pc = Loader.getController();
+                                                 AcceuilController pc = Loader.getController();
                                                 btnprecedentrec.getScene().setRoot(root);
+                                                pc.setTxtUserID(txtUserId.getText());
           }catch(Exception e){ System.out.println("error");
               
           }}

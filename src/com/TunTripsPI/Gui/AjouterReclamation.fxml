@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -13,13 +15,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="766.0" prefWidth="1366.0" styleClass="parent" stylesheets="@homepage.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.AjouterReclamationController">
+<AnchorPane id="AnchorPane" prefHeight="766.0" prefWidth="1366.0" styleClass="modal" stylesheets="@stylee.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.AjouterReclamationController">
    <children>
       <TabPane prefHeight="772.0" prefWidth="1367.0" tabClosingPolicy="ALL_TABS">
         <tabs>
           <Tab text="AjouterReclamationEvenement">
                <content>
-                  <ImageView fx:id="btnprecedentrec" fitHeight="60.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="btnprecedentrec" fitHeight="95.0" fitWidth="363.0" layoutX="50.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" smooth="false" x="50.0" y="50.0">
                      <image>
                         <Image url="@../Image/backbtn.png" />
                      </image>
@@ -30,19 +32,31 @@
                </content></Tab>
         </tabs>
       </TabPane>
-      <Pane fx:id="lblafficheEvent" layoutX="96.0" layoutY="170.0" prefHeight="413.0" prefWidth="1162.0" style="-fx-border-radius: 20; -fx-background-radius: 20; -fx-border-color: #FFFFFF; -fx-border-width: 2;" stylesheets="@homepage.css">
+      <Pane fx:id="lblafficheEvent" layoutX="96.0" layoutY="170.0" prefHeight="461.0" prefWidth="1162.0">
          <children>
-            <TextArea fx:id="txtrec" layoutX="307.0" layoutY="121.0" prefHeight="184.0" prefWidth="541.0" styleClass="text-input" stylesheets="@homepage.css" />
+            <TextArea fx:id="txtrec" layoutX="55.0" layoutY="121.0" prefHeight="260.0" prefWidth="964.0" styleClass="text-input" stylesheets="@homepage.css" />
             <TextField fx:id="txttrec" disable="true" editable="false" layoutX="703.0" layoutY="41.0" visible="false" />
             <TextField fx:id="txtUserId" disable="true" editable="false" layoutX="703.0" layoutY="90.0" visible="false" />
-            <Button layoutX="729.0" layoutY="75.0" mnemonicParsing="false" onAction="#SelectRec" prefHeight="30.0" prefWidth="117.0" styleClass="blue-btn" stylesheets="@homepage.css" text="Selectionner" />
-            <Button layoutX="748.0" layoutY="326.0" mnemonicParsing="false" onAction="#envoyerrec" prefHeight="34.0" prefWidth="101.0" styleClass="blue-btn" stylesheets="@homepage.css" text="Envoyer ">
+            <Button layoutX="56.0" layoutY="72.0" mnemonicParsing="false" onAction="#SelectRec" prefHeight="30.0" prefWidth="141.0" stylesheets="@stylee.css" text="Selectionner">
+               <styleClass>
+                  <String fx:value="btn-close" />
+                  <String fx:value="btn-delete" />
+               </styleClass></Button>
+            <Button layoutX="898.0" layoutY="409.0" mnemonicParsing="false" onAction="#envoyerrec" prefHeight="34.0" prefWidth="101.0" styleClass="blue-btn" stylesheets="@homepage.css" text="Envoyer ">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Label graphicTextGap="10.0" layoutX="308.0" layoutY="72.0" prefHeight="33.0" prefWidth="382.0" text="Selectionner sur quelle Evenement vous souhaite faire une réclamation " textAlignment="CENTER" underline="true" />
+            <Label graphicTextGap="10.0" layoutX="277.0" layoutY="71.0" prefHeight="33.0" prefWidth="630.0" style="-fx-font-style: italic; -fx-font-size: 20; -fx-text-fill: red;" stylesheets="@stylee.css" text="Selectionner sur quelle Evenement vous souhaite faire une réclamation " textAlignment="CENTER" underline="true" />
          </children>
+         <styleClass>
+            <String fx:value="box" />
+            <String fx:value="trans-btn-blue-border" />
+         </styleClass>
+         <stylesheets>
+            <URL value="@stylee.css" />
+            <URL value="@homepage.css" />
+         </stylesheets>
       </Pane>
    </children>
 </AnchorPane>

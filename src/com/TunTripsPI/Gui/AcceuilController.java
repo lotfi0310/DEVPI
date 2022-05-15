@@ -121,7 +121,7 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                            TableNomEvenementController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
-                                                pc.seidusers(""+txtu.getText());
+                                                pc.seidusers(txtu.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }

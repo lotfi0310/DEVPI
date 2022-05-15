@@ -35,13 +35,12 @@ public class FirstWindow extends Application {
             Parent root = FXMLLoader.load(getClass().getResource("UserRegionList.fxml"));
                     Scene scene = new Scene(root);
                   
-                    
-
+      
                     //primaryStage.setTitle("List region");
                     primaryStage.setScene(scene);
-                    primaryStage.initStyle(StageStyle.TRANSPARENT);
+                   // primaryStage.initStyle(StageStyle.TRANSPARENT);
                 //   primaryStage.setResizable(false);
-               //   primaryStage.setFullScreen(true);
+          //   primaryStage.setFullScreen(true);
                     primaryStage.show();
                     
         } catch (IOException ex) {

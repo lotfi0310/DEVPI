@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DialogPane?>
@@ -40,9 +41,9 @@
                               <Insets />
                            </opaqueInsets>
                         </TableView>
-                        <HBox layoutX="1.0" layoutY="1.0" prefHeight="76.0" prefWidth="1366.0" style="-fx-background-color: #8E44AD;">
+                        <HBox layoutX="1.0" layoutY="1.0" prefHeight="76.0" prefWidth="1366.0" styleClass="vbox" stylesheets="@stylee.css">
                            <children>
-                              <Label id="search" prefHeight="30.0" prefWidth="99.0" stylesheets="@newCascadeStyleSheet.css" text="Search Box">
+                              <Label prefHeight="30.0" prefWidth="72.0" style="-fx-background-color: green;" styleClass="searchbox" stylesheets="@stylee.css" text="Search Box">
                                  <HBox.margin>
                                     <Insets left="50.0" top="25.0" />
                                  </HBox.margin>
@@ -56,19 +57,23 @@
                         </HBox>
                         <DialogPane fx:id="Dialogboxuser" layoutX="-1.0" layoutY="577.0" prefHeight="198.0" prefWidth="1368.0" visible="false">
                            <content>
-                              <HBox prefHeight="0.0" prefWidth="1368.0" style="-fx-background-color: #8E44AD;">
+                              <HBox prefHeight="0.0" prefWidth="1368.0" styleClass="vbox" stylesheets="@stylee.css">
                                  <children>
-                                    <Button fx:id="btnconfirmsippuser" mnemonicParsing="false" text="Confirmer ">
+                                    <Button fx:id="btnconfirmsippuser" mnemonicParsing="false" stylesheets="@stylee.css" text="Confirmer ">
                                        <HBox.margin>
                                           <Insets left="590.0" right="20.0" />
                                        </HBox.margin>
+                                       <styleClass>
+                                          <String fx:value="btn" />
+                                          <String fx:value="btn-delete" />
+                                       </styleClass>
                                     </Button>
-                                    <Button fx:id="btnannulersuppuser" mnemonicParsing="false" prefWidth="79.0" text="Annuler " />
+                                    <Button fx:id="btnannulersuppuser" mnemonicParsing="false" prefWidth="79.0" styleClass="btn-delete" stylesheets="@stylee.css" text="Annuler " />
                                  </children>
                               </HBox>
                            </content>
                            <header>
-                              <Label prefHeight="30.0" prefWidth="277.0" style="-fx-background-color: #8E44AD;" text="Voulez vous vraiment supprimer l'utilisateur ?">
+                              <Label prefHeight="30.0" prefWidth="277.0" style="-fx-background-color: green;" styleClass="vbox" stylesheets="@stylee.css" text="Voulez vous vraiment supprimer l'utilisateur ?">
                                  <padding>
                                     <Insets left="560.0" />
                                  </padding>
@@ -104,7 +109,7 @@
                               <TableColumn fx:id="etattrait" prefWidth="131.0" text="Etat" />
                           </columns>
                         </TableView>
-                        <VBox fx:id="vbtrait" layoutX="873.0" layoutY="-63.0" prefHeight="768.0" prefWidth="492.0" style="-fx-background-color: #8E44AD;" visible="false">
+                        <VBox fx:id="vbtrait" layoutX="873.0" layoutY="-63.0" prefHeight="768.0" prefWidth="492.0" styleClass="modal" stylesheets="@stylee.css" visible="false">
                            <children>
                               <Label prefHeight="90.0" prefWidth="449.0" style="-fx-text-fill: RED; -fx-font-size: 50;" text="Traiter Réclamation ">
                                  <VBox.margin>
@@ -123,9 +128,9 @@
                               </Button>
                            </children>
                         </VBox>
-                        <HBox layoutX="-4.0" layoutY="-3.0" prefHeight="84.0" prefWidth="1366.0" style="-fx-background-color: #8E44AD;">
+                        <HBox layoutX="-4.0" layoutY="-3.0" prefHeight="84.0" prefWidth="1366.0" styleClass="vbox" stylesheets="@stylee.css">
                            <children>
-                              <Label prefHeight="26.0" prefWidth="149.0" text="Search Reclamation">
+                              <Label prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: green;" styleClass="searchbox" stylesheets="@stylee.css" text="Search Reclamation">
                                  <HBox.margin>
                                     <Insets left="50.0" top="25.0" />
                                  </HBox.margin>
@@ -137,11 +142,11 @@
                               </TextField>
                            </children>
                         </HBox>
-                        <HBox fx:id="dialog4" layoutX="-3.0" layoutY="566.0" prefHeight="108.0" prefWidth="1372.0" style="-fx-background-color: #8E44AD;" visible="false">
+                        <HBox fx:id="dialog4" layoutX="-3.0" layoutY="602.0" prefHeight="106.0" prefWidth="1372.0" styleClass="vbox" stylesheets="@stylee.css" visible="false">
                            <children>
-                              <Button fx:id="btnsp" mnemonicParsing="false" prefHeight="62.0" prefWidth="140.0" text="Supprimer">
+                              <Button fx:id="btnsp" mnemonicParsing="false" prefHeight="62.0" prefWidth="140.0" styleClass="btn-delete" stylesheets="@stylee.css" text="Supprimer">
                                  <HBox.margin>
-                                    <Insets left="300.0" right="40.0" top="20.0" />
+                                    <Insets left="250.0" right="40.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                               <Label prefHeight="32.0" prefWidth="157.0" style="-fx-text-fill: #FFFFF;" text="Choisir le type d'operation ">
@@ -149,14 +154,14 @@
                                     <Insets bottom="20.0" top="20.0" />
                                  </HBox.margin>
                               </Label>
-                              <Button fx:id="btntrait" mnemonicParsing="false" prefHeight="64.0" prefWidth="166.0" text="Traiter">
+                              <Button fx:id="btntrait" mnemonicParsing="false" prefHeight="64.0" prefWidth="148.0" styleClass="btn-delete" stylesheets="@stylee.css" text="Traiter">
                                  <HBox.margin>
                                     <Insets left="40.0" top="20.0" />
                                  </HBox.margin>
                               </Button>
                            </children>
                         </HBox>
-                        <AnchorPane fx:id="dialog3" layoutX="276.0" layoutY="177.0" minHeight="0.0" minWidth="0.0" prefHeight="146.0" prefWidth="344.0" visible="false">
+                        <AnchorPane fx:id="dialog3" layoutX="276.0" layoutY="177.0" minHeight="0.0" minWidth="0.0" prefHeight="146.0" prefWidth="344.0" styleClass="vbox" stylesheets="@stylee.css" visible="false">
                            <children>
                               <Label layoutX="40.0" layoutY="61.0" style="-fx-text-fill: red; -fx-font-size: 17;" text="Veuillez selectionner une ligne valide" />
                            </children>
@@ -166,12 +171,12 @@
           </Tab>
             <Tab fx:id="event" text="Evenements">
               <content>
-                <AnchorPane fx:id="eventsView" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="eventsView" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="modal" stylesheets="@stylee.css" />
               </content>
             </Tab>
             <Tab text="Region">
               <content>
-                <AnchorPane fx:id="regview" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="regview" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="modal" stylesheets="@stylee.css" />
               </content>
             </Tab>
         </tabs>
