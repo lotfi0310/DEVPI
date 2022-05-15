@@ -64,7 +64,7 @@ public class UserCruds {
     public String ajouterUser(User u) {
  String s=""; 
         
-        String req = "INSERT INTO User (nom,prenom,email,passwd,role,country,etat) VALUES (?,?,?,?,?,?,?)";
+        String req = "INSERT INTO User (nom,prenom,email,passwd,role,country,valide,etat) VALUES (?,?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             
@@ -75,7 +75,8 @@ public class UserCruds {
             pst.setString(4, hashagePWD(u.getPasswd()));
             pst.setString(5, u.getRole());
             pst.setString(6, u.getCountry());
-            pst.setBoolean(7,true);
+            pst.setBoolean(7,false);
+            pst.setBoolean(8,true);
             if (ifuserExiste(u.getEmail())) {
                 System.out.println("utilisateur existe deja tu peux pas ajoutee  ");
                 
@@ -173,7 +174,7 @@ return s;
             st.executeQuery(reqinfoprofil);
             rs = st.getResultSet();
             System.out.println(rs.next());
-            User uu = new User(rs.getInt("id"),rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("country"), rs.getString("role"),rs.getBlob("photo"),rs.getString("num_tel"),rs.getBoolean("etat"));
+            User uu = new User(rs.getInt("id"),rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("passwd"), rs.getString("country"), rs.getString("role"),rs.getString("photo"),rs.getString("num_tel"),rs.getBoolean("etat"));
             listinfo.add(uu);
             
 
@@ -236,7 +237,7 @@ return s;
             while(rs.next()) {
                 
                 u = new User(rs.getInt("id"),rs.getString("nom"),rs.getString("prenom"),rs.getString("email"),
-                rs.getString("passwd"),rs.getString("country"),rs.getString("role"),rs.getBlob("photo"),
+                rs.getString("passwd"),rs.getString("country"),rs.getString("role"),rs.getString("photo"),
                 rs.getString("num_tel"),rs.getBoolean("etat"));
                 listeuser.add(u);
             } 
@@ -259,15 +260,15 @@ return s;
             ResultSet rs =st.executeQuery(reqrole);
             if(rs.first()){
              String r =rs.getString("role"); 
-             if(r.equals("Admin"))
+             if(r.equals("ROLE_ADMIN"))
              {
                  role=1;
              }
-             if(r.equals("Fournisseur"))
+             if(r.equals("ROLE_FOURNISSEUR"))
              {
                  role=2;
              }
-             if(r.equals("Simple User")){
+             if(r.equals("ROLE_USER")){
                  role=3;
                  
              }

@@ -47,7 +47,7 @@
                   <Insets />
                </opaqueInsets>
             </Button>
-            <Label graphicTextGap="10.0" layoutX="277.0" layoutY="71.0" prefHeight="33.0" prefWidth="630.0" style="-fx-font-style: italic; -fx-font-size: 20; -fx-text-fill: red;" stylesheets="@stylee.css" text="Selectionner sur quelle Evenement vous souhaite faire une réclamation " textAlignment="CENTER" underline="true" />
+            <Label graphicTextGap="10.0" layoutX="211.0" layoutY="71.0" prefHeight="33.0" prefWidth="630.0" style="-fx-font-style: italic; -fx-font-size: 20; -fx-text-fill: red;" stylesheets="@stylee.css" text="Selectionner sur quelle Evenement vous souhaite faire une réclamation " textAlignment="CENTER" underline="true" />
          </children>
          <styleClass>
             <String fx:value="box" />

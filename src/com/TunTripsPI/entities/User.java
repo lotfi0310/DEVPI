@@ -21,7 +21,7 @@ public class User{
     private String passwd ; 
     private String country; 
     private String role; 
-    private Blob photo;
+    private String photo;
     private String num_tel;
     private boolean  valide;
     private boolean etat; 
@@ -30,7 +30,7 @@ public class User{
      
     }
 
-    public User(String nom, String prenom, String email, String passwd, String country, String role, Blob photo,String num_tel,boolean valide,boolean etat) {
+    public User(String nom, String prenom, String email, String passwd, String country, String role, String photo,String num_tel,boolean valide,boolean etat) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
@@ -43,7 +43,7 @@ public class User{
         this.etat=etat; 
     }
 
-    public User(int id,String nom, String prenom, String email, String passwd, String country, String role, Blob photo, String num_tel,boolean  etat ) {
+    public User(int id,String nom, String prenom, String email, String passwd, String country, String role, String photo, String num_tel,boolean  etat ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -55,7 +55,7 @@ public class User{
         this.num_tel = num_tel;
         this.etat=etat;
     }
- public User(String nom, String prenom, String email, String passwd, String country, String role, Blob photo, String num_tel ) {
+ public User(String nom, String prenom, String email, String passwd, String country, String role, String photo, String num_tel ) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -152,11 +152,11 @@ public class User{
         this.role = role;
     }
 
-    public Blob getPhoto() {
+    public String getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Blob photo) {
+    public void setPhoto(String photo) {
         this.photo = photo;
     }
 

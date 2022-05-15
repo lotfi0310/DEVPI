@@ -58,6 +58,8 @@ public class UserRegionDetailsController implements Initializable {
     private Button Cafés;
     @FXML
     private Button Restaurants;
+    @FXML
+    private TextField txtuu;
 
     /**
      * Initializes the controller class.
@@ -244,6 +246,10 @@ public class UserRegionDetailsController implements Initializable {
                                 } catch (IOException ex) {
                                     System.out.println("Error: " + ex.getMessage());
                                 }
+    }
+
+    void settextuuu(String text) {
+this.txtuu.setText(text); 
     }
 
 

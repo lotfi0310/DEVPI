@@ -6,6 +6,7 @@
 package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.Utils.SessionManager;
 import com.TunTripsPI.entities.User;
 import com.gluonhq.charm.glisten.control.Icon;
 import doryan.windowsnotificationapi.fr.Notification;
@@ -25,6 +26,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -36,8 +38,11 @@ public class AcceuilController implements Initializable {
 
     @FXML
     private Button btnreclamations;
+   
     @FXML
-    private TextField txtu;
+    private Button btnlogout;
+    @FXML
+    private Pane frameacc;
 
     /**
      * Initializes the controller class.
@@ -56,7 +61,7 @@ public class AcceuilController implements Initializable {
                                                  AjouterReclamationController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
                                                
-                                                pc.setTxtUserID(""+txtu.getText().toString());
+                                               
                                                 
                                             } catch (IOException ex) {
                                                 Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,9 +70,7 @@ public class AcceuilController implements Initializable {
         });
     }    
 
-    void setTxtUserID(String string) {
-        this.txtu.setText(string);
-    }
+    
 
     @FXML
     private void ProfilUser(ActionEvent event) {
@@ -77,8 +80,6 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                                  ProfilUserController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
-                                              pc.setData(Integer.parseInt(txtu.getText().toString()));
-                                              pc.setuid(txtu.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -87,7 +88,7 @@ public class AcceuilController implements Initializable {
     @FXML
     private void btnopenEvent(MouseEvent event) {
         UserCruds uc =new UserCruds(); 
-              int r=uc.getRole(Integer.parseInt(txtu.getText()));
+              int r=uc.getRole(SessionManager.id);
               if(r==1){
                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("TableEvenement.fxml"));
                                              Parent root;
@@ -108,7 +109,6 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                               AddEvenementController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
-                                                pc.setidfourevent(txtu.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -121,7 +121,6 @@ public class AcceuilController implements Initializable {
                                                 root = Loader.load();
                                            TableNomEvenementController pc = Loader.getController();
                                                 btnreclamations.getScene().setRoot(root);
-                                                pc.seidusers(txtu.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -136,7 +135,7 @@ public class AcceuilController implements Initializable {
     @FXML
     private void Region(ActionEvent event) {
         UserCruds uc =new UserCruds();
-        int r=uc.getRole(Integer.parseInt(txtu.getText()));
+        int r=uc.getRole(SessionManager.id);
         if(r==2||r==3){
          FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionList.fxml"));
                                              Parent root;
@@ -149,6 +148,7 @@ public class AcceuilController implements Initializable {
                                             }
                                             
     }
+        //
         
     }
 }

@@ -6,6 +6,7 @@
 package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Utils.MyConnection;
+import com.TunTripsPI.Utils.SessionManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -51,13 +53,15 @@ public class UserRegionListController implements Initializable {
     private VBox vboxx;
     @FXML
     private Button btnVillesEtCulture;
+    @FXML
+    private TextField txtuid;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         // TODO
         Connection cnxx = MyConnection.getInstance().getCnx();
         String req = "SELECT * FROM region ";
@@ -108,7 +112,8 @@ public class UserRegionListController implements Initializable {
                             Parent root = Loader.load();
 
                             btnVillesEtCulture.getScene().setRoot(root);
-                        } catch (IOException ex) {
+                            UserRegionDetailsController urd=Loader.getController();
+                            System.out.println(SessionManager.id);                        } catch (IOException ex) {
                             System.out.println("Error: " + ex.getMessage());
                         }
 
@@ -183,6 +188,8 @@ public class UserRegionListController implements Initializable {
                                     Parent root = Loader.load();
 
                                     vboxx.getScene().setRoot(root);
+                                    AcceuilController ac=Loader.getController();
+                                  
                                 } catch (IOException ex) {
                                     System.out.println("Error: " + ex.getMessage());
                                 }
@@ -203,6 +210,10 @@ public class UserRegionListController implements Initializable {
 
     @FXML
     private void transport(ActionEvent event) {
+    }
+
+    void settxttuser(String text) {
+        this.txtuid.setText(text);
     }
 
 }

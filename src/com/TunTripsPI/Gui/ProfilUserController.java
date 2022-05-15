@@ -8,6 +8,7 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.Utils.MyConnection;
+import com.TunTripsPI.Utils.SessionManager;
 import com.TunTripsPI.entities.User;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -88,7 +89,7 @@ String s;
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       //setData(Integer.parseInt(txtiduss.getText()));
+       setData(SessionManager.id);
 
     }    
 
@@ -100,14 +101,19 @@ FileChooser fileChooser = new FileChooser();
           
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
-       
+             fileChooser .setInitialDirectory(new File("C:\\"));
+                       
+
             String path = file.getAbsolutePath(); 
-              s = path;           
+            s=file.getName();
+             System.out.println(s);
          
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
                 txtmodifimageprofil.setImage(image);
+                
+                
             } catch (IOException ex) {
                 Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
             }       
@@ -128,12 +134,17 @@ FileChooser fileChooser = new FileChooser();
             ResultSet resulSet = pst.executeQuery();
             if (resulSet.first()) {
                 String nom=resulSet.getString("nom");
-               Blob blob = resulSet.getBlob("photo");
-                if(blob!=null){
-                        InputStream inputStream = blob.getBinaryStream();
-               Image image = new Image(inputStream);
-              txtmodifimageprofil.setImage(image);
-                }
+               String picname = resulSet.getString("photo");
+                if(picname!=null){
+                       BufferedImage img = null;
+try {
+    img = ImageIO.read(new File(picname));
+      BufferedImage bufferedImage = ImageIO.read(new File(picname));
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+                txtmodifimageprofil.setImage(image);
+} catch (IOException e) {
+}
+                 }
                 String prenom = resulSet.getString("prenom");
                 String num=resulSet.getString("num_tel");
                  email=resulSet.getString("email");
@@ -160,7 +171,6 @@ FileChooser fileChooser = new FileChooser();
                                                 root = Loader.load();
                                                  AcceuilController pc = Loader.getController();
                                                 btnpreced.getScene().setRoot(root);
-                                                 pc.setTxtUserID(txtiduss.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(AcceuilController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -177,10 +187,8 @@ FileChooser fileChooser = new FileChooser();
             PreparedStatement ps = cnxx.prepareStatement(req);
             
             
-            InputStream is = new FileInputStream(new File(s));
-            System.out.println("com.TunTripsPI.Gui.ProfilUserController.enregistrer() "+is);
-            ps.setBlob(1,is);
-            ps.setInt(2,Integer.parseInt(txtiduss.getText()));
+            ps.setString(1,s);
+            ps.setInt(2,SessionManager.id);
             ps.executeUpdate();
 
         } catch (SQLException ex) {
@@ -189,7 +197,7 @@ FileChooser fileChooser = new FileChooser();
         }
             User u=new User();
             UserCruds uc=new UserCruds();
-           u.setId(Integer.parseInt(txtiduss.getText()));
+           u.setId(SessionManager.id);
             u.setNom(txtModifNom.getText());
             u.setPrenom(txtModifPrenom.getText());
             u.setEmail(txtmodifemail.getText());

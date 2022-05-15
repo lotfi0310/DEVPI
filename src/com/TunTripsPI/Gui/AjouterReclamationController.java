@@ -7,6 +7,7 @@ package com.TunTripsPI.Gui;
 import java.time.LocalDateTime;  
 import java.time.format.DateTimeFormatter;  
 import com.TunTripsPI.Services.ReclamationCrud;
+import com.TunTripsPI.Utils.SessionManager;
 import com.TunTripsPI.entities.Reclamation;
 import com.TunTripsPI.entities.User;
 import com.sun.org.glassfish.gmbal.ParameterNames;
@@ -75,7 +76,6 @@ btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                                 root = Loader.load();
                                                  AcceuilController pc = Loader.getController();
                                                 btnprecedentrec.getScene().setRoot(root);
-                                                pc.setTxtUserID(txtUserId.getText());
           }catch(Exception e){ System.out.println("error");
               
           }}
@@ -95,7 +95,7 @@ btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
         r.setEtat(false);
         r.setIdevent(Integer.parseInt(txttrec.getText()));
         User u=new User();
-        u.setId(Integer.parseInt(txtUserId.getText()));
+        u.setId(SessionManager.id);
         rc.ajouterReclamationEvent(r,u);
                 Notifications notificationbuilder=Notifications.create().title("Alert").text("Réclamation Ajouter avec succées")
                         .graphic(null).hideAfter(javafx.util.Duration.seconds(10)).position(Pos.BASELINE_LEFT).onAction(new EventHandler<ActionEvent>() {
@@ -112,7 +112,6 @@ btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                                 root = Loader.load();
                                                  AcceuilController pc = Loader.getController();
                                                 lblafficheEvent.getScene().setRoot(root);
-                                                pc.setTxtUserID(txtUserId.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(TableEvenementRecController.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -135,7 +134,6 @@ btnprecedentrec.setOnMouseClicked(new EventHandler<MouseEvent>() {
                                                 root = Loader.load();
                                                  TableEvenementRecController pc = Loader.getController();
                                                 lblafficheEvent.getScene().setRoot(root);
-                                                pc.setTxtUserID(txtUserId.getText());
                                             } catch (IOException ex) {
                                                 Logger.getLogger(TableEvenementRecController.class.getName()).log(Level.SEVERE, null, ex);
                                             }

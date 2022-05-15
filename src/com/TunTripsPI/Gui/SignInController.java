@@ -6,6 +6,7 @@
 package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.UserCruds;
+import com.TunTripsPI.Utils.SessionManager;
 import com.TunTripsPI.entities.User;
 import java.io.IOException;
 import java.net.URL;
@@ -30,6 +31,7 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -49,6 +51,9 @@ public class SignInController implements Initializable {
     String num; 
     String country;
     String role;
+    Parent fxml;
+    Pane frameacc;
+
     @FXML
     private TextField txtmail;
     @FXML
@@ -96,6 +101,7 @@ public class SignInController implements Initializable {
 
             }
         });
+        
         btnauthentif.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -125,10 +131,11 @@ public class SignInController implements Initializable {
                                 if (rs.getBoolean("valide")) {
 
                                     if (rs.getBoolean("etat")) {
-                                
+                                     
+               
                                         String Typeauth = uc.Typeauthentification(rs);
                                         Stage primaryStage = new Stage();
-                                       if(Typeauth.equals("Admin")){
+                                       if(Typeauth.equals("ROLE_ADMIN")){
                                             FXMLLoader Loader = new FXMLLoader(getClass().getResource("GererUserAdmin.fxml"));
                                              Parent root;
                                             try {
@@ -146,7 +153,8 @@ public class SignInController implements Initializable {
                                                 root = Loader.load();
                                                  AcceuilController pc = Loader.getController();
                                                 btnauthentif.getScene().setRoot(root);
-                                                pc.setTxtUserID(""+id);
+                                                SessionManager.id=id;
+                                                System.out.println(SessionManager.id);
                                             } catch (IOException ex) {
                                                 Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);}}
                                           /* FXMLLoader Loader = new FXMLLoader(getClass().getResource("AjouterReclamation.fxml"));

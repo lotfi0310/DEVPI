@@ -373,7 +373,6 @@ public class SignUpController implements Initializable {
                 else if (!usr_name.getText().isEmpty()&&!usr_lastname.getText().isEmpty()&&!usr_email.getText().isEmpty()&&!usr_pass.getText().isEmpty()&&!usr_role.getValue().isEmpty())
              
                 {
-                                        e=usr_email.getText();
 
                 UserCruds uc=new UserCruds(); 
                 User u =new User(); 
@@ -383,6 +382,7 @@ public class SignUpController implements Initializable {
                 u.setPasswd(usr_pass.getText());
                 u.setRole(usr_role.getValue());
                 u.setCountry(countrybox.getText());
+                
                 if(uc.ifuserExiste(u.getEmail())){
                      JOptionPane.showMessageDialog(null," Bienvenu "+u.getNom()+" Email existe deja , essayer de s'authentifier ");
                 }
