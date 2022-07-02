@@ -9,7 +9,9 @@ import com.TunTripsPI.Services.RegionCrud;
 import com.TunTripsPI.Utils.MyConnection;
 import com.TunTripsPI.entities.Region;
 import static java.awt.SystemColor.text;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -21,6 +23,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,9 +35,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -67,6 +73,10 @@ public class ModifierRegionController implements Initializable {
     private Button btndelete;
     
     private boolean update;
+    String s ;
+String name ; 
+ File file;
+ BufferedImage bufferedImage;
 
     /**
      * Initializes the controller class.
@@ -79,7 +89,7 @@ public class ModifierRegionController implements Initializable {
     }
 
     
-    public void setData(String nom, String description, int idd) {
+    public void setData(String nom, String description, int idd) throws IOException {
         
     Connection cnxx = MyConnection.getInstance().getCnx();
             String req = "SELECT photo FROM region WHERE id = ?";
@@ -99,10 +109,10 @@ public class ModifierRegionController implements Initializable {
                     */
                                   
                  
-                InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("photo"));
-                Image image = new Image(inputStream, 800, 800, false, false);
-
-                myImageView.setImage(image);
+                                
+                   BufferedImage bufferedImage = ImageIO.read(new File("C:/Region/"+resulSet.getString("photo")));
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+               myImageView.setImage(image);
 
                 }
                 
@@ -117,7 +127,7 @@ public class ModifierRegionController implements Initializable {
     }
 
     @FXML
-    private void savechanges(ActionEvent event) {
+    private void savechanges(ActionEvent event) throws IOException {
         
         
         
@@ -125,7 +135,15 @@ public class ModifierRegionController implements Initializable {
         String nom = tfNomRegionm.getText();
         String desc = tfDescriptionm.getText();
         int id = Integer.parseInt(tfid.getText());
-        Region r1 = new Region(id, nom, desc);
+        
+         bufferedImage = ImageIO.read(file);
+            WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+            myImageView.setImage(image);
+             String Location="C:/Region/"+name;
+                String format="JPG";
+                ImageIO.write(bufferedImage, format, new File(Location));
+                
+        Region r1 = new Region(id, nom, desc,name);
         RegionCrud rc = new RegionCrud();
         rc.modifierRegion(r1);
 
@@ -218,6 +236,29 @@ public class ModifierRegionController implements Initializable {
 
     @FXML
     private void actionPerformed(ActionEvent event) {
+        
+         FileChooser fileChooser = new FileChooser();
+            
+            //Set extension filter
+            FileChooser.ExtensionFilter extFilterJPG = new FileChooser.ExtensionFilter("JPG files (*.jpg)", "*.JPG");
+            FileChooser.ExtensionFilter extFilterPNG = new FileChooser.ExtensionFilter("PNG files (*.png)", "*.PNG");
+            fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
+             
+            //Show open file dialog
+             file = fileChooser.showOpenDialog(null);
+       
+            String path = file.getAbsolutePath(); 
+              s = path;   
+              name=file.getName();
+         
+            try {
+                BufferedImage bufferedImage = ImageIO.read(file);
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+                
+                myImageView.setImage(image);
+            } catch (IOException ex) {
+                Logger.getLogger(AjouterUneRegionController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
     

@@ -6,28 +6,41 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="events" prefHeight="589.0" prefWidth="891.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableEvenementController">
+<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="modal" stylesheets="@stylee.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.TableEvenementController">
    <children>
-      <Label layoutX="277.0" layoutY="44.0" prefHeight="22.0" prefWidth="287.0" text="LISTES DES EVENEMENTS " textAlignment="CENTER" textFill="#d71515">
+      <Label layoutX="277.0" layoutY="44.0" prefHeight="22.0" prefWidth="287.0" style="-fx-font-style: italic;" text="LISTES DES EVENEMENTS " textAlignment="CENTER" textFill="#d71515">
          <font>
             <Font name="Bodoni MT Bold" size="18.0" />
          </font>
       </Label>
-      <TableView fx:id="tableevenement" layoutX="43.0" layoutY="80.0" onMouseClicked="#supprimer" prefHeight="262.0" prefWidth="754.0">
+      <TableView fx:id="tableevenement" layoutX="47.0" layoutY="89.0" prefHeight="539.0" prefWidth="1272.0" styleClass="trans-btn-border" stylesheets="@stylee.css">
         <columns>
-          <TableColumn fx:id="id" prefWidth="75.0" text="id" />
-          <TableColumn fx:id="nomevenement" prefWidth="75.0" text="nom" />
-            <TableColumn fx:id="datedebut" prefWidth="75.0" text="Date debut" />
-            <TableColumn fx:id="datefin" prefWidth="126.39996337890625" text="Date fin" />
-            <TableColumn fx:id="lieu" prefWidth="120.80001831054688" text="lieu" />
-            <TableColumn fx:id="descriotion" prefWidth="100.0" text="Description" />
-            <TableColumn fx:id="status" prefWidth="68.0" text="status" />
-            <TableColumn fx:id="capacite" prefWidth="73.60003662109375" text="capacite" />
+          <TableColumn fx:id="id" prefWidth="87.99999237060547" text="id" />
+          <TableColumn fx:id="nomevenement" prefWidth="128.0" text="nom" />
+            <TableColumn fx:id="datedebut" prefWidth="176.800048828125" text="Date debut" />
+            <TableColumn fx:id="datefin" prefWidth="184.00003051757812" text="Date fin" />
+            <TableColumn fx:id="lieu" prefWidth="163.199951171875" text="lieu" />
+            <TableColumn fx:id="descriotion" prefWidth="196.0" text="Description" />
+            <TableColumn fx:id="status" prefWidth="185.5999755859375" text="status" />
+            <TableColumn fx:id="capacite" prefWidth="150.4000244140625" text="capacite" />
         </columns>
       </TableView>
-      <Button fx:id="btncalculer" layoutX="64.0" layoutY="380.0" mnemonicParsing="false" onMouseClicked="#calculer" prefHeight="50.0" prefWidth="287.0" text="calculer le nombre des evenement " />
-      <TextField fx:id="nbrevenement" layoutX="371.0" layoutY="373.0" prefHeight="62.0" prefWidth="123.0" />
+      <Button fx:id="btnajouter" layoutX="811.0" layoutY="670.0" mnemonicParsing="false" onAction="#ajouter" prefHeight="62.0" prefWidth="295.0" text="AJOUTER" textFill="#d71515">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font></Button>
+      <Button fx:id="btncalculer" layoutX="65.0" layoutY="669.0" mnemonicParsing="false" onMouseClicked="#calculer" prefHeight="64.0" prefWidth="322.0" text="calculer le nombre des evenement " textFill="#dc1212">
+         <font>
+            <Font name="System Bold Italic" size="17.0" />
+         </font></Button>
+      <TextField fx:id="nbrevenement" layoutX="438.0" layoutY="671.0" prefHeight="60.0" prefWidth="346.0" />
+      <Pane fx:id="btnpane" layoutX="512.0" layoutY="219.0" prefHeight="67.0" prefWidth="274.0" styleClass="vbox" stylesheets="@stylee.css" visible="false">
+         <children>
+            <Button fx:id="btnsupprimer" layoutX="50.0" layoutY="17.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="76.0" styleClass="modal" stylesheets="@stylee.css" text="Supprimer" textFill="#c10b24" />
+            <Button fx:id="btnmodifier" layoutX="140.0" layoutY="16.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" styleClass="modal" stylesheets="@stylee.css" text="modifier" textFill="#c41b1b" />
+         </children></Pane>
    </children>
 </AnchorPane>

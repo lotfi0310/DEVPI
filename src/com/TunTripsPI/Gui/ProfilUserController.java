@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.Blob;
 import java.sql.Connection;
@@ -95,24 +96,23 @@ String s;
 
 
     @FXML
-    private void modifimageprofil(ActionEvent event) {
-FileChooser fileChooser = new FileChooser();
+    private void modifimageprofil(ActionEvent event) throws IOException {
+          FileChooser fileChooser = new FileChooser();
             
           
             //Show open file dialog
             File file = fileChooser.showOpenDialog(null);
-             fileChooser .setInitialDirectory(new File("C:\\"));
-                       
-
+      
             String path = file.getAbsolutePath(); 
-            s=file.getName();
-             System.out.println(s);
-         
+            s=file.getName(); 
+            
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
                 txtmodifimageprofil.setImage(image);
-                
+                String Location="C:/photo/"+s;
+                String format="PNG";
+                ImageIO.write(bufferedImage, format, new File(Location));
                 
             } catch (IOException ex) {
                 Logger.getLogger(ProfilUserController.class.getName()).log(Level.SEVERE, null, ex);
@@ -136,10 +136,8 @@ FileChooser fileChooser = new FileChooser();
                 String nom=resulSet.getString("nom");
                String picname = resulSet.getString("photo");
                 if(picname!=null){
-                       BufferedImage img = null;
 try {
-    img = ImageIO.read(new File(picname));
-      BufferedImage bufferedImage = ImageIO.read(new File(picname));
+                BufferedImage bufferedImage = ImageIO.read(new File("C:/photo/"+picname));
                 WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
                 txtmodifimageprofil.setImage(image);
 } catch (IOException e) {
@@ -162,6 +160,8 @@ try {
             
         
     }
+   
+
     @FXML
     private void precedent(ActionEvent event) {
        

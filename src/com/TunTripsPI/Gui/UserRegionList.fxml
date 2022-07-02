@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -52,6 +51,5 @@
             <VBox fx:id="vboxx" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="690.0" prefWidth="1130.0" />
          </content>
       </ScrollPane>
-      <TextField fx:id="txtuid" layoutX="260.0" layoutY="31.0" />
    </children>
 </AnchorPane>

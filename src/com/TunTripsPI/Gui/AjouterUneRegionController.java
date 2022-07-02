@@ -66,7 +66,9 @@ public class AjouterUneRegionController implements Initializable {
     private AnchorPane scenepane;
     @FXML
     private Button btnannuler;
+    public String name;
     /**
+     *
      * Initializes the controller class.
      */
     @Override
@@ -89,13 +91,17 @@ public class AjouterUneRegionController implements Initializable {
             File file = fileChooser.showOpenDialog(null);
        
             String path = file.getAbsolutePath(); 
-              s = path;           
+              s = path;   
+               name=file.getName();
          
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
                 WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
-                
+                 
                 myImageView.setImage(image);
+                String Location="C:/Region/"+name;
+                String format="JPG";
+                ImageIO.write(bufferedImage, format, new File(Location));
             } catch (IOException ex) {
                 Logger.getLogger(AjouterUneRegionController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -130,7 +136,7 @@ public class AjouterUneRegionController implements Initializable {
 
             ps.setString(1, tfNomRegion.getText());
             ps.setString(2, tfDescription.getText());
-            ps.setBlob(3, is);
+            ps.setString(3,name);
             ps.executeUpdate();
             
             RegionCrud rc = new RegionCrud();
@@ -170,7 +176,7 @@ public class AjouterUneRegionController implements Initializable {
     private void annuler(ActionEvent event) {
         
         
-            FXMLLoader Loader = new FXMLLoader(getClass().getResource("ConsulterListeRegion.fxml"));
+            FXMLLoader Loader = new FXMLLoader(getClass().getResource("List.fxml"));
         try {
 
             Parent root = Loader.load();

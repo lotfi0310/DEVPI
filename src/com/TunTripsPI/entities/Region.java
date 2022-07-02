@@ -17,7 +17,7 @@ public class Region {
     private int id ; 
     private String nom ; 
     private String description ;      
-    private Blob image;
+    private String image;
     
     public Region(){
         
@@ -37,14 +37,14 @@ public class Region {
         this.description = description;
     }
 
-    public Region(int id, String nom, String description, Blob image) {
+    public Region(int id, String nom, String description, String image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
         this.image = image;
     }
 
-    public Region(String nom, String description, Blob image) {
+    public Region(String nom, String description, String image) {
         this.nom = nom;
         this.description = description;
         this.image = image;
@@ -78,7 +78,7 @@ public class Region {
         return description;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
  
@@ -94,7 +94,7 @@ public class Region {
         this.description = description;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

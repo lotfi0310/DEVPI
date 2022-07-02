@@ -7,7 +7,6 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Services.EvenementCrud;
 import com.TunTripsPI.entities.Evenement;
-import com.TunTripsPI.entities.User;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
@@ -63,8 +62,6 @@ public class AddEvenementController implements Initializable {
     private DatePicker tfDatefin;
     @FXML
     private Button btnretourner;
-    @FXML
-    private TextField idfouraddevent;
     
    
   
@@ -122,11 +119,8 @@ public class AddEvenementController implements Initializable {
             e.setImage(tImage);
             e.setCapacite(tcapacite);*/
             Evenement e = new Evenement(tNom,dd1,dd2,tLieu,tDescription,Status,tcapacite);
-            User u =new User();
-           
-            u.setId(Integer.parseInt(idfouraddevent.getText()));
-            ec.ajouterEvenement(e,u);
             
+            ec.ajouterEvenement(e);
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetail.fxml"));
             try {
@@ -206,12 +200,6 @@ tfNom.getScene().setRoot(root);
             }
         
         
-        
-    }
-
-    void setidfourevent(String text) {
-
-        idfouraddevent.setText(text);
         
     }
 

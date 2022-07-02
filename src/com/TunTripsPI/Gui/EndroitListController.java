@@ -90,7 +90,7 @@ public class EndroitListController implements Initializable {
 
       ObservableList<Endroit> EndroitList = FXCollections.observableArrayList(); 
       
- ObservableList<String> TypeList = FXCollections.observableArrayList("Monument","Musée","Café", "Restaurant");
+ ObservableList<String> TypeList = FXCollections.observableArrayList("Monuments", "museum", "Cafes", "Restaurants ");
     @FXML
     private TextField txtregionid;
     
@@ -203,7 +203,7 @@ public class EndroitListController implements Initializable {
            
             
             
-            query = "SELECT * FROM endroit WHERE region_id = '"+idd+"' "  ;
+            query = "SELECT * FROM endroit WHERE region_id_id = '"+idd+"' "  ;
             preparedStatement = cnxx.prepareStatement(query);
             resultSet = preparedStatement.executeQuery();
 

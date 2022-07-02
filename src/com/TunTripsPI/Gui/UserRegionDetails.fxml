@@ -64,7 +64,7 @@
                   <Point3D />
                </rotationAxis>
             </Button>
-            <Button fx:id="Musées" mnemonicParsing="false" onAction="#getmusees" prefHeight="48.0" prefWidth="233.0" styleClass="trans-btn-border" text="Musées">
+            <Button fx:id="Museum" mnemonicParsing="false" onAction="#getmusees" prefHeight="48.0" prefWidth="233.0" styleClass="trans-btn-border" text="Musées">
                <font>
                   <Font size="22.0" />
                </font>
@@ -75,7 +75,7 @@
                   <Point3D />
                </rotationAxis>
             </Button>
-            <Button fx:id="Cafés" mnemonicParsing="false" onAction="#getcafes" prefHeight="48.0" prefWidth="233.0" styleClass="trans-btn-border" text="Cafés">
+            <Button fx:id="Cafes" mnemonicParsing="false" onAction="#getcafes" prefHeight="48.0" prefWidth="233.0" styleClass="trans-btn-border" text="Cafés">
                <font>
                   <Font size="22.0" />
                </font>

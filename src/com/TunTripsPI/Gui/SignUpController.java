@@ -68,7 +68,7 @@ public class SignUpController implements Initializable {
     private Button btnregistre;
     @FXML 
       private ComboBox<String> usr_role; 
-      private String [] role = {"Simple User","Fournisseur"}; 
+      private String [] role = {"ROLE_USER","ROLE_FOURNISSEUR"}; 
       
 	private String[] countries ={ "Andorre",
 "Emirats Arabes Unis",

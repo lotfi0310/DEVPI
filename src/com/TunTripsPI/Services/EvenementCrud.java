@@ -6,10 +6,9 @@
 package com.TunTripsPI.Services;
 
 import com.TunTripsPI.Utils.MyConnection;
-import com.TunTripsPI.Utils.MyConnection;
+//import com.TunTripsPI.Utils.MyConnection_1;
 import com.TunTripsPI.entities.Evenement;
 import com.TunTripsPI.entities.ReservEvenement;
-import com.TunTripsPI.entities.User;
 import static com.mysql.jdbc.Messages.getString;
 import java.sql.Connection;
 
@@ -38,9 +37,9 @@ public class EvenementCrud {
     }
 //*ajouter evenement
 
-    public void ajouterEvenement(Evenement e,User u) {
+    public void ajouterEvenement(Evenement e) {
 
-        String req = "INSERT INTO evenement (nom,date_debut,date_fin,lieu,description,status,capacite,id) VALUES (?,?,?,?,?,?,?,?)";
+        String req = "INSERT INTO Evenement (nom,date_debut,date_fin,lieu,description,status,capacite) VALUES (?,?,?,?,?,?,?)";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
@@ -53,7 +52,7 @@ public class EvenementCrud {
             pst.setString(6, e.getStatus());
            // pst.setString(7, e.getImage());
             pst.setInt(7, e.getCapacite());
-            pst.setInt(8, u.getId());
+
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -62,20 +61,20 @@ public class EvenementCrud {
     }
 
     public void modifierEvenemenet(Evenement e) {
-        String req = "UPDATE Evenement SET nom=?,date_debut=?,date_fin=?,lieu=?,description=?,status=?,capacite=? WHERE id=?";
+        String req = "UPDATE Evenement SET nom=?,lieu=?,description=?,status=?,capacite=? WHERE idevent=?";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
             pst.setString(1, e.getNom());
-            pst.setDate(2, e.getDate_debut());
-            pst.setDate(3, e.getDate_fin());
-            pst.setString(4, e.getLieu());
-            pst.setString(5, e.getDescription());
-            pst.setString(6, e.getStatus());
+       ///     pst.setDate(2, e.getDate_debut());
+          //  pst.setDate(3, e.getDate_fin());
+            pst.setString(2, e.getLieu());
+            pst.setString(3, e.getDescription());
+            pst.setString(4, e.getStatus());
         
 
-            pst.setInt(8, e.getCapacite());
-            pst.setInt(9, e.getId());
+            pst.setInt(5, e.getCapacite());
+            pst.setInt(6, e.getId());
             pst.executeUpdate();
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -106,7 +105,7 @@ public class EvenementCrud {
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(reqdelete);
-            pst.setInt(1, e.getId());
+            pst.setInt(1,e.getId());
             pst.executeUpdate();
             System.out.println("evenement  supprimé");
 
@@ -159,7 +158,7 @@ public class EvenementCrud {
     public ArrayList<Evenement> consulterEvenement() {
          ResultSet rs ;
         ArrayList<Evenement> listEvenement = new ArrayList<Evenement>();
-        String req = "SELECT * FROM evenement";
+        String req = "SELECT * FROM Evenement";
         Statement st;
         try {
 
@@ -333,20 +332,7 @@ String sql="select * from evenement";
     }
      */
 
-   
-    public int cherchebynomev(String s) {
-        int a = 0 ; 
-        try {
-            String reqid="Select id from evenement where idevent =?";
-            PreparedStatement pst =cnxx.prepareStatement(reqid);
-               pst.setString(1,s);
-               ResultSet rs=pst.executeQuery();
-               if (rs.first()){
-                   a=rs.getInt("idevent");
-               }
-        } catch (SQLException ex) {
-            Logger.getLogger(EvenementCrud.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return a ;
+    public void ajouterEvenement(ReservEvenement re) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

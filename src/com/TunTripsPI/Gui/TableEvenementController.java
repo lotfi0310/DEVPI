@@ -32,6 +32,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -39,9 +40,13 @@ import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import sun.swing.table.DefaultTableCellHeaderRenderer;
 
 /**
  * FXML Controller class
@@ -71,19 +76,24 @@ public class TableEvenementController implements Initializable {
     
      private ObservableList<Evenement> u = FXCollections.observableArrayList();
   
+     @FXML
     private Button btnajouter;
     @FXML
     private Button btncalculer;
     @FXML
-    private TextField nbrevenement;
+    private TextField  nbrevenement;
     @FXML
-    private AnchorPane events;
+    private Pane btnpane;
+    @FXML
+    private Button btnsupprimer;
+    @FXML
+    private Button btnmodifier;
   public TableEvenementController(){
        cnxx = MyConnection.getInstance().getCnx();
   }
     
     @FXML
-    private TableView tableevenement;
+    private TableView <Evenement>tableevenement;
   
  
     /**
@@ -91,6 +101,66 @@ public class TableEvenementController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+       tableevenement.setOnMouseClicked(new EventHandler<javafx.scene.input.MouseEvent>() {
+           @Override
+           public void handle(javafx.scene.input.MouseEvent event) {
+               
+              Evenement rec=(Evenement) tableevenement.getSelectionModel().getSelectedItem();
+           btnpane.setVisible(true);
+               btnmodifier.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                   FXMLLoader Loader = new FXMLLoader(getClass().getResource("modifierEve.fxml"));
+            try {         
+            
+                Parent root = Loader.load();
+ 
+                btnajouter.getScene().setRoot(root);  
+            } catch (IOException ex) {
+                System.out.println("Error: " + ex.getMessage());
+            }
+            ModifierEveController el = Loader.getController();
+                el.setData( tableevenement.getSelectionModel().getSelectedItem().getId());
+                Parent p = Loader.getRoot();
+                 btnpane.setVisible(false);
+                Stage stage = new Stage();
+                stage.initStyle(StageStyle.TRANSPARENT);
+                stage.setScene(new Scene(p));
+                stage.show();
+              }
+          });
+               btnsupprimer.setOnAction(new EventHandler<ActionEvent>() {
+              @Override
+              public void handle(ActionEvent event) {
+                
+                      EvenementCrud uc=new EvenementCrud();
+         Evenement rec=(Evenement) tableevenement.getSelectionModel().getSelectedItem();
+                  System.out.println( rec.getId());
+          JOptionPane j =new JOptionPane() ;
+          j.showConfirmDialog(null,"Are you sure you want to delete this evenement");
+       if(j !=null){
+             uc.supprimerEvenement(rec);
+              resetTableEvenement();
+              btnpane.setVisible(false);
+       }else{
+           j.showMessageDialog(null, "liste evenement vide ");
+       }
+                    
+                   
+              }
+          });
+         
+            }
+             
+           
+       });
+        
+        
+        
+       
+        
+        
+       
     
            EvenementCrud uc=new EvenementCrud();
          List<Evenement> listEvenement= new ArrayList<Evenement>();
@@ -126,9 +196,9 @@ public class TableEvenementController implements Initializable {
         );
                  
                  
-           
-        
-    }   
+    } 
+     
+    
     
       public void resetTableEvenement()
     {
@@ -139,21 +209,12 @@ public class TableEvenementController implements Initializable {
         tableevenement.setItems(data);
     }
 
-    @FXML
-    private void supprimer(javafx.scene.input.MouseEvent event) {
-         EvenementCrud uc=new EvenementCrud();
-         Evenement rec=(Evenement) tableevenement.getSelectionModel().getSelectedItem();
-          JOptionPane j =new JOptionPane() ;
-          j.showConfirmDialog(null,"Are you sure you want to delete this evenement");
-       if(j !=null){
-             uc.supprimerEvenement(rec);
-              resetTableEvenement();
-       }else{
-           j.showMessageDialog(null, "liste evenement vide ");
-       }
-    }
-
+      
    
+
+    
+   
+    @FXML
     private void ajouter(ActionEvent event) {
         
          FXMLLoader loader = new FXMLLoader(getClass().getResource("AddEvenement.fxml"));
@@ -176,10 +237,25 @@ public class TableEvenementController implements Initializable {
         
     }
 
+   
+       
+        
+    //}
+
+  
+        
+      /* */
+      
+    
+
     
     
-}
+    
+    
+    }
+
     
     
     
     
+

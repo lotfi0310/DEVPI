@@ -8,6 +8,7 @@ package com.TunTripsPI.Gui;
 import com.TunTripsPI.Services.EvenementCrud;
 import com.TunTripsPI.Services.MailerService;
 import com.TunTripsPI.Services.ReservCrud;
+import com.TunTripsPI.Utils.SessionManager;
 
 import com.TunTripsPI.entities.Evenement;
 import com.TunTripsPI.entities.ReservEvenement;
@@ -91,7 +92,7 @@ public class AddReservatioController implements Initializable {
 
         try {
             //*
-           int id_evenement = searchEventId(events.consulterEvenement(), idlist.getSelectionModel().getSelectedItem());
+         //  int id_evenement = searchEventId(events.consulterEvenement(), idlist.getSelectionModel().getSelectedItem());
           
             LocalDate myDate = tfres.getValue();
            
@@ -100,13 +101,14 @@ public class AddReservatioController implements Initializable {
             Date parsed = format.parse(d1);
             java.sql.Date dd1 = new java.sql.Date(parsed.getTime());
             Evenement e = new Evenement();
+            e.setId(SessionManager.getIdevent());
             ReservCrud ee = new ReservCrud();
            
             ReservEvenement re=new ReservEvenement();
            re.setDate_reservation(dd1);
-           re.setId_evenement(id_evenement);
-            System.out.println(id_evenement);
-           re.setId_user(Integer.parseInt(txtreservsimp.getText()));
+           re.setId_evenement(SessionManager.getIdevent());
+           // System.out.println(id_evenement);
+           re.setId_user(SessionManager.id);
            ee.ajouterReservation(re,e);
             System.out.println(ee.ajouterReservation(re,e));
            

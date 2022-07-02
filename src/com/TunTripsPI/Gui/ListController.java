@@ -278,25 +278,31 @@ public class ListController implements Initializable {
                             @Override
                             public void handle(MouseEvent event) {
 
-                                FXMLLoader Loader = new FXMLLoader(getClass().getResource("ModifierRegion.fxml"));
                                 try {
-
-                                    Parent root = Loader.load();
-
-                                    btnaj.getScene().setRoot(root);
+                                    
+                                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("ModifierRegion.fxml"));
+                                    try {
+                                        
+                                        Parent root = Loader.load();
+                                        
+                                        btnaj.getScene().setRoot(root);
+                                    } catch (IOException ex) {
+                                        System.out.println("Error: " + ex.getMessage());
+                                    }
+                                    
+                                    ModifierRegionController alertBoxController = Loader.getController();
+                                    alertBoxController.setData(region_table.getSelectionModel().getSelectedItem().getNom(),
+                                            region_table.getSelectionModel().getSelectedItem().getDescription(),
+                                            region_table.getSelectionModel().getSelectedItem().getId());
+                                    Parent p = Loader.getRoot();
+                                    Stage stage = new Stage();
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(new Scene(p));
+                                    stage.show();
+                                    
                                 } catch (IOException ex) {
-                                    System.out.println("Error: " + ex.getMessage());
+                                    Logger.getLogger(ListController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-
-                                ModifierRegionController alertBoxController = Loader.getController();
-                                alertBoxController.setData(region_table.getSelectionModel().getSelectedItem().getNom(),
-                                        region_table.getSelectionModel().getSelectedItem().getDescription(),
-                                        region_table.getSelectionModel().getSelectedItem().getId());
-                                Parent p = Loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(new Scene(p));
-                                stage.show();
 
                             }
                             /*

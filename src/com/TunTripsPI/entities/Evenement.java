@@ -1,4 +1,4 @@
-     /*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,13 +15,11 @@ public class Evenement {
     private int id;
     private String  nom;
     private Date date_debut;
-
-   
     private Date date_fin;
     private String lieu;
     private String description;
     private String Status;
-  private int iduser;
+  //   private String image;
     private int capacite;
     public Evenement(int id, String nom) {
         this.id = id;
@@ -57,8 +55,17 @@ public class Evenement {
        // this.image = image;
         this.capacite = capacite;
     }
-
- 
+      public Evenement(int id, String nom,  String lieu, String description, String Status, int capacite) {
+        this.id = id;
+        this.nom = nom;
+       
+        this.lieu = lieu;
+        this.description = description;
+        this.Status = Status;
+       // this.image = image;
+        this.capacite = capacite;
+    }
+     
 
   
 
@@ -77,10 +84,11 @@ public class Evenement {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Evenement(int ii, String nom, String lieu, String description, String statue, int capacite) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Evenement(String nom, String description, String lieu, int capacite) {
+        //To change body of generated methods, choose Tools | Templates.
     }
 
+    
    
 
     public String getStatus() {
@@ -156,14 +164,6 @@ public class Evenement {
         this.capacite = capacite;
     }
 
-     public int getIduser() {
-        return iduser;
-    }
-
-    public void setIduser(int iduser) {
-        this.iduser = iduser;
-    }
-     
     @Override
     public String toString() {
         return "Evenement{" + "id=" + id + ", nom=" + nom + ", date_debut=" + date_debut + ", date_fin=" + date_fin + ", lieu=" + lieu + ", description=" + description + ", Status=" + Status + ", capacite=" + capacite + '}';

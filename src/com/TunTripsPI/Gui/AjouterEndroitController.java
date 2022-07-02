@@ -66,8 +66,9 @@ public class AjouterEndroitController implements Initializable {
     @FXML
     private TextField tfLatitude;
     String s;
+    String name ; 
 
-    ObservableList<String> TypeList = FXCollections.observableArrayList("Monuments", "Musées", "Cafés", "Restaurants");
+    ObservableList<String> TypeList = FXCollections.observableArrayList("Monuments", "museum", "Cafes", "Restaurants ");
     @FXML
     private TextField txtregid;
 
@@ -101,12 +102,15 @@ public class AjouterEndroitController implements Initializable {
 
         String path = file.getAbsolutePath();
         s = path;
+        name =file.getName();
 
         try {
             BufferedImage bufferedImage = ImageIO.read(file);
             WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
-
             myImageView1.setImage(image);
+             String Location="C:/Endroit/"+name;
+                String format="JPG";
+                ImageIO.write(bufferedImage, format, new File(Location));
         } catch (IOException ex) {
             Logger.getLogger(AjouterUneRegionController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -127,7 +131,7 @@ public class AjouterEndroitController implements Initializable {
 
                 Connection cnxx = MyConnection.getInstance().getCnx();
 
-                String req = "INSERT INTO endroit (nom,description,type,longitude,latitude,image,region_id) VALUES (?,?,?,?,?,?,?)";
+                String req = "INSERT INTO endroit (nom,description,type,longitude,latitude,image,region_id_id) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement ps = cnxx.prepareStatement(req);
                 InputStream is = new FileInputStream(new File(s));
                 String s = comb.getSelectionModel().getSelectedItem().toString();
@@ -140,7 +144,7 @@ public class AjouterEndroitController implements Initializable {
                 ps.setFloat(4, Float.parseFloat(tfLongitude.getText()));
                 ps.setFloat(5, Float.parseFloat(tfLatitude.getText()));
 
-                ps.setBlob(6, is);
+                ps.setString(6, name);
                 ps.setInt(7, Integer.parseInt(txtregid.getText()));
                 
                 ps.executeUpdate();

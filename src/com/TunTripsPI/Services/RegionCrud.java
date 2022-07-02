@@ -48,7 +48,7 @@ public class RegionCrud {
             pst.setString(1, r.getNom());
             pst.setString(2, r.getDescription());
 
-            pst.setBlob(3, r.getImage());
+            pst.setString(3, r.getImage());
 
             pst.executeUpdate();
         } catch (SQLException ex) {
@@ -58,15 +58,16 @@ public class RegionCrud {
     }
 
     public void modifierRegion(Region r) {
-        String req = "UPDATE Region SET nom=?, description=? WHERE id=?";
+        String req = "UPDATE Region SET nom=?, description=? ,photo=? WHERE id=?";
         PreparedStatement pst;
         try {
             pst = cnxx.prepareStatement(req);
             pst.setString(1, r.getNom());
             pst.setString(2, r.getDescription());
+            pst.setString(3, r.getImage());
 
           //  pst.setBlob(3, r.getImage());
-             pst.setInt(3, r.getId());
+             pst.setInt(4, r.getId());
 
             pst.executeUpdate();
         } catch (SQLException ex) {

@@ -8,7 +8,9 @@ package com.TunTripsPI.Gui;
 import com.TunTripsPI.Utils.MyConnection;
 import com.TunTripsPI.Utils.SessionManager;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -19,7 +21,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,6 +36,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -41,6 +48,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -65,7 +73,7 @@ public class UserRegionListController implements Initializable {
         // TODO
         Connection cnxx = MyConnection.getInstance().getCnx();
         String req = "SELECT * FROM region ";
-        List<Button> buttonlist = new ArrayList<>();
+        List<ImageView> buttonlist = new ArrayList<>();
         PreparedStatement pst;
         try {
 
@@ -75,87 +83,82 @@ public class UserRegionListController implements Initializable {
             while (resulSet.next()) {
 
                 //  String s = resulSet.getString("nom");
-                InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("photo"));
+                String photo=resulSet.getString("photo");
                 int rid = resulSet.getInt("id");
-
-                Image img = new Image(inputStream);
-                BackgroundImage backgroundImage = new BackgroundImage(img, BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-                Background background = new Background(backgroundImage);
+                BufferedImage bufferedImage = ImageIO.read(new File("C:/Region/"+photo));
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
                 
-                Button button = new Button();
-                
-                button.setPrefWidth(1360);
-                button.setPrefHeight(150);
+                 ImageView img =new ImageView(); 
+                 img.setImage(image);
+                 img.setFitWidth(1360);
+                 img.setFitHeight(250);
+                 
+             
             
-                button.setBackground(background);
-                
-                button.setText(resulSet.getString("nom"));
-                Font font = new Font(70); //Button font's size should increase to 40
-                button.setFont(font);
-                button.setStyle("-fx-text-fill: #ffffff ");
+              
                  
               
                 
 
-                buttonlist.add(button);
+                buttonlist.add(img);
 
                 /**
                  * ******************************** when the user click on the
                  * button he will be redirected to the detailsPage *************
                  */
-                // action event
-                EventHandler<ActionEvent> regionDetails = new EventHandler<ActionEvent>() {
-                    public void handle(ActionEvent e) {
-                        FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionDetails.fxml"));
-                        try {
-
-                            Parent root = Loader.load();
-
-                            btnVillesEtCulture.getScene().setRoot(root);
-                            UserRegionDetailsController urd=Loader.getController();
-                            System.out.println(SessionManager.id);                        } catch (IOException ex) {
-                            System.out.println("Error: " + ex.getMessage());
-                        }
-
-                        UserRegionDetailsController r = Loader.getController();
-                        r.setData(rid);
-                        Parent p = Loader.getRoot();
-                        Stage stage = new Stage();
-                        stage.initStyle(StageStyle.TRANSPARENT);
-                        stage.setScene(new Scene(p));
-                        stage.show();
-                    }
-                    
-                    
-                };
+             
                 
-                
-        
-  button.addEventHandler(MouseEvent.MOUSE_ENTERED,
+               
+       
+  img.addEventHandler(MouseEvent.MOUSE_ENTERED,
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent e) {
-             button.setStyle("-fx-border-color: #ffffff ;-fx-border-width: 5 ; -fx-text-fill: #ffffff ");
+             img.setStyle("-fx-border-color: #ffffff ;-fx-border-width: 5 ; -fx-text-fill: #ffffff ");
             
              
           }
         });
 
-    button.addEventHandler(MouseEvent.MOUSE_EXITED,
+  img.addEventHandler(MouseEvent.MOUSE_EXITED,
         new EventHandler<MouseEvent>() {
           @Override
           public void handle(MouseEvent e) {
-             button.setStyle("-fx-border-color: transparent ;-fx-text-fill: #ffffff ");
+             img.setStyle("-fx-border-color: transparent ;-fx-text-fill: #ffffff ");
                
           }
         });
   
 
-                button.setOnAction(regionDetails);
-
-                /**
-                 * *******************************************************************************
-                 */
+               img.setOnMousePressed(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        try {
+                            FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserRegionDetails.fxml"));
+                            try {
+                                
+                                Parent root = Loader.load();
+                                
+                                btnVillesEtCulture.getScene().setRoot(root);
+                                UserRegionDetailsController urd=Loader.getController();
+                                System.out.println(SessionManager.id);                        } catch (IOException ex) {
+                                    System.out.println("Error: " + ex.getMessage());
+                                }
+                            
+                            UserRegionDetailsController r = Loader.getController();
+                            r.setData(rid);
+                            Parent p = Loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.initStyle(StageStyle.TRANSPARENT);
+                            stage.setScene(new Scene(p));
+                            stage.show();
+                        } catch (IOException ex) {
+                            Logger.getLogger(UserRegionListController.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                });
+ 
+ 
             }
             vboxx.getChildren().clear(); //remove all images that are currently in the container
             vboxx.getChildren().addAll(buttonlist); //then add all your images that you just created
@@ -163,6 +166,8 @@ public class UserRegionListController implements Initializable {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
 
+        } catch (IOException ex) {
+            Logger.getLogger(UserRegionListController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

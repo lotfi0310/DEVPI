@@ -75,6 +75,9 @@ public class ModifierEndroitController implements Initializable {
     @FXML
     private TextField txtidreg;
 String s ;
+String name ; 
+ File file;
+ BufferedImage bufferedImage;
     /**
      * Initializes the controller class.
      */
@@ -98,11 +101,9 @@ String s ;
                 if (resulSet.first()) {
                 
                                   
-                 
-                InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("image"));
-                Image image = new Image(inputStream ,800, 800, false, false);
-
-                myImageView1.setImage(image);
+                   BufferedImage bufferedImage = ImageIO.read(new File("C:/Endroit/"+resulSet.getString("image")));
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+               myImageView1.setImage(image);
                     tfDescription.setText(resulSet.getString("description"));
                     tfNomEndroit.setText(resulSet.getString("nom"));
             tfLongitude.setText(resulSet.getString("longitude"));
@@ -118,7 +119,9 @@ String s ;
        
 
            
-        } 
+        } catch (IOException ex) { 
+            Logger.getLogger(ModifierEndroitController.class.getName()).log(Level.SEVERE, null, ex);
+        }
             txtidreg.setText(""+regidd);
              tfid.setText("" + idd);
     
@@ -205,10 +208,11 @@ String s ;
             fileChooser.getExtensionFilters().addAll(extFilterJPG, extFilterPNG);
              
             //Show open file dialog
-            File file = fileChooser.showOpenDialog(null);
+             file = fileChooser.showOpenDialog(null);
        
             String path = file.getAbsolutePath(); 
-              s = path;           
+              s = path;   
+              name=file.getName();
          
             try {
                 BufferedImage bufferedImage = ImageIO.read(file);
@@ -224,7 +228,7 @@ public static boolean isEmpty(ImageView imageView) {
     return true;
 }
     @FXML
-    private void saveChanges(ActionEvent event) throws FileNotFoundException {
+    private void saveChanges(ActionEvent event) throws FileNotFoundException, IOException {
         
           boolean emp =  isEmpty(myImageView1);
       
@@ -235,7 +239,6 @@ public static boolean isEmpty(ImageView imageView) {
 
             String req = "UPDATE Endroit SET nom=?,description=?,longitude=?,latitude=?, image=? WHERE id=?";
             PreparedStatement ps = cnxx.prepareStatement(req);
-            InputStream is = new FileInputStream(new File(s));
             
            
 
@@ -244,9 +247,15 @@ public static boolean isEmpty(ImageView imageView) {
             ps.setString(2,  tfDescription.getText());
             ps.setFloat(3, Float.parseFloat(tfLongitude.getText()));
             ps.setFloat(4, Float.parseFloat(tfLatitude.getText())); 
-            ps.setBlob(5,is);
+            ps.setString(5,name);
             ps.setInt(6,Integer.parseInt(tfid.getText()));
             ps.executeUpdate();
+              bufferedImage = ImageIO.read(file);
+            WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+            myImageView1.setImage(image);
+             String Location="C:/Endroit/"+name;
+                String format="JPG";
+                ImageIO.write(bufferedImage, format, new File(Location));
             
             RegionCrud rc = new RegionCrud();
             Region r = new Region();

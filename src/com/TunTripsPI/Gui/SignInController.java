@@ -8,6 +8,8 @@ package com.TunTripsPI.Gui;
 import com.TunTripsPI.Services.UserCruds;
 import com.TunTripsPI.Utils.SessionManager;
 import com.TunTripsPI.entities.User;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -18,6 +20,7 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.animation.TranslateTransition;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,6 +33,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -37,6 +41,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,6 +57,7 @@ public class SignInController implements Initializable {
     String country;
     String role;
     Parent fxml;
+    String photo ;
     Pane frameacc;
 
     @FXML
@@ -123,6 +129,10 @@ public class SignInController implements Initializable {
                                   nom =rs.getString("nom");
                                   prenom =rs.getString("prenom");
                                   country= rs.getString("country");
+                                  photo=rs.getString("photo");
+                                  BufferedImage bufferedImage = ImageIO.read(new File("C:/photo/"+photo));
+                                  WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+                                  SessionManager.photo=image ; 
                                   p=password;
                                  role=rs.getString("role");
                                  num=rs.getString("num_tel");
@@ -200,6 +210,8 @@ public class SignInController implements Initializable {
                             }
                         } catch (SQLException ex) {
                             showAlertWithHeaderText("Mot de Passe ou email incorect ");
+                        } catch (IOException ex) {
+                            Logger.getLogger(SignInController.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
                         showAlertWithHeaderText("email invalide");

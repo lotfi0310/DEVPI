@@ -41,7 +41,7 @@ public class ReservCrud {
            String cap = evenementCapacite(e);
            int ii=Integer.parseInt(cap); 
             if (ii >0){
-                String requete = "INSERT INTO reser_evenement (Date_reservation,id_even,id_user)"
+                String requete = "INSERT INTO reser_evenement (Date_reservation,id_event,id_user)"
                     + "VALUES ('" + R.getDate_reservation() + "','" + R.getId_evenement() + "','" + R.getId_user() + " ')";
                 String requete2 = "UPDATE Evenement SET capacite=capacite-1 WHERE id=?";
         

@@ -7,7 +7,9 @@ package com.TunTripsPI.Gui;
 
 import com.TunTripsPI.Utils.MyConnection;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -16,6 +18,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -28,8 +33,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -52,14 +59,16 @@ public class UserRegionDetailsController implements Initializable {
     private Button Monuments;
     @FXML
     private Label lblNomreg;
-    @FXML
-    private Button Musées;
-    @FXML
-    private Button Cafés;
+    
+    
     @FXML
     private Button Restaurants;
     @FXML
     private TextField txtuu;
+    @FXML
+    private Button Museum;
+    @FXML
+    private Button Cafes;
 
     /**
      * Initializes the controller class.
@@ -68,7 +77,7 @@ public class UserRegionDetailsController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }   
-      public void setData( int regidd) {
+      public void setData( int regidd) throws IOException {
     Connection cnxx = MyConnection.getInstance().getCnx();
             String req = "SELECT * FROM region WHERE id = ?";
 
@@ -80,11 +89,11 @@ public class UserRegionDetailsController implements Initializable {
                 ResultSet resulSet = pst.executeQuery();
                 if (resulSet.first()) {
     
-                InputStream inputStream = new ByteArrayInputStream(resulSet.getBytes("photo"));
-                Image image = new Image(inputStream, 1366, 350, false, false);
- 
- 
+                String s=resulSet.getString("photo");
+                 BufferedImage bufferedImage = ImageIO.read(new File("C:/Region/"+s));
+                WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
                 myImageView.setImage(image);
+
      
                 txtdesc.setText(resulSet.getString("description"));
                 lblNomreg.setText(resulSet.getString("nom"));
@@ -126,24 +135,36 @@ public class UserRegionDetailsController implements Initializable {
         
         
         
-          FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
                                 try {
-
-                                    Parent root = Loader.load();
-
-                                    Monuments.getScene().setRoot(root);
+                                    
+                                    
+                                    
+                                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
+                                    try {
+                                        
+                                        Parent root = Loader.load();
+                                        
+                                        Monuments.getScene().setRoot(root);
+                                    } catch (IOException ex) {
+                                        System.out.println("Error: " + ex.getMessage());
+                                    }
+                                    
+                                    UserEndroitInterfaceController e = Loader.getController();
+                                    e.selectEndroits(Integer.parseInt(txtregionId.getText()),Monuments.getId(), lblNomreg.getText() );
+                                    e.setdata(Integer.parseInt(txtregionId.getText()),Monuments.getId(), lblNomreg.getText() );
+                                    Parent p = Loader.getRoot();
+                                    Stage stage = new Stage();
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(new Scene(p));
+                                    stage.show();
+                                    
+                                    
+                                    
+                                    
+                                    
                                 } catch (IOException ex) {
-                                    System.out.println("Error: " + ex.getMessage());
+                                    Logger.getLogger(UserRegionDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-
-                                UserEndroitInterfaceController e = Loader.getController();
-                                e.selectEndroits(Integer.parseInt(txtregionId.getText()),Monuments.getId(), lblNomreg.getText() );
-                                e.setdata(Integer.parseInt(txtregionId.getText()),Monuments.getId(), lblNomreg.getText() );
-                                Parent p = Loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(new Scene(p));
-                                stage.show();
         
         
         
@@ -153,70 +174,85 @@ public class UserRegionDetailsController implements Initializable {
 
     @FXML
     private void getmusees(ActionEvent event) {
-         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
                                 try {
-
-                                    Parent root = Loader.load();
-
-                                    Musées.getScene().setRoot(root);
+                                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
+                                    try {
+                                        
+                                        Parent root = Loader.load();
+                                        
+                                        Museum.getScene().setRoot(root);
+                                    } catch (IOException ex) {
+                                        System.out.println("Error: " + ex.getMessage());
+                                    }
+                                    
+                                    UserEndroitInterfaceController e = Loader.getController();
+                                    e.selectEndroits(Integer.parseInt(txtregionId.getText()),Museum.getId(), lblNomreg.getText() );
+                                    e.setdata(Integer.parseInt(txtregionId.getText()),Museum.getId(), lblNomreg.getText() );
+                                    Parent p = Loader.getRoot();
+                                    Stage stage = new Stage();
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(new Scene(p));
+                                    stage.show();
+                                    
                                 } catch (IOException ex) {
-                                    System.out.println("Error: " + ex.getMessage());
+                                    Logger.getLogger(UserRegionDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-
-                                UserEndroitInterfaceController e = Loader.getController();
-                                e.selectEndroits(Integer.parseInt(txtregionId.getText()),Musées.getId(), lblNomreg.getText() );
-                                e.setdata(Integer.parseInt(txtregionId.getText()),Musées.getId(), lblNomreg.getText() );
-                                Parent p = Loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(new Scene(p));
-                                stage.show();
         
     }
 
     @FXML
     private void getcafes(ActionEvent event) {
-         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
                                 try {
-
-                                    Parent root = Loader.load();
-
-                                    Cafés.getScene().setRoot(root);
+                                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
+                                    try {
+                                        
+                                        Parent root = Loader.load();
+                                        
+                                        Cafes.getScene().setRoot(root);
+                                    } catch (IOException ex) {
+                                        System.out.println("Error: " + ex.getMessage());
+                                    }
+                                    
+                                    UserEndroitInterfaceController e = Loader.getController();
+                                    e.selectEndroits(Integer.parseInt(txtregionId.getText()),Cafes.getId(), lblNomreg.getText() );
+                                    e.setdata(Integer.parseInt(txtregionId.getText()),Cafes.getId(), lblNomreg.getText() );
+                                    Parent p = Loader.getRoot();
+                                    Stage stage = new Stage();
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(new Scene(p));
+                                    stage.show();
+                                    
                                 } catch (IOException ex) {
-                                    System.out.println("Error: " + ex.getMessage());
+                                    Logger.getLogger(UserRegionDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-
-                                UserEndroitInterfaceController e = Loader.getController();
-                                e.selectEndroits(Integer.parseInt(txtregionId.getText()),Cafés.getId(), lblNomreg.getText() );
-                                e.setdata(Integer.parseInt(txtregionId.getText()),Cafés.getId(), lblNomreg.getText() );
-                                Parent p = Loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(new Scene(p));
-                                stage.show();
         
     }
 
     @FXML
     private void getrestau(ActionEvent event) {
-         FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
                                 try {
-
-                                    Parent root = Loader.load();
-
-                                    Restaurants.getScene().setRoot(root);
+                                    FXMLLoader Loader = new FXMLLoader(getClass().getResource("UserEndroitInterface.fxml"));
+                                    try {
+                                        
+                                        Parent root = Loader.load();
+                                        
+                                        Restaurants.getScene().setRoot(root);
+                                    } catch (IOException ex) {
+                                        System.out.println("Error: " + ex.getMessage());
+                                    }
+                                    
+                                    UserEndroitInterfaceController e = Loader.getController();
+                                    e.selectEndroits(Integer.parseInt(txtregionId.getText()),Restaurants.getId(), lblNomreg.getText() );
+                                    e.setdata(Integer.parseInt(txtregionId.getText()),Restaurants.getId(), lblNomreg.getText() );
+                                    Parent p = Loader.getRoot();
+                                    Stage stage = new Stage();
+                                    stage.initStyle(StageStyle.TRANSPARENT);
+                                    stage.setScene(new Scene(p));
+                                    stage.show();
+                                    
                                 } catch (IOException ex) {
-                                    System.out.println("Error: " + ex.getMessage());
+                                    Logger.getLogger(UserRegionDetailsController.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-
-                                UserEndroitInterfaceController e = Loader.getController();
-                                e.selectEndroits(Integer.parseInt(txtregionId.getText()),Restaurants.getId(), lblNomreg.getText() );
-                                e.setdata(Integer.parseInt(txtregionId.getText()),Restaurants.getId(), lblNomreg.getText() );
-                                Parent p = Loader.getRoot();
-                                Stage stage = new Stage();
-                                stage.initStyle(StageStyle.TRANSPARENT);
-                                stage.setScene(new Scene(p));
-                                stage.show();
         
     }
     

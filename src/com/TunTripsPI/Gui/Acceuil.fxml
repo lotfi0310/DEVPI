@@ -1,67 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.Icon?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.TunTripsPI.Gui.AcceuilController">
    <children>
-      <VBox layoutX="-5.0" prefHeight="769.0" prefWidth="249.0" styleClass="vbox" stylesheets="@stylee.css">
-         <children>
-            <Button mnemonicParsing="false" onAction="#Region" prefHeight="35.0" prefWidth="369.0" text="Région">
-               <VBox.margin>
-                  <Insets top="150.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="WALLPAPER" prefHeight="30.0" prefWidth="30.0" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onMouseClicked="#btnopenEvent" prefHeight="35.0" prefWidth="370.0" text="Evénements">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="EVENT" prefHeight="30.0" prefWidth="30.0" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="373.0" text="Hébergements">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="HOME" prefHeight="26.0" prefWidth="35.0" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="302.0" text="Transport ">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="DIRECTIONS_BUS" prefHeight="26.0" prefWidth="28.0" />
-               </graphic>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#ProfilUser" prefHeight="35.0" prefWidth="267.0" text="Profil">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="ACCOUNT_BOX" prefHeight="25.0" prefWidth="24.0" />
-               </graphic>
-            </Button>
-            <Button fx:id="btnreclamations" mnemonicParsing="false" prefHeight="35.0" prefWidth="393.0" text="Réclamations">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-               <graphic>
-                  <Icon content="QUESTION_ANSWER" />
-               </graphic>
-            </Button>
-         </children></VBox>
       <TextField fx:id="txtu" editable="false" layoutX="471.0" layoutY="554.0" visible="false" />
-      <Pane layoutX="244.0" layoutY="-3.0" prefHeight="147.0" prefWidth="1128.0" styleClass="vbox" stylesheets="@stylee.css" />
+      <VBox prefHeight="768.0" prefWidth="211.0" styleClass="vbox" stylesheets="@styles.css">
+         <children>
+            <ImageView fx:id="imgprofilacc" fitHeight="132.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin></ImageView>
+            <Button mnemonicParsing="false" onAction="#acceuil" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Acceuil" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnVillesEtCulture" mnemonicParsing="false" onAction="#listDesRegions" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Villes et culture" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#btnopenEvent" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Evénements" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Maisons d'hôtes " textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="transport" mnemonicParsing="false" onAction="#Taction" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Transport" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#ProfilUser" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Profil" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnreclamations" mnemonicParsing="false" prefHeight="54.0" prefWidth="206.0" styleClass="btn-vbox" stylesheets="@styles.css" text="Réclamation" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+         </children>
+         <padding>
+            <Insets top="90.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>

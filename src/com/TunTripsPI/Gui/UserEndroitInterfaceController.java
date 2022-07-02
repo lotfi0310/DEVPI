@@ -72,7 +72,7 @@ public class UserEndroitInterfaceController implements Initializable {
 
     public void selectEndroits(int idreg, String typee, String regnom) {
         Connection cnxx = MyConnection.getInstance().getCnx();
-        String req = "SELECT * FROM endroit WHERE region_id ='" + idreg + "'  AND type ='" + typee + "'";
+        String req = "SELECT * FROM endroit WHERE region_id_id ='" + idreg + "'  AND type ='" + typee + "'";
         List<HBox> Endroitslistfiltré = new ArrayList<>();
         String t = typee;
         String r = regnom;
